@@ -12,30 +12,18 @@
 		E57C00F520324D0100F18E8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E57C00F320324D0100F18E8B /* Main.storyboard */; };
 		E57C00F720324D0100F18E8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E57C00F620324D0100F18E8B /* Assets.xcassets */; };
 		E57C00FA20324D0100F18E8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E57C00F820324D0100F18E8B /* LaunchScreen.storyboard */; };
-		E57C010520324D0100F18E8B /* FoodTrackerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57C010420324D0100F18E8B /* FoodTrackerTests.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		E57C010120324D0100F18E8B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E57C00E420324D0100F18E8B /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E57C00EB20324D0100F18E8B;
-			remoteInfo = FoodTracker;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		E57C00EC20324D0100F18E8B /* FoodTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FoodTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7226830DCDA72A8710C9E0F1 /* Pods-CoinPrices.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoinPrices.release.xcconfig"; path = "Pods/Target Support Files/Pods-CoinPrices/Pods-CoinPrices.release.xcconfig"; sourceTree = "<group>"; };
+		B48075F771E436AB93E6AB3E /* Pods-CoinPrices.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoinPrices.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CoinPrices/Pods-CoinPrices.debug.xcconfig"; sourceTree = "<group>"; };
+		E57C00EC20324D0100F18E8B /* CoinPrices.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoinPrices.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E57C00EF20324D0100F18E8B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E57C00F120324D0100F18E8B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E57C00F420324D0100F18E8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E57C00F620324D0100F18E8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E57C00F920324D0100F18E8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E57C00FB20324D0100F18E8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E57C010020324D0100F18E8B /* FoodTrackerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FoodTrackerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E57C010420324D0100F18E8B /* FoodTrackerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoodTrackerTests.swift; sourceTree = "<group>"; };
-		E57C010620324D0100F18E8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,35 +34,44 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E57C00FD20324D0100F18E8B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0862290602745D6F7207AFB6 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		205F58BA30BB36AF4D6AC892 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B48075F771E436AB93E6AB3E /* Pods-CoinPrices.debug.xcconfig */,
+				7226830DCDA72A8710C9E0F1 /* Pods-CoinPrices.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		E57C00E320324D0100F18E8B = {
 			isa = PBXGroup;
 			children = (
-				E57C00EE20324D0100F18E8B /* FoodTracker */,
-				E57C010320324D0100F18E8B /* FoodTrackerTests */,
+				E57C00EE20324D0100F18E8B /* CoinPrices */,
 				E57C00ED20324D0100F18E8B /* Products */,
+				205F58BA30BB36AF4D6AC892 /* Pods */,
+				0862290602745D6F7207AFB6 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		E57C00ED20324D0100F18E8B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E57C00EC20324D0100F18E8B /* FoodTracker.app */,
-				E57C010020324D0100F18E8B /* FoodTrackerTests.xctest */,
+				E57C00EC20324D0100F18E8B /* CoinPrices.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E57C00EE20324D0100F18E8B /* FoodTracker */ = {
+		E57C00EE20324D0100F18E8B /* CoinPrices */ = {
 			isa = PBXGroup;
 			children = (
 				E57C00EF20324D0100F18E8B /* AppDelegate.swift */,
@@ -84,55 +81,31 @@
 				E57C00F820324D0100F18E8B /* LaunchScreen.storyboard */,
 				E57C00FB20324D0100F18E8B /* Info.plist */,
 			);
-			path = FoodTracker;
-			sourceTree = "<group>";
-		};
-		E57C010320324D0100F18E8B /* FoodTrackerTests */ = {
-			isa = PBXGroup;
-			children = (
-				E57C010420324D0100F18E8B /* FoodTrackerTests.swift */,
-				E57C010620324D0100F18E8B /* Info.plist */,
-			);
-			path = FoodTrackerTests;
+			path = CoinPrices;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E57C00EB20324D0100F18E8B /* FoodTracker */ = {
+		E57C00EB20324D0100F18E8B /* CoinPrices */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E57C010920324D0100F18E8B /* Build configuration list for PBXNativeTarget "FoodTracker" */;
+			buildConfigurationList = E57C010920324D0100F18E8B /* Build configuration list for PBXNativeTarget "CoinPrices" */;
 			buildPhases = (
+				0BBD2A9A3C2A6422202E7B29 /* [CP] Check Pods Manifest.lock */,
 				E57C00E820324D0100F18E8B /* Sources */,
 				E57C00E920324D0100F18E8B /* Frameworks */,
 				E57C00EA20324D0100F18E8B /* Resources */,
+				58376C7FDD87922AB0968636 /* [CP] Embed Pods Frameworks */,
+				FD596AFEC0718925CABC16D2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = FoodTracker;
+			name = CoinPrices;
 			productName = FoodTracker;
-			productReference = E57C00EC20324D0100F18E8B /* FoodTracker.app */;
+			productReference = E57C00EC20324D0100F18E8B /* CoinPrices.app */;
 			productType = "com.apple.product-type.application";
-		};
-		E57C00FF20324D0100F18E8B /* FoodTrackerTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = E57C010C20324D0100F18E8B /* Build configuration list for PBXNativeTarget "FoodTrackerTests" */;
-			buildPhases = (
-				E57C00FC20324D0100F18E8B /* Sources */,
-				E57C00FD20324D0100F18E8B /* Frameworks */,
-				E57C00FE20324D0100F18E8B /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				E57C010220324D0100F18E8B /* PBXTargetDependency */,
-			);
-			name = FoodTrackerTests;
-			productName = FoodTrackerTests;
-			productReference = E57C010020324D0100F18E8B /* FoodTrackerTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -148,14 +121,9 @@
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
 					};
-					E57C00FF20324D0100F18E8B = {
-						CreatedOnToolsVersion = 9.2;
-						ProvisioningStyle = Automatic;
-						TestTargetID = E57C00EB20324D0100F18E8B;
-					};
 				};
 			};
-			buildConfigurationList = E57C00E720324D0100F18E8B /* Build configuration list for PBXProject "FoodTracker" */;
+			buildConfigurationList = E57C00E720324D0100F18E8B /* Build configuration list for PBXProject "CoinPrices" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -168,8 +136,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				E57C00EB20324D0100F18E8B /* FoodTracker */,
-				E57C00FF20324D0100F18E8B /* FoodTrackerTests */,
+				E57C00EB20324D0100F18E8B /* CoinPrices */,
 			);
 		};
 /* End PBXProject section */
@@ -185,14 +152,58 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E57C00FE20324D0100F18E8B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0BBD2A9A3C2A6422202E7B29 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CoinPrices-checkManifestLockResult.txt",
+			);
 			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
 		};
-/* End PBXResourcesBuildPhase section */
+		58376C7FDD87922AB0968636 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CoinPrices/Pods-CoinPrices-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FD596AFEC0718925CABC16D2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CoinPrices/Pods-CoinPrices-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E57C00E820324D0100F18E8B /* Sources */ = {
@@ -204,23 +215,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E57C00FC20324D0100F18E8B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				E57C010520324D0100F18E8B /* FoodTrackerTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		E57C010220324D0100F18E8B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = E57C00EB20324D0100F18E8B /* FoodTracker */;
-			targetProxy = E57C010120324D0100F18E8B /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		E57C00F320324D0100F18E8B /* Main.storyboard */ = {
@@ -351,12 +346,14 @@
 		};
 		E57C010A20324D0100F18E8B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B48075F771E436AB93E6AB3E /* Pods-CoinPrices.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = FoodTracker/Info.plist;
+				DEVELOPMENT_TEAM = 7BAH7VG3Y6;
+				INFOPLIST_FILE = CoinPrices/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jijunlu.FoodTracker;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jijunlu.J3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -365,54 +362,24 @@
 		};
 		E57C010B20324D0100F18E8B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7226830DCDA72A8710C9E0F1 /* Pods-CoinPrices.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = FoodTracker/Info.plist;
+				DEVELOPMENT_TEAM = 7BAH7VG3Y6;
+				INFOPLIST_FILE = CoinPrices/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jijunlu.FoodTracker;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jijunlu.J3;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
-		E57C010D20324D0100F18E8B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = FoodTrackerTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jijunlu.FoodTrackerTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FoodTracker.app/FoodTracker";
-			};
-			name = Debug;
-		};
-		E57C010E20324D0100F18E8B /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = FoodTrackerTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.jijunlu.FoodTrackerTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FoodTracker.app/FoodTracker";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E57C00E720324D0100F18E8B /* Build configuration list for PBXProject "FoodTracker" */ = {
+		E57C00E720324D0100F18E8B /* Build configuration list for PBXProject "CoinPrices" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E57C010720324D0100F18E8B /* Debug */,
@@ -421,20 +388,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E57C010920324D0100F18E8B /* Build configuration list for PBXNativeTarget "FoodTracker" */ = {
+		E57C010920324D0100F18E8B /* Build configuration list for PBXNativeTarget "CoinPrices" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E57C010A20324D0100F18E8B /* Debug */,
 				E57C010B20324D0100F18E8B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		E57C010C20324D0100F18E8B /* Build configuration list for PBXNativeTarget "FoodTrackerTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				E57C010D20324D0100F18E8B /* Debug */,
-				E57C010E20324D0100F18E8B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
