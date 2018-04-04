@@ -55,6 +55,12 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vwh-Ka-FTp" customClass="GADBannerView">
+                                <rect key="frame" x="27" y="617" width="320" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <viewLayoutGuide key="safeArea" id="hL5-Yx-vPZ"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -63,6 +69,7 @@
                         <outlet property="btcPriceLabel" destination="dnj-oC-KqO" id="Svk-Rq-ULX"/>
                         <outlet property="ethPriceLabel" destination="yUn-ze-fXK" id="Jiw-yv-fz7"/>
                         <outlet property="getPricesButton" destination="ome-OS-L2m" id="U2Q-Hy-t5G"/>
+                        <outlet property="myAdBanner" destination="Vwh-Ka-FTp" id="EFs-Q1-yHa"/>
                         <outlet property="timestampLabel" destination="TH6-ct-hwl" id="IjP-S3-8uV"/>
                         <outlet property="xrpPriceLabel" destination="FxA-Wg-ch6" id="x1i-M2-ooh"/>
                     </connections>
