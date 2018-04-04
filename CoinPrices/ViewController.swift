@@ -24,21 +24,19 @@ class ViewController: UIViewController, GADBannerViewDelegate {
     @IBOutlet weak var timestampLabel: UILabel!
     @IBOutlet weak var getPricesButton: UIButton!
     
-    // Ad banner and interstitial views
-    var adMobBannerView = GADBannerView()
+    @IBOutlet weak var myAdBanner: GADBannerView!
     let ADMOB_BANNER_UNIT_ID = "ca-app-pub-4258982541138576/9768265072"
  
     var timer: Timer!
-    var refresher: UIRefreshControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // In this case, we instantiate the banner with desired ad size.
+        
         initAdMobBanner()
 
         getPricesImpl()
         
-        _ = Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(self.getPricesImpl), userInfo: nil, repeats: true)
+        addTimer()
     }
     
     // Actions
@@ -73,50 +71,13 @@ class ViewController: UIViewController, GADBannerViewDelegate {
     }
     
     func initAdMobBanner() {
-        
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            // iPhone
-            adMobBannerView.adSize =  GADAdSizeFromCGSize(CGSize(width: 320, height: 50))
-            adMobBannerView.frame = CGRect(x: 0, y: view.frame.size.height, width: 320, height: 50)
-        } else  {
-            // iPad
-            adMobBannerView.adSize =  GADAdSizeFromCGSize(CGSize(width: 468, height: 60))
-            adMobBannerView.frame = CGRect(x: 0, y: view.frame.size.height, width: 468, height: 60)
-        }
-        
-        adMobBannerView.adUnitID = ADMOB_BANNER_UNIT_ID
-        adMobBannerView.rootViewController = self
-        adMobBannerView.delegate = self
-        view.addSubview(adMobBannerView)
-        
-        let request = GADRequest()
-        adMobBannerView.load(request)
+        myAdBanner.adUnitID = ADMOB_BANNER_UNIT_ID
+        myAdBanner.rootViewController = self
+        myAdBanner.load(GADRequest())
     }
     
-    // Hide the banner
-    func hideBanner(_ banner: UIView) {
-        UIView.beginAnimations("hideBanner", context: nil)
-        banner.frame = CGRect(x: view.frame.size.width/2 - banner.frame.size.width/2, y: view.frame.size.height - banner.frame.size.height, width: banner.frame.size.width, height: banner.frame.size.height)
-        UIView.commitAnimations()
-        banner.isHidden = true
-    }
-    
-    // Show the banner
-    func showBanner(_ banner: UIView) {
-        UIView.beginAnimations("showBanner", context: nil)
-        banner.frame = CGRect(x: view.frame.size.width/2 - banner.frame.size.width/2, y: view.frame.size.height - banner.frame.size.height, width: banner.frame.size.width, height: banner.frame.size.height)
-        UIView.commitAnimations()
-        banner.isHidden = false
-    }
-    
-    // AdMob banner available
-    func adViewDidReceiveAd(_ view: GADBannerView) {
-        showBanner(adMobBannerView)
-    }
-    
-    // NO AdMob banner available
-    func adView(_ view: GADBannerView, didFailToReceiveAdWithError error: GADRequestError) {
-        hideBanner(adMobBannerView)
+    func addTimer() -> Void {
+        _ = Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(self.getPricesImpl), userInfo: nil, repeats: true)
     }
 }
 
