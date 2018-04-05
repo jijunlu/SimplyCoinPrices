@@ -24,13 +24,20 @@ class ViewController: UIViewController, GADBannerViewDelegate {
     @IBOutlet weak var timestampLabel: UILabel!
     @IBOutlet weak var getPricesButton: UIButton!
     
+    @IBOutlet weak var sideMenuConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var myAdBanner: GADBannerView!
+    
     let ADMOB_BANNER_UNIT_ID = "ca-app-pub-4258982541138576/9768265072"
  
+    var isSlideMenuHidden = true
+    
     var timer: Timer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        sideMenuConstraint.constant = -158
         
         initAdMobBanner()
 
@@ -40,6 +47,21 @@ class ViewController: UIViewController, GADBannerViewDelegate {
     }
     
     // Actions
+    @IBAction func toggleSideMenu(_ sender: Any) {
+        if(isSlideMenuHidden){
+            sideMenuConstraint.constant = 0
+        }
+        else {
+            sideMenuConstraint.constant = -158
+        }
+        
+        UIView.animate(withDuration: 0.3, animations:{
+            self.view.layoutIfNeeded()
+        })
+
+        isSlideMenuHidden = !isSlideMenuHidden
+    }
+    
     @IBAction func getPrice(_ sender: Any) {
         getPricesImpl()
     }
