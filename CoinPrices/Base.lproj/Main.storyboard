@@ -50,8 +50,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vwh-Ka-FTp" customClass="GADBannerView">
-                                <rect key="frame" x="27" y="617" width="320" height="50"/>
+                            <view verifyAmbiguity="ignoreSizes" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vwh-Ka-FTp" customClass="GADBannerView">
+                                <rect key="frame" x="27" y="617" width="321" height="50"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <viewLayoutGuide key="safeArea" id="hL5-Yx-vPZ"/>
                             </view>
@@ -64,10 +64,12 @@
                             <constraint firstItem="yUn-ze-fXK" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="TB0-1a-lo1"/>
                             <constraint firstItem="dnj-oC-KqO" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="UUi-wU-y5f"/>
                             <constraint firstItem="TH6-ct-hwl" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="VqA-xk-Ckx"/>
+                            <constraint firstItem="Vwh-Ka-FTp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="27" id="aDa-aI-IJb"/>
                             <constraint firstItem="dnj-oC-KqO" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="120" id="eCG-gG-l0e"/>
                             <constraint firstItem="Vwh-Ka-FTp" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="gCt-4H-NiO"/>
                             <constraint firstItem="yUn-ze-fXK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="191" id="hcp-xk-fEw"/>
                             <constraint firstItem="FxA-Wg-ch6" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="265" id="mPK-Y5-4wb"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Vwh-Ka-FTp" secondAttribute="trailing" constant="27" id="pHK-Oq-Oic"/>
                             <constraint firstItem="ome-OS-L2m" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="tWk-Gu-pVI"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Vwh-Ka-FTp" secondAttribute="bottom" id="zni-j4-x57"/>
                         </constraints>
