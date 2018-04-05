@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ysw-Nu-oiI">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14111" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="ysw-Nu-oiI">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,7 +21,9 @@
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ome-OS-L2m">
                                 <rect key="frame" x="55" y="412" width="265" height="61"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="41"/>
-                                <state key="normal" title="Refresh"/>
+                                <state key="normal" title="Refresh">
+                                    <color key="titleColor" red="0.0" green="0.20000000000000001" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="getPrice:" destination="BYZ-38-t0r" eventType="touchUpInside" id="pHX-Tj-fMm"/>
                                 </connections>
@@ -59,16 +61,18 @@
                                 <rect key="frame" x="0.0" y="64" width="158" height="603"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dR2-ZJ-knI">
-                                        <rect key="frame" x="22" y="20" width="114" height="40"/>
+                                        <rect key="frame" x="22" y="17" width="114" height="46"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="28"/>
-                                        <state key="normal" title="Button"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                        <state key="normal" title="Settings">
+                                            <color key="titleColor" red="0.0" green="0.20000000000000001" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
                                         <connections>
                                             <segue destination="Bdw-KF-dWW" kind="show" id="jZ7-ec-qvE"/>
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.99942404029999998" green="0.98555368190000003" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="1" green="1" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="158" id="GFw-7x-eIB"/>
                                 </constraints>
@@ -135,20 +139,44 @@
             </objects>
             <point key="canvasLocation" x="-290" y="88"/>
         </scene>
-        <!--View Controller-->
+        <!--Settings View Controller-->
         <scene sceneID="wlX-0a-vvq">
             <objects>
-                <viewController id="Bdw-KF-dWW" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="sno-wJ-YQQ">
+                <viewController id="Bdw-KF-dWW" customClass="SettingsViewController" customModule="CoinPrices" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1ql-hP-zml">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Refresh frequency (seconds)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qIg-o9-nq7">
+                                <rect key="frame" x="38" y="121" width="222" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="30" minValue="10" maxValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="pz5-K3-YIb" userLabel="Update interval" colorLabel="IBBuiltInLabel-Green">
+                                <rect key="frame" x="36" y="150" width="303" height="31"/>
+                                <connections>
+                                    <action selector="updateIntervalChanges:" destination="Bdw-KF-dWW" eventType="valueChanged" id="uBo-zY-xhn"/>
+                                </connections>
+                            </slider>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="t6q-g9-7ES"/>
+                        <constraints>
+                            <constraint firstItem="pz5-K3-YIb" firstAttribute="leading" secondItem="MmQ-Nr-2Bw" secondAttribute="leading" constant="38" id="8sM-g2-Jw3"/>
+                            <constraint firstItem="pz5-K3-YIb" firstAttribute="centerX" secondItem="MmQ-Nr-2Bw" secondAttribute="centerX" id="ZGp-L4-4EZ"/>
+                            <constraint firstItem="pz5-K3-YIb" firstAttribute="top" secondItem="MmQ-Nr-2Bw" secondAttribute="top" constant="86" id="lVo-ta-BoK"/>
+                            <constraint firstItem="MmQ-Nr-2Bw" firstAttribute="trailing" secondItem="pz5-K3-YIb" secondAttribute="trailing" constant="38" id="qb1-cQ-JSc"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="MmQ-Nr-2Bw"/>
                     </view>
+                    <connections>
+                        <outlet property="updateIntervalSlider" destination="pz5-K3-YIb" id="mGg-5Y-0cI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PyT-nG-b06" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1060" y="88"/>
+            <point key="canvasLocation" x="1060" y="87.706146926536732"/>
         </scene>
     </scenes>
 </document>

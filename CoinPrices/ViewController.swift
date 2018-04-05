@@ -27,8 +27,6 @@ class ViewController: UIViewController, GADBannerViewDelegate {
     @IBOutlet weak var sideMenuConstraint: NSLayoutConstraint!
     
     @IBOutlet weak var myAdBanner: GADBannerView!
-    
-    let ADMOB_BANNER_UNIT_ID = "ca-app-pub-4258982541138576/9768265072"
  
     var isSlideMenuHidden = true
     
@@ -37,12 +35,15 @@ class ViewController: UIViewController, GADBannerViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        sideMenuConstraint.constant = -158
+        sideMenuConstraint.constant = CGFloat(Constants.settingsSlideMenuXOffset)
         
         initAdMobBanner()
-
-        getPricesImpl()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
+        getPricesImpl()
         addTimer()
     }
     
@@ -52,7 +53,7 @@ class ViewController: UIViewController, GADBannerViewDelegate {
             sideMenuConstraint.constant = 0
         }
         else {
-            sideMenuConstraint.constant = -158
+            sideMenuConstraint.constant = CGFloat(Constants.settingsSlideMenuXOffset)
         }
         
         UIView.animate(withDuration: 0.3, animations:{
@@ -62,6 +63,7 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         isSlideMenuHidden = !isSlideMenuHidden
     }
     
+    // Get prices funcs
     @IBAction func getPrice(_ sender: Any) {
         getPricesImpl()
     }
@@ -74,7 +76,7 @@ class ViewController: UIViewController, GADBannerViewDelegate {
     
     func getPriceByCurrencyPair(coinName: String, currency: String, labelView: UILabel!) -> Void {
         let session = URLSession(configuration: .ephemeral, delegate: nil, delegateQueue: OperationQueue.main)
-        let url = URL(string: String(format: "https://www.bitstamp.net/api/v2/ticker/%@%@", coinName.lowercased(), currency.lowercased()))!
+        let url = URL(string: String(format: "%@/%@%@", Constants.baseUrl, coinName.lowercased(), currency.lowercased()))!
         let task = session.dataTask(with: url, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
             guard let data = data else {
                 print("data error")
@@ -92,14 +94,27 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         task.resume()
     }
     
+    // Google ads
     func initAdMobBanner() {
-        myAdBanner.adUnitID = ADMOB_BANNER_UNIT_ID
+        myAdBanner.adUnitID = Constants.adMobBannerUnitId
         myAdBanner.rootViewController = self
         myAdBanner.load(GADRequest())
     }
     
     func addTimer() -> Void {
-        _ = Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(self.getPricesImpl), userInfo: nil, repeats: true)
+        if(timer != nil) {
+            timer.invalidate()
+        }
+        let updateInterval = getUpdateInterval()
+        timer = Timer.scheduledTimer(timeInterval: TimeInterval(updateInterval), target: self, selector: #selector(self.getPricesImpl), userInfo: nil, repeats: true)
+    }
+    
+    func getUpdateInterval() -> Float {
+        guard let updateIntervalFromSettings = UserDefaults.standard.object(forKey: Constants.updateIntervalSettingKey) else {
+            return Constants.defaultUpdateInterval
+        }
+        
+        return updateIntervalFromSettings as! Float
     }
 }
 

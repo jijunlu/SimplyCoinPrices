@@ -7,17 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E525009820766D7E00872E7B /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E525009720766D7E00872E7B /* SettingsViewController.swift */; };
 		E57C00F020324D0100F18E8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57C00EF20324D0100F18E8B /* AppDelegate.swift */; };
 		E57C00F220324D0100F18E8B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57C00F120324D0100F18E8B /* ViewController.swift */; };
 		E57C00F520324D0100F18E8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E57C00F320324D0100F18E8B /* Main.storyboard */; };
 		E57C00F720324D0100F18E8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E57C00F620324D0100F18E8B /* Assets.xcassets */; };
 		E57C00FA20324D0100F18E8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E57C00F820324D0100F18E8B /* LaunchScreen.storyboard */; };
+		E5C247042076A88700311D6F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C247032076A88700311D6F /* Constants.swift */; };
 		E5FC2985207467F70036A504 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5FC2984207467F70036A504 /* GoogleMobileAds.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7226830DCDA72A8710C9E0F1 /* Pods-CoinPrices.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoinPrices.release.xcconfig"; path = "Pods/Target Support Files/Pods-CoinPrices/Pods-CoinPrices.release.xcconfig"; sourceTree = "<group>"; };
 		B48075F771E436AB93E6AB3E /* Pods-CoinPrices.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoinPrices.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CoinPrices/Pods-CoinPrices.debug.xcconfig"; sourceTree = "<group>"; };
+		E525009720766D7E00872E7B /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		E57C00EC20324D0100F18E8B /* CoinPrices.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoinPrices.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E57C00EF20324D0100F18E8B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E57C00F120324D0100F18E8B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -25,6 +28,7 @@
 		E57C00F620324D0100F18E8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E57C00F920324D0100F18E8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E57C00FB20324D0100F18E8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E5C247032076A88700311D6F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E5FC2984207467F70036A504 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -84,6 +88,8 @@
 				E57C00F620324D0100F18E8B /* Assets.xcassets */,
 				E57C00F820324D0100F18E8B /* LaunchScreen.storyboard */,
 				E57C00FB20324D0100F18E8B /* Info.plist */,
+				E525009720766D7E00872E7B /* SettingsViewController.swift */,
+				E5C247032076A88700311D6F /* Constants.swift */,
 			);
 			path = CoinPrices;
 			sourceTree = "<group>";
@@ -216,6 +222,8 @@
 			files = (
 				E57C00F220324D0100F18E8B /* ViewController.swift in Sources */,
 				E57C00F020324D0100F18E8B /* AppDelegate.swift in Sources */,
+				E525009820766D7E00872E7B /* SettingsViewController.swift in Sources */,
+				E5C247042076A88700311D6F /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
