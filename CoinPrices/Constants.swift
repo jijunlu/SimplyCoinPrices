@@ -20,4 +20,6 @@ struct Constants {
     static let settingsSlideMenuXOffset = -158
     
     static let defaultUpdateInterval : Float = 30
+    
+    static let updateIntervalStep : Float = 5
 }

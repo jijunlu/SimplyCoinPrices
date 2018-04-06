@@ -10,7 +10,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Coin Prices-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="CoinPrices" customModuleProvider="target" sceneMemberID="viewController">
@@ -20,7 +20,7 @@
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ome-OS-L2m">
                                 <rect key="frame" x="55" y="412" width="265" height="61"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="41"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="28"/>
                                 <state key="normal" title="Refresh">
                                     <color key="titleColor" red="0.0" green="0.20000000000000001" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
@@ -57,34 +57,12 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <viewLayoutGuide key="safeArea" id="hL5-Yx-vPZ"/>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xeJ-xv-Bbd">
-                                <rect key="frame" x="0.0" y="64" width="158" height="603"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dR2-ZJ-knI">
-                                        <rect key="frame" x="22" y="17" width="114" height="46"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                        <state key="normal" title="Settings">
-                                            <color key="titleColor" red="0.0" green="0.20000000000000001" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="Bdw-KF-dWW" kind="show" id="jZ7-ec-qvE"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="1" green="1" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="158" id="GFw-7x-eIB"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="FxA-Wg-ch6" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="1vz-aI-hDa"/>
-                            <constraint firstItem="xeJ-xv-Bbd" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="67x-jf-obV"/>
                             <constraint firstItem="TH6-ct-hwl" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="363" id="FNw-Ng-8yX"/>
                             <constraint firstItem="ome-OS-L2m" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="392" id="Knw-cg-Cp2"/>
-                            <constraint firstItem="xeJ-xv-Bbd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Nwq-xw-BkH"/>
                             <constraint firstItem="yUn-ze-fXK" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="TB0-1a-lo1"/>
                             <constraint firstItem="dnj-oC-KqO" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="UUi-wU-y5f"/>
                             <constraint firstItem="TH6-ct-hwl" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="VqA-xk-Ckx"/>
@@ -92,7 +70,6 @@
                             <constraint firstItem="dnj-oC-KqO" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="120" id="eCG-gG-l0e"/>
                             <constraint firstItem="Vwh-Ka-FTp" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="gCt-4H-NiO"/>
                             <constraint firstItem="yUn-ze-fXK" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="191" id="hcp-xk-fEw"/>
-                            <constraint firstItem="xeJ-xv-Bbd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="iJw-M4-eK5"/>
                             <constraint firstItem="FxA-Wg-ch6" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="265" id="mPK-Y5-4wb"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Vwh-Ka-FTp" secondAttribute="trailing" constant="27" id="pHK-Oq-Oic"/>
                             <constraint firstItem="ome-OS-L2m" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="tWk-Gu-pVI"/>
@@ -100,10 +77,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="3bm-fu-tLC">
-                        <barButtonItem key="leftBarButtonItem" systemItem="compose" id="cwf-3L-MqY">
+                    <navigationItem key="navigationItem" title="Coin Prices" id="3bm-fu-tLC">
+                        <barButtonItem key="leftBarButtonItem" title="Settings" id="cwf-3L-MqY">
                             <connections>
                                 <action selector="toggleSideMenu:" destination="BYZ-38-t0r" id="nj7-sI-ieF"/>
+                                <segue destination="Bdw-KF-dWW" kind="show" id="w7Q-i4-ZSL"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -112,7 +90,6 @@
                         <outlet property="ethPriceLabel" destination="yUn-ze-fXK" id="Jiw-yv-fz7"/>
                         <outlet property="getPricesButton" destination="ome-OS-L2m" id="U2Q-Hy-t5G"/>
                         <outlet property="myAdBanner" destination="Vwh-Ka-FTp" id="EFs-Q1-yHa"/>
-                        <outlet property="sideMenuConstraint" destination="Nwq-xw-BkH" id="IDD-sd-zbx"/>
                         <outlet property="timestampLabel" destination="TH6-ct-hwl" id="IjP-S3-8uV"/>
                         <outlet property="xrpPriceLabel" destination="FxA-Wg-ch6" id="x1i-M2-ooh"/>
                     </connections>
@@ -147,8 +124,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Refresh frequency (seconds)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qIg-o9-nq7">
-                                <rect key="frame" x="38" y="121" width="222" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Update Interval (seconds):" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qIg-o9-nq7">
+                                <rect key="frame" x="38" y="121" width="203" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
@@ -160,6 +137,13 @@
                                     <action selector="updateIntervalChanges:" destination="Bdw-KF-dWW" eventType="valueChanged" id="uBo-zY-xhn"/>
                                 </connections>
                             </slider>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KIK-aV-8DX">
+                                <rect key="frame" x="258" y="121" width="52" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -171,6 +155,7 @@
                         <viewLayoutGuide key="safeArea" id="MmQ-Nr-2Bw"/>
                     </view>
                     <connections>
+                        <outlet property="updateIntervalLabel" destination="KIK-aV-8DX" id="47i-6x-jcw"/>
                         <outlet property="updateIntervalSlider" destination="pz5-K3-YIb" id="mGg-5Y-0cI"/>
                     </connections>
                 </viewController>

@@ -11,6 +11,7 @@ import UIKit
 class SettingsViewController: UIViewController {
 
     @IBOutlet weak var updateIntervalSlider: UISlider!
+    @IBOutlet weak var updateIntervalLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,14 +23,18 @@ class SettingsViewController: UIViewController {
     {
         guard let updateInterval = UserDefaults.standard.object(forKey: Constants.updateIntervalSettingKey) else {
             updateIntervalSlider.value = Constants.defaultUpdateInterval
+            updateIntervalLabel.text = String(Constants.defaultUpdateInterval)
             return
         }
         
         updateIntervalSlider.value = updateInterval as! Float
+        updateIntervalLabel.text = String(updateInterval as! Float)
     }
     
-    @IBAction func updateIntervalChanges(_ sender: Any) {
-        let newInterval = updateIntervalSlider.value
+    @IBAction func updateIntervalChanges(_ sender: UISlider) {
+        let newInterval = round(sender.value / Constants.updateIntervalStep ) * Constants.updateIntervalStep
+        sender.value = newInterval
+        updateIntervalLabel.text = String(newInterval)
         UserDefaults.standard.set(newInterval, forKey:Constants.updateIntervalSettingKey)
     }
     
