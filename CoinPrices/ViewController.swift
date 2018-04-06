@@ -68,7 +68,7 @@ class ViewController: UIViewController, GADBannerViewDelegate {
             }
             labelView.text = String(format: "%@/%@:   %@", coinName.uppercased(), currency.uppercased(), coinPrice.last)
             
-            self.timestampLabel.text = String(format: "@ %@", DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .medium))
+            self.timestampLabel.text = String(format: "Last updated @ %@", DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .medium))
         })
         task.resume()
     }
