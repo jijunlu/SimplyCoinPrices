@@ -22,4 +22,9 @@ struct Constants {
     static let defaultUpdateInterval : Float = 30
     
     static let updateIntervalStep : Float = 5
+    
+}
+
+struct CoinMap {
+    
 }

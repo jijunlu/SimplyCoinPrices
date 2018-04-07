@@ -15,22 +15,24 @@ struct CoinPrice : Decodable {
     let low: String
 }
 
-class ViewController: UIViewController, GADBannerViewDelegate {
+class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, GADBannerViewDelegate {
+
+    var priceByCoinPair = [String: String]()
+    var priceDictKeys = [String]()
 
     // Properties
-    @IBOutlet weak var btcPriceLabel: UILabel!
-    @IBOutlet weak var ethPriceLabel: UILabel!
-    @IBOutlet weak var xrpPriceLabel: UILabel!
-    @IBOutlet weak var timestampLabel: UILabel!
-    @IBOutlet weak var getPricesButton: UIButton!
-    
     @IBOutlet weak var myAdBanner: GADBannerView!
  
+    @IBOutlet weak var pricesTableView: UITableView!
+    
     var timer: Timer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        pricesTableView.delegate = self
+        pricesTableView.dataSource = self
+
         initAdMobBanner()
     }
     
@@ -41,19 +43,44 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         addTimer()
     }
     
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return priceByCoinPair.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "priceCell", for: indexPath as IndexPath) as UITableViewCell
+        
+        let coinPair = self.priceDictKeys[indexPath.row]
+        cell.textLabel?.text = String(format: "%@:   %@", coinPair, priceByCoinPair[coinPair]!)
+        cell.textLabel?.textAlignment = .center
+        return cell
+    }
+    
     // Actions
-    // Get prices funcs
-    @IBAction func getPrice(_ sender: Any) {
+
+    // Get prices
+    @IBAction func RefreshPrices(_ sender: Any) {
         getPricesImpl()
     }
     
     @objc func getPricesImpl() -> Void {
-        getPriceByCurrencyPair(coinName:"btc", currency: "usd", labelView: btcPriceLabel)
-        getPriceByCurrencyPair(coinName:"eth", currency: "usd", labelView: ethPriceLabel)
-        getPriceByCurrencyPair(coinName:"xrp", currency: "usd", labelView: xrpPriceLabel)
+        priceByCoinPair.removeAll()
+        
+        getPriceByCurrencyPair(coinName:"btc", currency: "usd")
+        getPriceByCurrencyPair(coinName:"eth", currency: "usd")
+        getPriceByCurrencyPair(coinName:"xrp", currency: "usd")
     }
     
-    func getPriceByCurrencyPair(coinName: String, currency: String, labelView: UILabel!) -> Void {
+    func getPriceByCurrencyPair(coinName: String, currency: String) -> Void {
         let session = URLSession(configuration: .ephemeral, delegate: nil, delegateQueue: OperationQueue.main)
         let url = URL(string: String(format: "%@/%@%@", Constants.baseUrl, coinName.lowercased(), currency.lowercased()))!
         let task = session.dataTask(with: url, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
@@ -66,9 +93,12 @@ class ViewController: UIViewController, GADBannerViewDelegate {
                 print("decode error")
                 return
             }
-            labelView.text = String(format: "%@/%@:   %@", coinName.uppercased(), currency.uppercased(), coinPrice.last)
             
-            self.timestampLabel.text = String(format: "Last updated @ %@", DateFormatter.localizedString(from: Date(), dateStyle: .short, timeStyle: .medium))
+            let pricePair = String(format: "%@/%@", coinName.uppercased(), currency.uppercased())
+            
+            self.priceByCoinPair[pricePair] = coinPrice.last
+            self.priceDictKeys = self.priceByCoinPair.keys.sorted()
+            self.pricesTableView.reloadData()
         })
         task.resume()
     }
@@ -80,6 +110,7 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         myAdBanner.load(GADRequest())
     }
     
+    // Automatic update
     func addTimer() -> Void {
         if(timer != nil) {
             timer.invalidate()
@@ -95,5 +126,6 @@ class ViewController: UIViewController, GADBannerViewDelegate {
         
         return updateIntervalFromSettings as! Float
     }
+
 }
 
