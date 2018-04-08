@@ -75,9 +75,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     @objc func getPricesImpl() -> Void {
         priceByCoinPair.removeAll()
         
-        getPriceByCurrencyPair(coinName:"btc", currency: "usd")
-        getPriceByCurrencyPair(coinName:"eth", currency: "usd")
-        getPriceByCurrencyPair(coinName:"xrp", currency: "usd")
+        let coinsToDisplay = getCoinsToDisplay()
+        if(coinsToDisplay.count == 0)
+        {
+            priceByCoinPair = [String: String]()
+            priceDictKeys = [String]()
+            pricesTableView.reloadData()
+        }
+        for coin in coinsToDisplay {
+            getPriceByCurrencyPair(coinName: coin.lowercased(), currency: "usd")
+        }        
     }
     
     func getPriceByCurrencyPair(coinName: String, currency: String) -> Void {
@@ -127,5 +134,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return updateIntervalFromSettings as! Float
     }
 
+    func getCoinsToDisplay() -> [String] {
+        guard let coinsToDisplay = UserDefaults.standard.object(forKey: Constants.coinsToDisplayKey) else {
+            return Constants.CoinMap.keys.sorted()
+        }
+        
+        let temp = coinsToDisplay as! [String: [String]]
+        return temp.keys.sorted()
+    }
 }
 

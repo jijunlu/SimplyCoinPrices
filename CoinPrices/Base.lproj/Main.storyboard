@@ -25,10 +25,10 @@
                                 <viewLayoutGuide key="safeArea" id="hL5-Yx-vPZ"/>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="G46-sJ-NDw">
-                                <rect key="frame" x="44" y="244" width="286" height="222"/>
+                                <rect key="frame" x="44" y="109" width="286" height="377"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="222" id="ZSU-LG-At0"/>
+                                    <constraint firstAttribute="height" constant="377" id="Mmh-yH-egW"/>
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="priceCell" id="Pco-49-oio">
@@ -44,12 +44,12 @@
                         </subviews>
                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="G46-sJ-NDw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="44" id="PTz-N0-F3t"/>
                             <constraint firstItem="Vwh-Ka-FTp" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="27" id="aDa-aI-IJb"/>
-                            <constraint firstItem="G46-sJ-NDw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="44" id="acJ-X1-mEr"/>
-                            <constraint firstItem="G46-sJ-NDw" firstAttribute="centerX" secondItem="Vwh-Ka-FTp" secondAttribute="centerX" id="avA-EV-ycP"/>
                             <constraint firstItem="Vwh-Ka-FTp" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="gCt-4H-NiO"/>
-                            <constraint firstItem="G46-sJ-NDw" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="180" id="nx7-jG-zRf"/>
+                            <constraint firstItem="G46-sJ-NDw" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="45" id="mkg-Gm-byv"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Vwh-Ka-FTp" secondAttribute="trailing" constant="27" id="pHK-Oq-Oic"/>
+                            <constraint firstItem="G46-sJ-NDw" firstAttribute="centerX" secondItem="Vwh-Ka-FTp" secondAttribute="centerX" id="qxT-LM-RKz"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Vwh-Ka-FTp" secondAttribute="bottom" id="zni-j4-x57"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -186,6 +186,9 @@
                                             <subviews>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5V9-LB-e3b">
                                                     <rect key="frame" x="310" y="6" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="onEthSwitchChanged:" destination="ceJ-Lv-ohN" eventType="valueChanged" id="3gq-pU-G2J"/>
+                                                    </connections>
                                                 </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ethereum" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mbc-Ih-XfC">
                                                     <rect key="frame" x="32" y="12" width="74" height="21"/>
@@ -219,6 +222,9 @@
                                             <subviews>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0Gu-yC-V9l">
                                                     <rect key="frame" x="310" y="6" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="onXrpSwitchChanged:" destination="ceJ-Lv-ohN" eventType="valueChanged" id="UTR-fi-kBf"/>
+                                                    </connections>
                                                 </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ripple" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Bbe-A0-6At">
                                                     <rect key="frame" x="32" y="12" width="48" height="21"/>
@@ -245,6 +251,9 @@
                                             <subviews>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aVy-z7-aCk">
                                                     <rect key="frame" x="310" y="6" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="onBchSwitchChanged:" destination="ceJ-Lv-ohN" eventType="valueChanged" id="hfM-fr-zc2"/>
+                                                    </connections>
                                                 </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bitcoin Cash" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LMe-RJ-vOM">
                                                     <rect key="frame" x="32" y="12" width="96" height="21"/>
@@ -272,6 +281,9 @@
                                             <subviews>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="maN-Fb-zt6">
                                                     <rect key="frame" x="310" y="6" width="51" height="31"/>
+                                                    <connections>
+                                                        <action selector="onLtcSwitchChanged:" destination="ceJ-Lv-ohN" eventType="valueChanged" id="LyA-7N-ioy"/>
+                                                    </connections>
                                                 </switch>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Litecoin" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qvD-dX-pxI">
                                                     <rect key="frame" x="32" y="12" width="61" height="21"/>
