@@ -56,14 +56,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "priceCell", for: indexPath as IndexPath) as! PriceTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "priceCell", for: indexPath as IndexPath) as! TwoColumnsTableViewCell
         
         let coinPair = self.priceDictKeys[indexPath.row]
-        cell.coinPair?.text = coinPair
-        cell.coinPrice?.text = priceByCoinPair[coinPair]!
+        cell.column1?.text = coinPair
+        cell.column2?.text = priceByCoinPair[coinPair]!
 
-        cell.coinPair?.textAlignment = .center
-        cell.coinPrice?.textAlignment = .center
+        cell.column1?.textAlignment = .center
+        cell.column2?.textAlignment = .center
 
         return cell
     }

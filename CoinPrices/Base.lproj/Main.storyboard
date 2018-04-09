@@ -303,9 +303,8 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="32"/>
                                 <state key="normal" title="+"/>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tOb-pW-Xc7">
-                                <rect key="frame" x="55" y="136" width="264" height="23"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tOb-pW-Xc7">
+                                <rect key="frame" x="55" y="322" width="264" height="23"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -313,7 +312,11 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="tOb-pW-Xc7" firstAttribute="centerX" secondItem="WNN-0C-WMh" secondAttribute="centerX" id="1Mi-eG-pCM"/>
                             <constraint firstItem="4xN-rc-KfS" firstAttribute="trailing" secondItem="WNN-0C-WMh" secondAttribute="trailing" constant="164" id="2fv-DY-ebn"/>
+                            <constraint firstItem="tOb-pW-Xc7" firstAttribute="leading" secondItem="4xN-rc-KfS" secondAttribute="leading" constant="55" id="TgG-Zh-OLL"/>
+                            <constraint firstItem="tOb-pW-Xc7" firstAttribute="top" secondItem="4xN-rc-KfS" secondAttribute="top" constant="302" id="ZwS-0x-ISy"/>
+                            <constraint firstItem="tOb-pW-Xc7" firstAttribute="centerY" secondItem="svj-EQ-IJ6" secondAttribute="centerY" id="nf8-iz-gnu"/>
                             <constraint firstItem="WNN-0C-WMh" firstAttribute="bottom" secondItem="4xN-rc-KfS" secondAttribute="bottom" id="uQA-zZ-LbL"/>
                             <constraint firstItem="WNN-0C-WMh" firstAttribute="leading" secondItem="4xN-rc-KfS" secondAttribute="leading" constant="164" id="vJs-3E-Ipg"/>
                         </constraints>
@@ -353,7 +356,7 @@
                                         <rect key="frame" x="0.0" y="33" width="375" height="341"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="priceCell" id="tl5-aA-0ZH" customClass="PriceTableViewCell" customModule="CoinPrices" customModuleProvider="target">
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="priceCell" id="tl5-aA-0ZH" customClass="TwoColumnsTableViewCell" customModule="CoinPrices" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tl5-aA-0ZH" id="lz6-T8-wZc">
@@ -387,8 +390,8 @@
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
-                                                    <outlet property="coinPair" destination="3GZ-KY-wZF" id="Xdr-RI-893"/>
-                                                    <outlet property="coinPrice" destination="IB1-8a-xbk" id="aLg-rv-Knr"/>
+                                                    <outlet property="column1" destination="3GZ-KY-wZF" id="Xdr-RI-893"/>
+                                                    <outlet property="column2" destination="IB1-8a-xbk" id="aLg-rv-Knr"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>

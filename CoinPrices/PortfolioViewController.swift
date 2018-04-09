@@ -12,10 +12,11 @@ class PortfolioViewController: UIViewController {
 
     @IBOutlet weak var portfolioTotalLabel: UILabel!
     
+    var assetByCoinPair = [String: Float]()
+    var assetCoinTypes = [String]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -28,10 +29,21 @@ class PortfolioViewController: UIViewController {
     
     func calculatePortfolioTotal() -> Void {
         let pricesByCoinPair = UserDefaults.standard.object(forKey: Constants.coinPriceDictKey) as! [String: String]
+        let assetByCoinPairDict = getAssetDict()
+
+        var totalUsd : Float = 0
+        for (coinPair, amount) in assetByCoinPairDict {
+            totalUsd += amount * Float(pricesByCoinPair[coinPair]!)!
+        }
         
-        let total = 1.0273109 * Float(pricesByCoinPair["BTC/USD"]!)! + 10 * Float(pricesByCoinPair["ETH/USD"]!)!
-        
-        portfolioTotalLabel.text! = String(format: "Total: %f", total)
+        portfolioTotalLabel.text! = String(format: "Total: %f", totalUsd)
+    }
+    
+    func getAssetDict() -> [String: Float] {
+        return [
+            "BTC/USD": 1.0273109,
+            "ETH/USD": 10
+        ]
     }
     
     /*

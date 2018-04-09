@@ -37,9 +37,9 @@ class HomeTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
      {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "PriceCell", for: indexPath as IndexPath) as! PriceTableViewCell
-        cell.coinPair.text = "BTC/USD" // fill in your value for column 1 (e.g. from an array)
-        cell.coinPrice.text = "7000" // fill in your value for column 2
+        let cell = tableView.dequeueReusableCell(withIdentifier: "PriceCell", for: indexPath as IndexPath) as! TwoColumnsTableViewCell
+        cell.column1.text = "BTC/USD" // fill in your value for column 1 (e.g. from an array)
+        cell.column2.text = "7000" // fill in your value for column 2
         
         return cell
     }

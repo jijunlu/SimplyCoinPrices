@@ -8,11 +8,11 @@
 
 import UIKit
 
-class PriceTableViewCell: UITableViewCell {
+class TwoColumnsTableViewCell: UITableViewCell {
 
     
-    @IBOutlet weak var coinPair: UILabel!
-    @IBOutlet weak var coinPrice: UILabel!
+    @IBOutlet weak var column1: UILabel!
+    @IBOutlet weak var column2: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

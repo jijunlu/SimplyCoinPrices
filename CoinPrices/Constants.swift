@@ -15,6 +15,8 @@ struct Constants {
     
     static let coinPriceDictKey = "com.jijunlu.j3.CoinPrices.CoinPriceDict"
     
+    static let assetByCoinPairKey = "com.jijunlu.j3.CoinPrices.AssetByCoinPair"
+    
     static let baseUrl = "https://www.bitstamp.net/api/v2/ticker"
     
     static let adMobBannerUnitId = "ca-app-pub-4258982541138576/9768265072"
