@@ -7,24 +7,32 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E5015DC72079C846005CA7A0 /* PortfolioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5015DC62079C846005CA7A0 /* PortfolioViewController.swift */; };
+		E5015DCB207AB34D005CA7A0 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5015DCA207AB34D005CA7A0 /* HomeTableViewController.swift */; };
+		E5015DCD207AB3A6005CA7A0 /* TwoColumnsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5015DCC207AB3A6005CA7A0 /* TwoColumnsTableViewCell.swift */; };
+		E50FC4AF2079C1CB00774872 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50FC4AE2079C1CB00774872 /* HomeViewController.swift */; };
 		E57C00F020324D0100F18E8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57C00EF20324D0100F18E8B /* AppDelegate.swift */; };
-		E57C00F220324D0100F18E8B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57C00F120324D0100F18E8B /* ViewController.swift */; };
 		E57C00F520324D0100F18E8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E57C00F320324D0100F18E8B /* Main.storyboard */; };
 		E57C00F720324D0100F18E8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E57C00F620324D0100F18E8B /* Assets.xcassets */; };
-		E57C00FA20324D0100F18E8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E57C00F820324D0100F18E8B /* LaunchScreen.storyboard */; };
+		E5841B0D2077C49200CEC900 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5841B0C2077C49200CEC900 /* SettingsTableViewController.swift */; };
+		E5C247042076A88700311D6F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C247032076A88700311D6F /* Constants.swift */; };
 		E5FC2985207467F70036A504 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5FC2984207467F70036A504 /* GoogleMobileAds.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7226830DCDA72A8710C9E0F1 /* Pods-CoinPrices.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoinPrices.release.xcconfig"; path = "Pods/Target Support Files/Pods-CoinPrices/Pods-CoinPrices.release.xcconfig"; sourceTree = "<group>"; };
 		B48075F771E436AB93E6AB3E /* Pods-CoinPrices.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoinPrices.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CoinPrices/Pods-CoinPrices.debug.xcconfig"; sourceTree = "<group>"; };
+		E5015DC62079C846005CA7A0 /* PortfolioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioViewController.swift; sourceTree = "<group>"; };
+		E5015DCA207AB34D005CA7A0 /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
+		E5015DCC207AB3A6005CA7A0 /* TwoColumnsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoColumnsTableViewCell.swift; sourceTree = "<group>"; };
+		E50FC4AE2079C1CB00774872 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		E57C00EC20324D0100F18E8B /* CoinPrices.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoinPrices.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E57C00EF20324D0100F18E8B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E57C00F120324D0100F18E8B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E57C00F420324D0100F18E8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E57C00F620324D0100F18E8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E57C00F920324D0100F18E8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E57C00FB20324D0100F18E8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E5841B0C2077C49200CEC900 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		E5C247032076A88700311D6F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E5FC2984207467F70036A504 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -79,11 +87,15 @@
 			children = (
 				E5FC2984207467F70036A504 /* GoogleMobileAds.framework */,
 				E57C00EF20324D0100F18E8B /* AppDelegate.swift */,
-				E57C00F120324D0100F18E8B /* ViewController.swift */,
 				E57C00F320324D0100F18E8B /* Main.storyboard */,
 				E57C00F620324D0100F18E8B /* Assets.xcassets */,
-				E57C00F820324D0100F18E8B /* LaunchScreen.storyboard */,
 				E57C00FB20324D0100F18E8B /* Info.plist */,
+				E5C247032076A88700311D6F /* Constants.swift */,
+				E5841B0C2077C49200CEC900 /* SettingsTableViewController.swift */,
+				E50FC4AE2079C1CB00774872 /* HomeViewController.swift */,
+				E5015DC62079C846005CA7A0 /* PortfolioViewController.swift */,
+				E5015DCA207AB34D005CA7A0 /* HomeTableViewController.swift */,
+				E5015DCC207AB3A6005CA7A0 /* TwoColumnsTableViewCell.swift */,
 			);
 			path = CoinPrices;
 			sourceTree = "<group>";
@@ -118,7 +130,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0940;
 				ORGANIZATIONNAME = "Jijun Lu";
 				TargetAttributes = {
 					E57C00EB20324D0100F18E8B = {
@@ -150,7 +162,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E57C00FA20324D0100F18E8B /* LaunchScreen.storyboard in Resources */,
 				E57C00F720324D0100F18E8B /* Assets.xcassets in Resources */,
 				E57C00F520324D0100F18E8B /* Main.storyboard in Resources */,
 			);
@@ -214,8 +225,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E57C00F220324D0100F18E8B /* ViewController.swift in Sources */,
+				E5015DCB207AB34D005CA7A0 /* HomeTableViewController.swift in Sources */,
+				E50FC4AF2079C1CB00774872 /* HomeViewController.swift in Sources */,
+				E5015DC72079C846005CA7A0 /* PortfolioViewController.swift in Sources */,
+				E5841B0D2077C49200CEC900 /* SettingsTableViewController.swift in Sources */,
+				E5015DCD207AB3A6005CA7A0 /* TwoColumnsTableViewCell.swift in Sources */,
 				E57C00F020324D0100F18E8B /* AppDelegate.swift in Sources */,
+				E5C247042076A88700311D6F /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,14 +244,6 @@
 				E57C00F420324D0100F18E8B /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		E57C00F820324D0100F18E8B /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E57C00F920324D0100F18E8B /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -255,6 +263,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -262,6 +271,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -312,6 +322,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -319,6 +330,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
