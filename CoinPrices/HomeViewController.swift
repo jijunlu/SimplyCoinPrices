@@ -29,6 +29,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        pricesTableView.rowHeight = 58
+        
         pricesTableView.delegate = self
         pricesTableView.dataSource = self
         
