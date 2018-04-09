@@ -11,11 +11,11 @@ import Foundation
 struct Constants {
     static let updateIntervalSettingKey = "com.jijunlu.j3.SimplyCoinPrices.UpdateInterval"
     
-    static let coinsToDisplayKey = "com.jijunlu.j3.SimplyCoinPrices.CoinsToDisplay"
+    static let coinsToDisplayDictKey = "com.jijunlu.j3.SimplyCoinPrices.CoinsToDisplay"
     
     static let coinPriceDictKey = "com.jijunlu.j3.CoinPrices.CoinPriceDict"
     
-    static let assetByCoinPairKey = "com.jijunlu.j3.CoinPrices.AssetByCoinPair"
+    static let assetByCoinDictKey = "com.jijunlu.j3.CoinPrices.AssetByCoinDict"
     
     static let baseUrl = "https://www.bitstamp.net/api/v2/ticker"
     

@@ -8,15 +8,41 @@
 
 import UIKit
 
-class PortfolioViewController: UIViewController {
+class PortfolioViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return assetByCoinType.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "portfolioCell", for: indexPath as IndexPath) as! TwoColumnsTableViewCell
+        
+        let coinType = self.assetCoinTypes[indexPath.row]
+        cell.column1?.text = coinType
+        cell.column2?.text = String(assetByCoinType[coinType]!)
+        
+        cell.column1?.textAlignment = .center
+        cell.column2?.textAlignment = .center
+        
+        return cell
+    }
+    
 
     @IBOutlet weak var portfolioTotalLabel: UILabel!
+    @IBOutlet weak var portfolioTableView: UITableView!
     
-    var assetByCoinPair = [String: Float]()
+    var assetByCoinType = [String: Float]()
     var assetCoinTypes = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        portfolioTableView.dataSource = self
+        portfolioTableView.delegate = self
+        
+        portfolioTableView.rowHeight = 58
+        
+        calculatePortfolioTotal()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -27,33 +53,39 @@ class PortfolioViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
     func calculatePortfolioTotal() -> Void {
-        let pricesByCoinPair = UserDefaults.standard.object(forKey: Constants.coinPriceDictKey) as! [String: String]
-        let assetByCoinPairDict = getAssetDict()
+        let pricesByCoinType = UserDefaults.standard.object(forKey: Constants.coinPriceDictKey) as! [String: String]
+        
+        assetByCoinType = getAssetDict()
+        assetCoinTypes = assetByCoinType.keys.sorted()
 
         var totalUsd : Float = 0
-        for (coinPair, amount) in assetByCoinPairDict {
-            totalUsd += amount * Float(pricesByCoinPair[coinPair]!)!
+        for (coin, amount) in assetByCoinType {
+            if(pricesByCoinType.keys.contains(coin.uppercased())){
+                totalUsd += amount * Float(pricesByCoinType[coin.uppercased()]!)!
+            }
         }
         
         portfolioTotalLabel.text! = String(format: "Total: %f", totalUsd)
+        portfolioTableView.reloadData()
     }
     
     func getAssetDict() -> [String: Float] {
-        return [
-            "BTC/USD": 1.0273109,
-            "ETH/USD": 10
-        ]
+        guard let assetByCoinDict = UserDefaults.standard.object(forKey: Constants.assetByCoinDictKey) else {
+            return [String: Float]()
+        }
+        
+        var ret = assetByCoinDict as! [String: Float]
+        for (asset, amount) in ret {
+            if(amount == 0) {
+                ret.removeValue(forKey: asset)
+            }
+        }
+        return ret
     }
-    
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
