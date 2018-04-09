@@ -1,8 +1,8 @@
 //
-//  ViewController.swift
-//  FoodTracker
+//  HomeViewController.swift
+//  CoinPrices
 //
-//  Created by Jijun Lu on 2/12/18.
+//  Created by Jijun Lu on 4/7/18.
 //  Copyright © 2018 Jijun Lu. All rights reserved.
 //
 
@@ -15,24 +15,23 @@ struct CoinPrice : Decodable {
     let low: String
 }
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, GADBannerViewDelegate {
-
+class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, GADBannerViewDelegate {
+    
     var priceByCoinPair = [String: String]()
     var priceDictKeys = [String]()
-
+    
     // Properties
-    @IBOutlet weak var myAdBanner: GADBannerView!
- 
+    @IBOutlet weak var adBanner: GADBannerView!
     @IBOutlet weak var pricesTableView: UITableView!
     
     var timer: Timer!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         pricesTableView.delegate = self
         pricesTableView.dataSource = self
-
+        
         initAdMobBanner()
     }
     
@@ -55,18 +54,22 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return priceByCoinPair.count
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "priceCell", for: indexPath as IndexPath) as UITableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "priceCell", for: indexPath as IndexPath) as! PriceTableViewCell
         
         let coinPair = self.priceDictKeys[indexPath.row]
-        cell.textLabel?.text = String(format: "%@:   %@", coinPair, priceByCoinPair[coinPair]!)
-        cell.textLabel?.textAlignment = .center
+        cell.coinPair?.text = coinPair
+        cell.coinPrice?.text = priceByCoinPair[coinPair]!
+
+        cell.coinPair?.textAlignment = .center
+        cell.coinPrice?.textAlignment = .center
+
         return cell
     }
     
     // Actions
-
+    
     // Get prices
     @IBAction func RefreshPrices(_ sender: Any) {
         getPricesImpl()
@@ -84,7 +87,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         }
         for coin in coinsToDisplay {
             getPriceByCurrencyPair(coinName: coin.lowercased(), currency: "usd")
-        }        
+        }
     }
     
     func getPriceByCurrencyPair(coinName: String, currency: String) -> Void {
@@ -105,16 +108,18 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
             
             self.priceByCoinPair[pricePair] = coinPrice.last
             self.priceDictKeys = self.priceByCoinPair.keys.sorted()
+            UserDefaults.standard.set(self.priceByCoinPair, forKey: Constants.coinPriceDictKey)
             self.pricesTableView.reloadData()
+
         })
         task.resume()
     }
     
     // Google ads
     func initAdMobBanner() {
-        myAdBanner.adUnitID = Constants.adMobBannerUnitId
-        myAdBanner.rootViewController = self
-        myAdBanner.load(GADRequest())
+        adBanner.adUnitID = Constants.adMobBannerUnitId
+        adBanner.rootViewController = self
+        adBanner.load(GADRequest())
     }
     
     // Automatic update
@@ -133,7 +138,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         
         return updateIntervalFromSettings as! Float
     }
-
+    
     func getCoinsToDisplay() -> [String] {
         guard let coinsToDisplay = UserDefaults.standard.object(forKey: Constants.coinsToDisplayKey) else {
             return Constants.CoinMap.keys.sorted()
@@ -143,4 +148,5 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return temp.keys.sorted()
     }
 }
+
 
