@@ -19,6 +19,7 @@
 		E5C247042076A88700311D6F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C247032076A88700311D6F /* Constants.swift */; };
 		E5DADFAF207D35F4008B89BC /* RssViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DADFAE207D35F4008B89BC /* RssViewController.swift */; };
 		E5DADFB1207D3B50008B89BC /* RssItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DADFB0207D3B50008B89BC /* RssItemTableViewCell.swift */; };
+		E5DADFB3207D4CD3008B89BC /* SettingWrapperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DADFB2207D4CD3008B89BC /* SettingWrapperViewController.swift */; };
 		E5FC2985207467F70036A504 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5FC2984207467F70036A504 /* GoogleMobileAds.framework */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +40,7 @@
 		E5C247032076A88700311D6F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E5DADFAE207D35F4008B89BC /* RssViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssViewController.swift; sourceTree = "<group>"; };
 		E5DADFB0207D3B50008B89BC /* RssItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssItemTableViewCell.swift; sourceTree = "<group>"; };
+		E5DADFB2207D4CD3008B89BC /* SettingWrapperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingWrapperViewController.swift; sourceTree = "<group>"; };
 		E5FC2984207467F70036A504 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,6 +107,7 @@
 				E5015DCE207BBE72005CA7A0 /* PortfolioPopUpViewController.swift */,
 				E5015DD0207D17F8005CA7A0 /* RssParser.swift */,
 				E5DADFAE207D35F4008B89BC /* RssViewController.swift */,
+				E5DADFB2207D4CD3008B89BC /* SettingWrapperViewController.swift */,
 			);
 			path = CoinPrices;
 			sourceTree = "<group>";
@@ -236,6 +239,7 @@
 			files = (
 				E50FC4AF2079C1CB00774872 /* HomeViewController.swift in Sources */,
 				E5015DC72079C846005CA7A0 /* PortfolioViewController.swift in Sources */,
+				E5DADFB3207D4CD3008B89BC /* SettingWrapperViewController.swift in Sources */,
 				E5841B0D2077C49200CEC900 /* SettingsTableViewController.swift in Sources */,
 				E5DADFB1207D3B50008B89BC /* RssItemTableViewCell.swift in Sources */,
 				E5015DCD207AB3A6005CA7A0 /* TwoColumnsTableViewCell.swift in Sources */,

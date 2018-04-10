@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
-class RssViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, RssParserDelegate {
+class RssViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, RssParserDelegate, GADBannerViewDelegate {
     
+    @IBOutlet weak var adBanner: GADBannerView!
     var rssParser : RssParser!
     
     @IBOutlet weak var rssTableView: UITableView!
@@ -27,6 +29,14 @@ class RssViewController: UIViewController, UITableViewDataSource, UITableViewDel
         rssParser = RssParser()
         rssParser.delegate = self
         rssParser.startParsingWithContentsOfURL(rssURL: url!)
+        
+        initAdMobBanner()
+    }
+    
+    func initAdMobBanner() {
+        adBanner.adUnitID = Constants.adMobBannerUnitId
+        adBanner.rootViewController = self
+        adBanner.load(GADRequest())
     }
     
     override func didReceiveMemoryWarning() {

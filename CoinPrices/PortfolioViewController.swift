@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
-class PortfolioViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class PortfolioViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, GADBannerViewDelegate {
 
     @IBOutlet weak var portfolioTotalLabel: UILabel!
     @IBOutlet weak var portfolioTableView: UITableView!
     @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var adBanner: GADBannerView!
     
     var assetByCoinType = [String: Float]()
     var assetCoinTypes = [String]()
@@ -27,8 +29,16 @@ class PortfolioViewController: UIViewController, UITableViewDataSource, UITableV
         portfolioTableView.rowHeight = 58
         
         calculatePortfolioTotal()
+        
+        initAdMobBanner()
     }
 
+    func initAdMobBanner() {
+        adBanner.adUnitID = Constants.adMobBannerUnitId
+        adBanner.rootViewController = self
+        adBanner.load(GADRequest())
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         calculatePortfolioTotal()
     }
