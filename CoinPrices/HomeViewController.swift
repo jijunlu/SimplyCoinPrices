@@ -61,7 +61,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell = tableView.dequeueReusableCell(withIdentifier: "priceCell", for: indexPath as IndexPath) as! TwoColumnsTableViewCell
         
         let coinType = self.priceDictKeys[indexPath.row]
-        cell.column1?.text = coinType
+        cell.column1?.text = Constants.CoinMap[coinType]!["FullName"]
         cell.column2?.text = priceByCoinDict[coinType]!
 
         cell.column1?.textAlignment = .center

@@ -9,27 +9,10 @@
 import UIKit
 
 class PortfolioViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return assetByCoinType.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "portfolioCell", for: indexPath as IndexPath) as! TwoColumnsTableViewCell
-        
-        let coinType = self.assetCoinTypes[indexPath.row]
-        cell.column1?.text = coinType
-        cell.column2?.text = String(assetByCoinType[coinType]!)
-        
-        cell.column1?.textAlignment = .center
-        cell.column2?.textAlignment = .center
-        
-        return cell
-    }
-    
 
     @IBOutlet weak var portfolioTotalLabel: UILabel!
     @IBOutlet weak var portfolioTableView: UITableView!
+    @IBOutlet weak var editButton: UIButton!
     
     var assetByCoinType = [String: Float]()
     var assetCoinTypes = [String]()
@@ -37,6 +20,7 @@ class PortfolioViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        editButton.titleLabel?.font = UIFont(name: "Avenir", size:18)
         portfolioTableView.dataSource = self
         portfolioTableView.delegate = self
         
@@ -72,6 +56,23 @@ class PortfolioViewController: UIViewController, UITableViewDataSource, UITableV
         
         portfolioTotalLabel.text! = String(format: "Total: %f", totalUsd)
         portfolioTableView.reloadData()
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return assetByCoinType.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "portfolioCell", for: indexPath as IndexPath) as! TwoColumnsTableViewCell
+        
+        let coinType = self.assetCoinTypes[indexPath.row]
+        cell.column1?.text = Constants.CoinMap[coinType]!["FullName"]
+        cell.column2?.text = String(assetByCoinType[coinType]!)
+        
+        cell.column1?.textAlignment = .center
+        cell.column2?.textAlignment = .center
+        
+        return cell
     }
     
     func getAssetDict() -> [String: Float] {
