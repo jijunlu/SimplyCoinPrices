@@ -606,7 +606,7 @@
         <!--Portfolio Pop Up View Controller-->
         <scene sceneID="XUA-8A-1b8">
             <objects>
-                <viewController id="xnT-Ew-AFA" customClass="PortfolioPopUpViewController" customModule="CoinPrices" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="editPortfolioViewController" id="xnT-Ew-AFA" customClass="PortfolioPopUpViewController" customModule="CoinPrices" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="0GI-hH-8LN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

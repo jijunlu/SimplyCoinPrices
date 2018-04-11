@@ -14,14 +14,23 @@ class PortfolioPopUpViewController: UIViewController, UIPickerViewDelegate, UIPi
     @IBOutlet weak var selectedCoinText: UITextField!
     @IBOutlet weak var amountText: UITextField!
 
+    var inputCoinType = String()
+    var inputCoinAmount = Float()
     
     var coinList = [String]()
     var assetByCoinDict = [String: Float]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         getCurrentAsset()
+        
+        if(inputCoinType.count > 0) {
+            selectedCoinText.attributedText = NSMutableAttributedString(string: inputCoinType)
+        }
+        
+        if(inputCoinAmount > 0) {
+        amountText.attributedText = NSMutableAttributedString(string: String(inputCoinAmount))
+        }
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

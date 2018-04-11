@@ -97,20 +97,20 @@ class PortfolioViewController: UIViewController, UITableViewDataSource, UITableV
         
         return cell
     }
-/*
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let dictionary = rssParser.arrParsedData[indexPath.row] as Dictionary<String, String>
-        let rssItemLink = dictionary["link"]
-        let publishDate = dictionary["pubDate"]
+        let coinType = self.assetCoinTypes[indexPath.row]
+        let coinAmount = assetByCoinType[coinType] != nil ? assetByCoinType[coinType] : 0.0
+
         
-        let rssItemDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "rssItemDetailsVC") as! RssItemDetailsViewController
+        let editPortfolioViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "editPortfolioViewController") as! PortfolioPopUpViewController
         
-        rssItemDetailsViewController.linky = rssItemLink!
-        rssItemDetailsViewController.pubDate = publishDate!
+        editPortfolioViewController.inputCoinType = coinType
+        editPortfolioViewController.inputCoinAmount = coinAmount!
         
-        showDetailViewController(rssItemDetailsViewController, sender: self)
+        showDetailViewController(editPortfolioViewController, sender: self)
     }
-  */
+ 
     func getAssetDict() -> [String: Float] {
         guard let assetByCoinDict = UserDefaults.standard.object(forKey: Constants.assetByCoinDictKey) else {
             return [String: Float]()
