@@ -35,13 +35,22 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         pricesTableView.dataSource = self
         
         initAdMobBanner()
+     
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        self.pricesTableView.refreshControl = refreshControl
+    }
+    
+    @objc func refresh(refreshControl: UIRefreshControl) {
+        getPricesImpl()
+        
+        refreshControl.endRefreshing()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         getPricesImpl()
-        addTimer()
     }
     
     override func didReceiveMemoryWarning() {
@@ -62,7 +71,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let coinType = self.priceDictKeys[indexPath.row]
         cell.column1?.text = Constants.CoinMap[coinType]!["FullName"]
-        cell.column2?.text = priceByCoinDict[coinType]!
+        cell.column2?.text = String(format: "$%@", priceByCoinDict[coinType]!)
 
         cell.column1?.textAlignment = .center
         cell.column2?.textAlignment = .center
@@ -90,6 +99,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         for coin in coinsToDisplay {
             getPriceByCurrencyPair(coinName: coin.lowercased(), currency: "usd")
         }
+        
+        addTimer()
     }
     
     func getPriceByCurrencyPair(coinName: String, currency: String) -> Void {

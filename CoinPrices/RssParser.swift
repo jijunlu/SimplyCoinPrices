@@ -28,6 +28,7 @@ class RssParser: NSObject, XMLParserDelegate {
     
     func startParsingWithContentsOfURL(rssURL: NSURL) {
         let parser = XMLParser(contentsOf: rssURL as URL)
+        
         parser?.delegate = self
         parser?.parse()
     }

@@ -13,7 +13,9 @@ class RssViewController: UIViewController, UITableViewDataSource, UITableViewDel
     
     @IBOutlet weak var adBanner: GADBannerView!
     var rssParser : RssParser!
+    var refreshControl : UIRefreshControl!
     
+    @IBOutlet weak var rssScrollView: UIScrollView!
     @IBOutlet weak var rssTableView: UITableView!
     
     override func viewDidLoad() {
@@ -21,14 +23,27 @@ class RssViewController: UIViewController, UITableViewDataSource, UITableViewDel
         
         rssTableView.dataSource = self
         rssTableView.delegate = self
-        rssTableView.rowHeight = 88
         
+        loadNews()
+        
+        initAdMobBanner()
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        rssTableView.refreshControl = refreshControl
+    }
+    
+    @objc func refresh(refreshControl: UIRefreshControl) {
+        loadNews()
+        
+        refreshControl.endRefreshing()
+    }
+
+    func loadNews() -> Void {
         let url = NSURL(string: "https://cryptocurrencynews.com/feed/")
         rssParser = RssParser()
         rssParser.delegate = self
         rssParser.startParsingWithContentsOfURL(rssURL: url!)
-        
-        initAdMobBanner()
     }
     
     func initAdMobBanner() {
@@ -54,16 +69,20 @@ class RssViewController: UIViewController, UITableViewDataSource, UITableViewDel
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "rssCell", for: indexPath as IndexPath) as! RssItemTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "rssCell", for: indexPath as IndexPath)
         
         let currentDictionary = rssParser.arrParsedData[indexPath.row] as Dictionary<String, String>
         
-        let cellText = String(format: "%@ - %@", currentDictionary["title"]!, currentDictionary["pubDate"]!)
+        let cellText = String(format: "%@\n%@", currentDictionary["title"]!, currentDictionary["pubDate"]!.prefix(16).suffix(11) as CVarArg)
         
-        let attributedString = NSMutableAttributedString(string: cellText)
+        cell.textLabel?.text = cellText
+        cell.textLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
+        cell.textLabel?.numberOfLines = 0
+        cell.textLabel?.font = UIFont(name: "Avenir", size:20)
+        //let attributedString = NSMutableAttributedString(string: cellText)
  
-        cell.rssItemTextView.attributedText = attributedString
-        cell.rssItemTextView.font = UIFont(name: "Avenir", size: 18)
+        //cell.rssItemTextView.attributedText = attributedString
+        //cell.rssItemTextView.font = UIFont(name: "Avenir", size: 18)
 
         return cell
     }

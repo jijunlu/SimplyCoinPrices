@@ -92,18 +92,16 @@ class PortfolioPopUpViewController: UIViewController, UIPickerViewDelegate, UIPi
         }
     }
     
-    @IBAction func saveChanges(_ sender: Any) {
+    @IBAction func closeView(_ sender: Any) {
         let selectedCoin = selectedCoinText.text
         let selectedCoinAmountText = amountText.text
         
         if(selectedCoin != nil && selectedCoinAmountText != nil) {
             assetByCoinDict[selectedCoin!] = Float(selectedCoinAmountText!)
+
+            UserDefaults.standard.set(assetByCoinDict, forKey: Constants.assetByCoinDictKey)
         }
         
-        UserDefaults.standard.set(assetByCoinDict, forKey: Constants.assetByCoinDictKey)
-    }
-    
-    @IBAction func closeView(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
 

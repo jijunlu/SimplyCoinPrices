@@ -51,9 +51,16 @@ class PortfolioViewController: UIViewController, UITableViewDataSource, UITableV
         return 1
     }
     
-    func calculatePortfolioTotal() -> Void {
-        let pricesByCoinType = UserDefaults.standard.object(forKey: Constants.coinPriceDictKey) as! [String: String]
+    func getSavedCoinPrices() -> [String: String] {
+        guard let pricesByCoinType = UserDefaults.standard.object(forKey: Constants.coinPriceDictKey) else {
+            return [String: String]()
+        }
         
+        return pricesByCoinType as! [String: String]
+    }
+    
+    func calculatePortfolioTotal() -> Void {
+        let pricesByCoinType = getSavedCoinPrices()
         assetByCoinType = getAssetDict()
         assetCoinTypes = assetByCoinType.keys.sorted()
 
@@ -64,7 +71,7 @@ class PortfolioViewController: UIViewController, UITableViewDataSource, UITableV
             }
         }
         
-        portfolioTotalLabel.text! = String(format: "Total: %f", totalUsd)
+        portfolioTotalLabel.text! = String(format: "Total coin value: $%.2f", totalUsd)
         portfolioTableView.reloadData()
     }
     
@@ -73,18 +80,37 @@ class PortfolioViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "portfolioCell", for: indexPath as IndexPath) as! TwoColumnsTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "portfolioCell", for: indexPath as IndexPath) as! ThreeColumnsTableViewCell
+        
+        let pricesByCoinType = getSavedCoinPrices()
         
         let coinType = self.assetCoinTypes[indexPath.row]
         cell.column1?.text = Constants.CoinMap[coinType]!["FullName"]
         cell.column2?.text = String(assetByCoinType[coinType]!)
         
+        let value = pricesByCoinType.keys.sorted().contains(coinType.uppercased()) ? Float(pricesByCoinType[coinType.uppercased()]!)! * assetByCoinType[coinType]! : 0.0
+        cell.column3?.text = String(format: "$%.2f", value)
+        
         cell.column1?.textAlignment = .center
         cell.column2?.textAlignment = .center
+        cell.column3?.textAlignment = .center
         
         return cell
     }
-    
+/*
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let dictionary = rssParser.arrParsedData[indexPath.row] as Dictionary<String, String>
+        let rssItemLink = dictionary["link"]
+        let publishDate = dictionary["pubDate"]
+        
+        let rssItemDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "rssItemDetailsVC") as! RssItemDetailsViewController
+        
+        rssItemDetailsViewController.linky = rssItemLink!
+        rssItemDetailsViewController.pubDate = publishDate!
+        
+        showDetailViewController(rssItemDetailsViewController, sender: self)
+    }
+  */
     func getAssetDict() -> [String: Float] {
         guard let assetByCoinDict = UserDefaults.standard.object(forKey: Constants.assetByCoinDictKey) else {
             return [String: Float]()
@@ -98,5 +124,6 @@ class PortfolioViewController: UIViewController, UITableViewDataSource, UITableV
         }
         return ret
     }
+    
 
 }
