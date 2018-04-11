@@ -20,6 +20,7 @@
 		E5DADFAF207D35F4008B89BC /* RssViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DADFAE207D35F4008B89BC /* RssViewController.swift */; };
 		E5DADFB1207D3B50008B89BC /* RssItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DADFB0207D3B50008B89BC /* RssItemTableViewCell.swift */; };
 		E5DADFB3207D4CD3008B89BC /* SettingWrapperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DADFB2207D4CD3008B89BC /* SettingWrapperViewController.swift */; };
+		E5DADFB5207D564B008B89BC /* RssItemDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DADFB4207D564B008B89BC /* RssItemDetailsViewController.swift */; };
 		E5FC2985207467F70036A504 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5FC2984207467F70036A504 /* GoogleMobileAds.framework */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +42,7 @@
 		E5DADFAE207D35F4008B89BC /* RssViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssViewController.swift; sourceTree = "<group>"; };
 		E5DADFB0207D3B50008B89BC /* RssItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssItemTableViewCell.swift; sourceTree = "<group>"; };
 		E5DADFB2207D4CD3008B89BC /* SettingWrapperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingWrapperViewController.swift; sourceTree = "<group>"; };
+		E5DADFB4207D564B008B89BC /* RssItemDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssItemDetailsViewController.swift; sourceTree = "<group>"; };
 		E5FC2984207467F70036A504 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -108,6 +110,7 @@
 				E5015DD0207D17F8005CA7A0 /* RssParser.swift */,
 				E5DADFAE207D35F4008B89BC /* RssViewController.swift */,
 				E5DADFB2207D4CD3008B89BC /* SettingWrapperViewController.swift */,
+				E5DADFB4207D564B008B89BC /* RssItemDetailsViewController.swift */,
 			);
 			path = CoinPrices;
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 				E5015DD1207D17F8005CA7A0 /* RssParser.swift in Sources */,
 				E5DADFAF207D35F4008B89BC /* RssViewController.swift in Sources */,
 				E57C00F020324D0100F18E8B /* AppDelegate.swift in Sources */,
+				E5DADFB5207D564B008B89BC /* RssItemDetailsViewController.swift in Sources */,
 				E5015DCF207BBE72005CA7A0 /* PortfolioPopUpViewController.swift in Sources */,
 				E5C247042076A88700311D6F /* Constants.swift in Sources */,
 			);

@@ -16,14 +16,12 @@ class RssViewController: UIViewController, UITableViewDataSource, UITableViewDel
     
     @IBOutlet weak var rssTableView: UITableView!
     
-    //var rssItems = [Dictionary<String, String>]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         rssTableView.dataSource = self
         rssTableView.delegate = self
-        rssTableView.rowHeight = 80
+        rssTableView.rowHeight = 88
         
         let url = NSURL(string: "https://cryptocurrencynews.com/feed/")
         rssParser = RssParser()
@@ -41,19 +39,11 @@ class RssViewController: UIViewController, UITableViewDataSource, UITableViewDel
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-    
-    
-    // MARK: XMLParserDelegate method implementation
     
     func parsingWasFinished() {
-        print(rssParser.arrParsedData)
         rssTableView.reloadData()
     }
-    
-    
-    // MARK: - Table view data source
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
@@ -63,38 +53,32 @@ class RssViewController: UIViewController, UITableViewDataSource, UITableViewDel
         return rssParser.arrParsedData.count
     }
     
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "rssCell", for: indexPath as IndexPath) as! RssItemTableViewCell
         
         let currentDictionary = rssParser.arrParsedData[indexPath.row] as Dictionary<String, String>
         
-        let attributedString = NSMutableAttributedString(string: currentDictionary["title"]!)
-        attributedString.addAttribute(.link, value: currentDictionary["link"]!, range: NSRange(location: 0, length: currentDictionary["title"]!.count))
-                
+        let cellText = String(format: "%@ - %@", currentDictionary["title"]!, currentDictionary["pubDate"]!)
+        
+        let attributedString = NSMutableAttributedString(string: cellText)
+ 
         cell.rssItemTextView.attributedText = attributedString
-        cell.rssItemTextView.font = UIFont(name: "Avenir", size: 20)
+        cell.rssItemTextView.font = UIFont(name: "Avenir", size: 18)
+
         return cell
     }
     
-    /*
-     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: IndexPath) -> CGFloat {
-     return 80
-     }
-     */
-    /*
-     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
      let dictionary = rssParser.arrParsedData[indexPath.row] as Dictionary<String, String>
-     let tutorialLink = dictionary["link"]
+     let rssItemLink = dictionary["link"]
      let publishDate = dictionary["pubDate"]
      
-     let tutorialViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewControllerWithIdentifier("idTutorialViewController") as TutorialViewController
+        let rssItemDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "rssItemDetailsVC") as! RssItemDetailsViewController
      
-     tutorialViewController.tutorialURL = NSURL(string: tutorialLink!)
-     tutorialViewController.publishDate = publishDate
+        rssItemDetailsViewController.linky = rssItemLink!
+        rssItemDetailsViewController.pubDate = publishDate!
      
-     showDetailViewController(tutorialViewController, sender: self)
-     
+        showDetailViewController(rssItemDetailsViewController, sender: self)
      }
-     */
+    
 }
