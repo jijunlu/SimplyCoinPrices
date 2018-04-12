@@ -7,18 +7,38 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
-class PortfolioViewController: UIViewController {
+class PortfolioViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, GADBannerViewDelegate {
 
     @IBOutlet weak var portfolioTotalLabel: UILabel!
+    @IBOutlet weak var portfolioTableView: UITableView!
+    @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var adBanner: GADBannerView!
     
-    var assetByCoinPair = [String: Float]()
+    var assetByCoinType = [String: Float]()
     var assetCoinTypes = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        editButton.titleLabel?.font = UIFont(name: "Avenir", size:18)
+        portfolioTableView.dataSource = self
+        portfolioTableView.delegate = self
+        
+        portfolioTableView.rowHeight = 58
+        
+        calculatePortfolioTotal()
+        
+        initAdMobBanner()
     }
 
+    func initAdMobBanner() {
+        adBanner.adUnitID = Constants.adMobBannerUnitId
+        adBanner.rootViewController = self
+        adBanner.load(GADRequest())
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         calculatePortfolioTotal()
     }
@@ -27,33 +47,83 @@ class PortfolioViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func calculatePortfolioTotal() -> Void {
-        let pricesByCoinPair = UserDefaults.standard.object(forKey: Constants.coinPriceDictKey) as! [String: String]
-        let assetByCoinPairDict = getAssetDict()
-
-        var totalUsd : Float = 0
-        for (coinPair, amount) in assetByCoinPairDict {
-            totalUsd += amount * Float(pricesByCoinPair[coinPair]!)!
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func getSavedCoinPrices() -> [String: String] {
+        guard let pricesByCoinType = UserDefaults.standard.object(forKey: Constants.coinPriceDictKey) else {
+            return [String: String]()
         }
         
-        portfolioTotalLabel.text! = String(format: "Total: %f", totalUsd)
+        return pricesByCoinType as! [String: String]
     }
     
-    func getAssetDict() -> [String: Float] {
-        return [
-            "BTC/USD": 1.0273109,
-            "ETH/USD": 10
-        ]
-    }
-    
-    /*
-    // MARK: - Navigation
+    func calculatePortfolioTotal() -> Void {
+        let pricesByCoinType = getSavedCoinPrices()
+        assetByCoinType = getAssetDict()
+        assetCoinTypes = assetByCoinType.keys.sorted()
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        var totalUsd : Float = 0
+        for (coin, amount) in assetByCoinType {
+            if(pricesByCoinType.keys.contains(coin.uppercased())){
+                totalUsd += amount * Float(pricesByCoinType[coin.uppercased()]!)!
+            }
+        }
+        
+        portfolioTotalLabel.text! = String(format: "Total coin value: $%.2f", totalUsd)
+        portfolioTableView.reloadData()
     }
-    */
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return assetByCoinType.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "portfolioCell", for: indexPath as IndexPath) as! ThreeColumnsTableViewCell
+        
+        let pricesByCoinType = getSavedCoinPrices()
+        
+        let coinType = self.assetCoinTypes[indexPath.row]
+        cell.column1?.text = Constants.CoinMap[coinType]!["FullName"]
+        cell.column2?.text = String(assetByCoinType[coinType]!)
+        
+        let value = pricesByCoinType.keys.sorted().contains(coinType.uppercased()) ? Float(pricesByCoinType[coinType.uppercased()]!)! * assetByCoinType[coinType]! : 0.0
+        cell.column3?.text = String(format: "$%.2f", value)
+        
+        cell.column1?.textAlignment = .center
+        cell.column2?.textAlignment = .center
+        cell.column3?.textAlignment = .center
+        
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let coinType = self.assetCoinTypes[indexPath.row]
+        let coinAmount = assetByCoinType[coinType] != nil ? assetByCoinType[coinType] : 0.0
+
+        
+        let editPortfolioViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "editPortfolioViewController") as! PortfolioPopUpViewController
+        
+        editPortfolioViewController.inputCoinType = coinType
+        editPortfolioViewController.inputCoinAmount = coinAmount!
+        
+        showDetailViewController(editPortfolioViewController, sender: self)
+    }
+ 
+    func getAssetDict() -> [String: Float] {
+        guard let assetByCoinDict = UserDefaults.standard.object(forKey: Constants.assetByCoinDictKey) else {
+            return [String: Float]()
+        }
+        
+        var ret = assetByCoinDict as! [String: Float]
+        for (asset, amount) in ret {
+            if(amount == 0) {
+                ret.removeValue(forKey: asset)
+            }
+        }
+        return ret
+    }
+    
 
 }

@@ -17,7 +17,7 @@ struct CoinPrice : Decodable {
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, GADBannerViewDelegate {
     
-    var priceByCoinPair = [String: String]()
+    var priceByCoinDict = [String: String]()
     var priceDictKeys = [String]()
     
     // Properties
@@ -29,17 +29,28 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        pricesTableView.rowHeight = 58
+        
         pricesTableView.delegate = self
         pricesTableView.dataSource = self
         
         initAdMobBanner()
+     
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        self.pricesTableView.refreshControl = refreshControl
+    }
+    
+    @objc func refresh(refreshControl: UIRefreshControl) {
+        getPricesImpl()
+        
+        refreshControl.endRefreshing()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         getPricesImpl()
-        addTimer()
     }
     
     override func didReceiveMemoryWarning() {
@@ -52,15 +63,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return priceByCoinPair.count
+        return priceByCoinDict.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "priceCell", for: indexPath as IndexPath) as! TwoColumnsTableViewCell
         
-        let coinPair = self.priceDictKeys[indexPath.row]
-        cell.column1?.text = coinPair
-        cell.column2?.text = priceByCoinPair[coinPair]!
+        let coinType = self.priceDictKeys[indexPath.row]
+        cell.column1?.text = Constants.CoinMap[coinType]!["FullName"]
+        cell.column2?.text = String(format: "$%@", priceByCoinDict[coinType]!)
 
         cell.column1?.textAlignment = .center
         cell.column2?.textAlignment = .center
@@ -76,18 +87,20 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @objc func getPricesImpl() -> Void {
-        priceByCoinPair.removeAll()
+        priceByCoinDict.removeAll()
         
         let coinsToDisplay = getCoinsToDisplay()
         if(coinsToDisplay.count == 0)
         {
-            priceByCoinPair = [String: String]()
+            priceByCoinDict = [String: String]()
             priceDictKeys = [String]()
             pricesTableView.reloadData()
         }
         for coin in coinsToDisplay {
             getPriceByCurrencyPair(coinName: coin.lowercased(), currency: "usd")
         }
+        
+        addTimer()
     }
     
     func getPriceByCurrencyPair(coinName: String, currency: String) -> Void {
@@ -104,11 +117,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 return
             }
             
-            let pricePair = String(format: "%@/%@", coinName.uppercased(), currency.uppercased())
-            
-            self.priceByCoinPair[pricePair] = coinPrice.last
-            self.priceDictKeys = self.priceByCoinPair.keys.sorted()
-            UserDefaults.standard.set(self.priceByCoinPair, forKey: Constants.coinPriceDictKey)
+            self.priceByCoinDict[coinName.uppercased()] = coinPrice.last
+            self.priceDictKeys = self.priceByCoinDict.keys.sorted()
+            UserDefaults.standard.set(self.priceByCoinDict, forKey: Constants.coinPriceDictKey)
             self.pricesTableView.reloadData()
 
         })
@@ -140,7 +151,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func getCoinsToDisplay() -> [String] {
-        guard let coinsToDisplay = UserDefaults.standard.object(forKey: Constants.coinsToDisplayKey) else {
+        guard let coinsToDisplay = UserDefaults.standard.object(forKey: Constants.coinsToDisplayDictKey) else {
             return Constants.CoinMap.keys.sorted()
         }
         

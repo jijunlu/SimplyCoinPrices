@@ -8,14 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		E5015DC72079C846005CA7A0 /* PortfolioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5015DC62079C846005CA7A0 /* PortfolioViewController.swift */; };
-		E5015DCB207AB34D005CA7A0 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5015DCA207AB34D005CA7A0 /* HomeTableViewController.swift */; };
 		E5015DCD207AB3A6005CA7A0 /* TwoColumnsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5015DCC207AB3A6005CA7A0 /* TwoColumnsTableViewCell.swift */; };
+		E5015DCF207BBE72005CA7A0 /* PortfolioPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5015DCE207BBE72005CA7A0 /* PortfolioPopUpViewController.swift */; };
+		E5015DD1207D17F8005CA7A0 /* RssParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5015DD0207D17F8005CA7A0 /* RssParser.swift */; };
 		E50FC4AF2079C1CB00774872 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50FC4AE2079C1CB00774872 /* HomeViewController.swift */; };
 		E57C00F020324D0100F18E8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57C00EF20324D0100F18E8B /* AppDelegate.swift */; };
 		E57C00F520324D0100F18E8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E57C00F320324D0100F18E8B /* Main.storyboard */; };
 		E57C00F720324D0100F18E8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E57C00F620324D0100F18E8B /* Assets.xcassets */; };
 		E5841B0D2077C49200CEC900 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5841B0C2077C49200CEC900 /* SettingsTableViewController.swift */; };
 		E5C247042076A88700311D6F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C247032076A88700311D6F /* Constants.swift */; };
+		E5DADFAF207D35F4008B89BC /* RssViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DADFAE207D35F4008B89BC /* RssViewController.swift */; };
+		E5DADFB1207D3B50008B89BC /* RssItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DADFB0207D3B50008B89BC /* RssItemTableViewCell.swift */; };
+		E5DADFB3207D4CD3008B89BC /* SettingWrapperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DADFB2207D4CD3008B89BC /* SettingWrapperViewController.swift */; };
+		E5DADFB5207D564B008B89BC /* RssItemDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DADFB4207D564B008B89BC /* RssItemDetailsViewController.swift */; };
+		E5DADFB7207E6678008B89BC /* ThreeColumnsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DADFB6207E6678008B89BC /* ThreeColumnsTableViewCell.swift */; };
+		E5DADFBB207E9C4A008B89BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5DADFBA207E9C4A008B89BC /* LaunchScreen.storyboard */; };
 		E5FC2985207467F70036A504 /* GoogleMobileAds.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5FC2984207467F70036A504 /* GoogleMobileAds.framework */; };
 /* End PBXBuildFile section */
 
@@ -23,8 +30,9 @@
 		7226830DCDA72A8710C9E0F1 /* Pods-CoinPrices.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoinPrices.release.xcconfig"; path = "Pods/Target Support Files/Pods-CoinPrices/Pods-CoinPrices.release.xcconfig"; sourceTree = "<group>"; };
 		B48075F771E436AB93E6AB3E /* Pods-CoinPrices.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoinPrices.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CoinPrices/Pods-CoinPrices.debug.xcconfig"; sourceTree = "<group>"; };
 		E5015DC62079C846005CA7A0 /* PortfolioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioViewController.swift; sourceTree = "<group>"; };
-		E5015DCA207AB34D005CA7A0 /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		E5015DCC207AB3A6005CA7A0 /* TwoColumnsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoColumnsTableViewCell.swift; sourceTree = "<group>"; };
+		E5015DCE207BBE72005CA7A0 /* PortfolioPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioPopUpViewController.swift; sourceTree = "<group>"; };
+		E5015DD0207D17F8005CA7A0 /* RssParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssParser.swift; sourceTree = "<group>"; };
 		E50FC4AE2079C1CB00774872 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		E57C00EC20324D0100F18E8B /* CoinPrices.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoinPrices.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E57C00EF20324D0100F18E8B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -33,6 +41,12 @@
 		E57C00FB20324D0100F18E8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E5841B0C2077C49200CEC900 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		E5C247032076A88700311D6F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		E5DADFAE207D35F4008B89BC /* RssViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssViewController.swift; sourceTree = "<group>"; };
+		E5DADFB0207D3B50008B89BC /* RssItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssItemTableViewCell.swift; sourceTree = "<group>"; };
+		E5DADFB2207D4CD3008B89BC /* SettingWrapperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingWrapperViewController.swift; sourceTree = "<group>"; };
+		E5DADFB4207D564B008B89BC /* RssItemDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssItemDetailsViewController.swift; sourceTree = "<group>"; };
+		E5DADFB6207E6678008B89BC /* ThreeColumnsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeColumnsTableViewCell.swift; sourceTree = "<group>"; };
+		E5DADFBA207E9C4A008B89BC /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E5FC2984207467F70036A504 /* GoogleMobileAds.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = GoogleMobileAds.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -94,8 +108,15 @@
 				E5841B0C2077C49200CEC900 /* SettingsTableViewController.swift */,
 				E50FC4AE2079C1CB00774872 /* HomeViewController.swift */,
 				E5015DC62079C846005CA7A0 /* PortfolioViewController.swift */,
-				E5015DCA207AB34D005CA7A0 /* HomeTableViewController.swift */,
 				E5015DCC207AB3A6005CA7A0 /* TwoColumnsTableViewCell.swift */,
+				E5DADFB0207D3B50008B89BC /* RssItemTableViewCell.swift */,
+				E5015DCE207BBE72005CA7A0 /* PortfolioPopUpViewController.swift */,
+				E5015DD0207D17F8005CA7A0 /* RssParser.swift */,
+				E5DADFAE207D35F4008B89BC /* RssViewController.swift */,
+				E5DADFB2207D4CD3008B89BC /* SettingWrapperViewController.swift */,
+				E5DADFB4207D564B008B89BC /* RssItemDetailsViewController.swift */,
+				E5DADFB6207E6678008B89BC /* ThreeColumnsTableViewCell.swift */,
+				E5DADFBA207E9C4A008B89BC /* LaunchScreen.storyboard */,
 			);
 			path = CoinPrices;
 			sourceTree = "<group>";
@@ -162,6 +183,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E5DADFBB207E9C4A008B89BC /* LaunchScreen.storyboard in Resources */,
 				E57C00F720324D0100F18E8B /* Assets.xcassets in Resources */,
 				E57C00F520324D0100F18E8B /* Main.storyboard in Resources */,
 			);
@@ -225,12 +247,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E5015DCB207AB34D005CA7A0 /* HomeTableViewController.swift in Sources */,
+				E5DADFB7207E6678008B89BC /* ThreeColumnsTableViewCell.swift in Sources */,
 				E50FC4AF2079C1CB00774872 /* HomeViewController.swift in Sources */,
 				E5015DC72079C846005CA7A0 /* PortfolioViewController.swift in Sources */,
+				E5DADFB3207D4CD3008B89BC /* SettingWrapperViewController.swift in Sources */,
 				E5841B0D2077C49200CEC900 /* SettingsTableViewController.swift in Sources */,
+				E5DADFB1207D3B50008B89BC /* RssItemTableViewCell.swift in Sources */,
 				E5015DCD207AB3A6005CA7A0 /* TwoColumnsTableViewCell.swift in Sources */,
+				E5015DD1207D17F8005CA7A0 /* RssParser.swift in Sources */,
+				E5DADFAF207D35F4008B89BC /* RssViewController.swift in Sources */,
 				E57C00F020324D0100F18E8B /* AppDelegate.swift in Sources */,
+				E5DADFB5207D564B008B89BC /* RssItemDetailsViewController.swift in Sources */,
+				E5015DCF207BBE72005CA7A0 /* PortfolioPopUpViewController.swift in Sources */,
 				E5C247042076A88700311D6F /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

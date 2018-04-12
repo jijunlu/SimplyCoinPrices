@@ -39,13 +39,8 @@ class SettingsTableViewController: UITableViewController {
         updateIntervalLabel.text = String(updateInterval as! Float)
         
         // Coins to display
-        guard let coinsToDisplay = UserDefaults.standard.object(forKey: Constants.coinsToDisplayKey) else {
-            let defaultCoinsToDisplay = Dictionary(grouping: Constants.CoinMap.keys.sorted(), by: {$0})
-            UserDefaults.standard.set(defaultCoinsToDisplay, forKey: Constants.coinsToDisplayKey)
-            setCoinSwitches(coinsToDisplay: defaultCoinsToDisplay)
-            return
-        }
-        setCoinSwitches(coinsToDisplay: coinsToDisplay as! [String: [String]])
+        let coinsToDisplay = getCoinsToDisplayDict()
+        setCoinSwitches(coinsToDisplay: coinsToDisplay)
     }
     
     func setCoinSwitches(coinsToDisplay: [String: [String]]) -> Void {
@@ -64,60 +59,73 @@ class SettingsTableViewController: UITableViewController {
     }
     
     // When disable/enable coin switch
+    func getCoinsToDisplayDict() -> [String: [String]] {
+        guard let coinsToDisplay = UserDefaults.standard.object(forKey: Constants.coinsToDisplayDictKey) else {
+            let defaultCoinsToDisplay = Dictionary(grouping: Constants.CoinMap.keys.sorted(), by: {$0})
+            UserDefaults.standard.set(defaultCoinsToDisplay, forKey: Constants.coinsToDisplayDictKey)
+            return defaultCoinsToDisplay
+        }
+        
+        return coinsToDisplay as! [String: [String]]
+    }
+    
     @IBAction func onBtcSwitchChanged(_ sender: UISwitch) {
-        var coinsToDisplay = UserDefaults.standard.object(forKey: Constants.coinsToDisplayKey) as! [String: [String]]
+        var coinsToDisplay = getCoinsToDisplayDict()
+        
         if(sender.isOn) {
             coinsToDisplay["BTC"] = ["BTC"]
         } else {
             coinsToDisplay.removeValue(forKey: "BTC")
         }
         
-        UserDefaults.standard.set(coinsToDisplay, forKey: Constants.coinsToDisplayKey)
+        UserDefaults.standard.set(coinsToDisplay, forKey: Constants.coinsToDisplayDictKey)
     }
     
     @IBAction func onEthSwitchChanged(_ sender: UISwitch) {
-        var coinsToDisplay = UserDefaults.standard.object(forKey: Constants.coinsToDisplayKey) as! [String: [String]]
+        var coinsToDisplay = getCoinsToDisplayDict()
+        
         if(sender.isOn) {
             coinsToDisplay["ETH"] = ["ETH"]
         } else {
             coinsToDisplay.removeValue(forKey: "ETH")
         }
         
-        UserDefaults.standard.set(coinsToDisplay, forKey: Constants.coinsToDisplayKey)
+        UserDefaults.standard.set(coinsToDisplay, forKey: Constants.coinsToDisplayDictKey)
     }
     
     @IBAction func onXrpSwitchChanged(_ sender: UISwitch) {
-        var coinsToDisplay = UserDefaults.standard.object(forKey: Constants.coinsToDisplayKey) as! [String: [String]]
+        var coinsToDisplay = getCoinsToDisplayDict()
+        
         if(sender.isOn) {
             coinsToDisplay["XRP"] = ["XRP"]
         } else {
             coinsToDisplay.removeValue(forKey: "XRP")
         }
         
-        UserDefaults.standard.set(coinsToDisplay, forKey: Constants.coinsToDisplayKey)
+        UserDefaults.standard.set(coinsToDisplay, forKey: Constants.coinsToDisplayDictKey)
     }
 
     @IBAction func onBchSwitchChanged(_ sender: UISwitch) {
-        var coinsToDisplay = UserDefaults.standard.object(forKey: Constants.coinsToDisplayKey) as! [String: [String]]
+        var coinsToDisplay = getCoinsToDisplayDict()
+        
         if(sender.isOn) {
             coinsToDisplay["BCH"] = ["BCH"]
         } else {
             coinsToDisplay.removeValue(forKey: "BCH")
         }
         
-        UserDefaults.standard.set(coinsToDisplay, forKey: Constants.coinsToDisplayKey)
+        UserDefaults.standard.set(coinsToDisplay, forKey: Constants.coinsToDisplayDictKey)
     }
 
     @IBAction func onLtcSwitchChanged(_ sender: UISwitch) {
-        var coinsToDisplay = UserDefaults.standard.object(forKey: Constants.coinsToDisplayKey) as! [String: [String]]
+        var coinsToDisplay = getCoinsToDisplayDict()
+        
         if(sender.isOn) {
             coinsToDisplay["LTC"] = ["LTC"]
         } else {
             coinsToDisplay.removeValue(forKey: "LTC")
         }
         
-        UserDefaults.standard.set(coinsToDisplay, forKey: Constants.coinsToDisplayKey)
+        UserDefaults.standard.set(coinsToDisplay, forKey: Constants.coinsToDisplayDictKey)
     }
-    
-
 }
