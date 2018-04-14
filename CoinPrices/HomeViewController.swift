@@ -79,6 +79,16 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let coinType = self.priceDictKeys[indexPath.row]
+        
+        let coinDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "coinDetailsViewController") as! CoinDetailsViewController
+        
+        coinDetailsViewController.inputCoinType = coinType
+        
+        showDetailViewController(coinDetailsViewController, sender: self)
+    }
+    
     // Actions
     
     // Get prices

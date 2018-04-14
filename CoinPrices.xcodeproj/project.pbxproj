@@ -12,6 +12,7 @@
 		E5015DCF207BBE72005CA7A0 /* PortfolioPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5015DCE207BBE72005CA7A0 /* PortfolioPopUpViewController.swift */; };
 		E5015DD1207D17F8005CA7A0 /* RssParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5015DD0207D17F8005CA7A0 /* RssParser.swift */; };
 		E50FC4AF2079C1CB00774872 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50FC4AE2079C1CB00774872 /* HomeViewController.swift */; };
+		E5178D0720824D9B00F34D9B /* CoinDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5178D0620824D9B00F34D9B /* CoinDetailsViewController.swift */; };
 		E57C00F020324D0100F18E8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E57C00EF20324D0100F18E8B /* AppDelegate.swift */; };
 		E57C00F520324D0100F18E8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E57C00F320324D0100F18E8B /* Main.storyboard */; };
 		E57C00F720324D0100F18E8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E57C00F620324D0100F18E8B /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 		E5015DCE207BBE72005CA7A0 /* PortfolioPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioPopUpViewController.swift; sourceTree = "<group>"; };
 		E5015DD0207D17F8005CA7A0 /* RssParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssParser.swift; sourceTree = "<group>"; };
 		E50FC4AE2079C1CB00774872 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		E5178D0620824D9B00F34D9B /* CoinDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinDetailsViewController.swift; sourceTree = "<group>"; };
 		E57C00EC20324D0100F18E8B /* CoinPrices.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoinPrices.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E57C00EF20324D0100F18E8B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E57C00F420324D0100F18E8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				E5DADFB2207D4CD3008B89BC /* SettingWrapperViewController.swift */,
 				E5DADFB6207E6678008B89BC /* ThreeColumnsTableViewCell.swift */,
 				E5015DCC207AB3A6005CA7A0 /* TwoColumnsTableViewCell.swift */,
+				E5178D0620824D9B00F34D9B /* CoinDetailsViewController.swift */,
 			);
 			path = CoinPrices;
 			sourceTree = "<group>";
@@ -249,6 +252,7 @@
 			files = (
 				E5DADFB7207E6678008B89BC /* ThreeColumnsTableViewCell.swift in Sources */,
 				E50FC4AF2079C1CB00774872 /* HomeViewController.swift in Sources */,
+				E5178D0720824D9B00F34D9B /* CoinDetailsViewController.swift in Sources */,
 				E5015DC72079C846005CA7A0 /* PortfolioViewController.swift in Sources */,
 				E5DADFB3207D4CD3008B89BC /* SettingWrapperViewController.swift in Sources */,
 				E5841B0D2077C49200CEC900 /* SettingsTableViewController.swift in Sources */,

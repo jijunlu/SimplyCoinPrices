@@ -837,6 +837,38 @@
             </objects>
             <point key="canvasLocation" x="-1820" y="1594.4527736131936"/>
         </scene>
+        <!--Coin Details View Controller-->
+        <scene sceneID="IlW-Be-Aux">
+            <objects>
+                <viewController storyboardIdentifier="coinDetailsViewController" id="Okk-Pf-zic" customClass="CoinDetailsViewController" customModule="CoinPrices" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="9jC-vj-Qn6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="cJ3-Mf-UIg">
+                                <rect key="frame" x="16" y="20" width="343" height="627"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="cJ3-Mf-UIg" firstAttribute="leading" secondItem="BZU-VU-ycE" secondAttribute="leading" constant="16" id="2O7-Lb-KeT"/>
+                            <constraint firstItem="cJ3-Mf-UIg" firstAttribute="top" secondItem="BZU-VU-ycE" secondAttribute="top" id="2PG-8J-Ke9"/>
+                            <constraint firstItem="BZU-VU-ycE" firstAttribute="trailing" secondItem="cJ3-Mf-UIg" secondAttribute="trailing" constant="16" id="lmv-bT-4PN"/>
+                            <constraint firstItem="BZU-VU-ycE" firstAttribute="bottom" secondItem="cJ3-Mf-UIg" secondAttribute="bottom" constant="20" id="vNT-5f-Y5P"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="BZU-VU-ycE"/>
+                    </view>
+                    <connections>
+                        <outlet property="coinDetailsTextView" destination="cJ3-Mf-UIg" id="jcg-d0-Rrm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XGa-xX-nrN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1820" y="2352.7736131934034"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="31c-h7-PKr">
             <objects>
