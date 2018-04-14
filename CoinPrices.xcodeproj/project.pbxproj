@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C402F045D36FF5312022C9A3 /* Pods_CoinPrices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83AFA378E6CBDD288BCE7C18 /* Pods_CoinPrices.framework */; };
 		E5015DC72079C846005CA7A0 /* PortfolioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5015DC62079C846005CA7A0 /* PortfolioViewController.swift */; };
 		E5015DCD207AB3A6005CA7A0 /* TwoColumnsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5015DCC207AB3A6005CA7A0 /* TwoColumnsTableViewCell.swift */; };
 		E5015DCF207BBE72005CA7A0 /* PortfolioPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5015DCE207BBE72005CA7A0 /* PortfolioPopUpViewController.swift */; };
@@ -17,6 +18,7 @@
 		E57C00F520324D0100F18E8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E57C00F320324D0100F18E8B /* Main.storyboard */; };
 		E57C00F720324D0100F18E8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E57C00F620324D0100F18E8B /* Assets.xcassets */; };
 		E5841B0D2077C49200CEC900 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5841B0C2077C49200CEC900 /* SettingsTableViewController.swift */; };
+		E58EF06020828AB800E9D8C8 /* DateValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58EF05F20828AB800E9D8C8 /* DateValueFormatter.swift */; };
 		E5C247042076A88700311D6F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C247032076A88700311D6F /* Constants.swift */; };
 		E5DADFAF207D35F4008B89BC /* RssViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DADFAE207D35F4008B89BC /* RssViewController.swift */; };
 		E5DADFB1207D3B50008B89BC /* RssItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DADFB0207D3B50008B89BC /* RssItemTableViewCell.swift */; };
@@ -29,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		7226830DCDA72A8710C9E0F1 /* Pods-CoinPrices.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoinPrices.release.xcconfig"; path = "Pods/Target Support Files/Pods-CoinPrices/Pods-CoinPrices.release.xcconfig"; sourceTree = "<group>"; };
+		83AFA378E6CBDD288BCE7C18 /* Pods_CoinPrices.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoinPrices.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B48075F771E436AB93E6AB3E /* Pods-CoinPrices.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoinPrices.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CoinPrices/Pods-CoinPrices.debug.xcconfig"; sourceTree = "<group>"; };
 		E5015DC62079C846005CA7A0 /* PortfolioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioViewController.swift; sourceTree = "<group>"; };
 		E5015DCC207AB3A6005CA7A0 /* TwoColumnsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoColumnsTableViewCell.swift; sourceTree = "<group>"; };
@@ -42,6 +45,7 @@
 		E57C00F620324D0100F18E8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E57C00FB20324D0100F18E8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E5841B0C2077C49200CEC900 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
+		E58EF05F20828AB800E9D8C8 /* DateValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValueFormatter.swift; sourceTree = "<group>"; };
 		E5C247032076A88700311D6F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		E5DADFAE207D35F4008B89BC /* RssViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssViewController.swift; sourceTree = "<group>"; };
 		E5DADFB0207D3B50008B89BC /* RssItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssItemTableViewCell.swift; sourceTree = "<group>"; };
@@ -58,6 +62,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E5FC2985207467F70036A504 /* GoogleMobileAds.framework in Frameworks */,
+				C402F045D36FF5312022C9A3 /* Pods_CoinPrices.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,6 +72,7 @@
 		0862290602745D6F7207AFB6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				83AFA378E6CBDD288BCE7C18 /* Pods_CoinPrices.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -120,6 +126,7 @@
 				E5DADFB6207E6678008B89BC /* ThreeColumnsTableViewCell.swift */,
 				E5015DCC207AB3A6005CA7A0 /* TwoColumnsTableViewCell.swift */,
 				E5178D0620824D9B00F34D9B /* CoinDetailsViewController.swift */,
+				E58EF05F20828AB800E9D8C8 /* DateValueFormatter.swift */,
 			);
 			path = CoinPrices;
 			sourceTree = "<group>";
@@ -219,9 +226,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-CoinPrices/Pods-CoinPrices-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Charts/Charts.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Charts.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -261,6 +271,7 @@
 				E5015DD1207D17F8005CA7A0 /* RssParser.swift in Sources */,
 				E5DADFAF207D35F4008B89BC /* RssViewController.swift in Sources */,
 				E57C00F020324D0100F18E8B /* AppDelegate.swift in Sources */,
+				E58EF06020828AB800E9D8C8 /* DateValueFormatter.swift in Sources */,
 				E5DADFB5207D564B008B89BC /* RssItemDetailsViewController.swift in Sources */,
 				E5015DCF207BBE72005CA7A0 /* PortfolioPopUpViewController.swift in Sources */,
 				E5C247042076A88700311D6F /* Constants.swift in Sources */,

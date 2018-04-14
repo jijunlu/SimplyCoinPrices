@@ -7,5 +7,5 @@ target 'CoinPrices' do
 
   # Pods for CoinPrices
   pod 'Google-Mobile-Ads-SDK', '~> 7.30'
-
+  pod 'Charts', '~> 3.0.1'
 end
