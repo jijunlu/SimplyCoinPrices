@@ -19,8 +19,8 @@ struct Constants {
     
     static let baseUrl = "https://www.bitstamp.net/api/v2/ticker"
     
-    static let rssFeedUrl = "https://cryptocurrencynews.com/feed/"
-    //"https://min-api.cryptocompare.com/data/news/?lang=EN"
+    //static let rssFeedUrl = "https://cryptocurrencynews.com/feed/"
+    static let rssFeedUrl = "https://min-api.cryptocompare.com/data/news/?lang=EN"
     
     static let rssFeeds : [String: String] = [
         "Bitcoinist": "https://bitcoinist.com/feed/",

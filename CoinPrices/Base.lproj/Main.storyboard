@@ -450,7 +450,7 @@
             </objects>
             <point key="canvasLocation" x="-442" y="1594"/>
         </scene>
-        <!--Altfolio-->
+        <!--Portfolio-->
         <scene sceneID="D2F-b1-keV">
             <objects>
                 <viewController id="8gZ-3c-Hvx" customClass="PortfolioViewController" customModule="CoinPrices" customModuleProvider="target" sceneMemberID="viewController">
@@ -534,7 +534,7 @@
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Cl-Af-OWO">
                                 <rect key="frame" x="0.0" y="70" width="375" height="44"/>
                                 <items>
-                                    <navigationItem title="Altfolio Balance" id="BXW-0s-HUd"/>
+                                    <navigationItem title="Portfolio Balance" id="BXW-0s-HUd"/>
                                 </items>
                             </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tOb-pW-Xc7">
@@ -590,7 +590,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="4xN-rc-KfS"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Altfolio" id="XtZ-Om-Arp"/>
+                    <tabBarItem key="tabBarItem" title="Portfolio" id="XtZ-Om-Arp"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="adBanner" destination="Vwx-vo-zDo" id="2hT-mH-2j3"/>

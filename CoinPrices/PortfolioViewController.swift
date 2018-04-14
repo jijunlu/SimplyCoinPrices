@@ -71,7 +71,7 @@ class PortfolioViewController: UIViewController, UITableViewDataSource, UITableV
             }
         }
         
-        portfolioTotalLabel.text! = String(format: "Total coin value: $%.2f", totalUsd)
+        portfolioTotalLabel.text! = String(format: "Total value: $%.2f", totalUsd)
         portfolioTableView.reloadData()
     }
     
