@@ -18,6 +18,8 @@ class RssViewController: UIViewController, UITableViewDataSource, UITableViewDel
     @IBOutlet weak var rssScrollView: UIScrollView!
     @IBOutlet weak var rssTableView: UITableView!
     
+    var allParsedData = [Dictionary<String, String>]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,10 +42,10 @@ class RssViewController: UIViewController, UITableViewDataSource, UITableViewDel
     }
 
     func loadNews() -> Void {
-        let url = NSURL(string: "https://cryptocurrencynews.com/feed/")
-        rssParser = RssParser()
-        rssParser.delegate = self
-        rssParser.startParsingWithContentsOfURL(rssURL: url!)
+            let url = NSURL(string: Constants.rssFeedUrl)
+            rssParser = RssParser()
+            rssParser.delegate = self
+            rssParser.startParsingWithContentsOfURL(rssURL: url!)
     }
     
     func initAdMobBanner() {

@@ -19,6 +19,20 @@ struct Constants {
     
     static let baseUrl = "https://www.bitstamp.net/api/v2/ticker"
     
+    static let rssFeedUrl = "https://cryptocurrencynews.com/feed/"
+    //"https://min-api.cryptocompare.com/data/news/?lang=EN"
+    
+    static let rssFeeds : [String: String] = [
+        "Bitcoinist": "https://bitcoinist.com/feed/",
+        "Bitcoin.com": "https://news.bitcoin.com/feed/",
+        "CoinDesk": "https://feeds.feedburner.com/CoinDesk",
+        "Cointelegraph": "https://cointelegraph.com/feed",
+        "CryptoCoins New": "https://www.ccn.com/feed/",
+        "Crypto Currency News": "https://cryptocurrencynews.com/feed/",
+        "CryptoGlobe": "https://cryptoglobe.com/feed/",
+        "NewsBTC": "https://www.newsbtc.com/feed/"
+    ]
+    
     static let adMobBannerUnitId = "ca-app-pub-4258982541138576/9768265072"
     
     static let adMobApplicationId = "ca-app-pub-4258982541138576~2955444711"

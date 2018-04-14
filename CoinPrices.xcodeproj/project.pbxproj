@@ -99,24 +99,24 @@
 		E57C00EE20324D0100F18E8B /* CoinPrices */ = {
 			isa = PBXGroup;
 			children = (
-				E5FC2984207467F70036A504 /* GoogleMobileAds.framework */,
 				E57C00EF20324D0100F18E8B /* AppDelegate.swift */,
-				E57C00F320324D0100F18E8B /* Main.storyboard */,
 				E57C00F620324D0100F18E8B /* Assets.xcassets */,
-				E57C00FB20324D0100F18E8B /* Info.plist */,
 				E5C247032076A88700311D6F /* Constants.swift */,
-				E5841B0C2077C49200CEC900 /* SettingsTableViewController.swift */,
+				E5FC2984207467F70036A504 /* GoogleMobileAds.framework */,
 				E50FC4AE2079C1CB00774872 /* HomeViewController.swift */,
-				E5015DC62079C846005CA7A0 /* PortfolioViewController.swift */,
-				E5015DCC207AB3A6005CA7A0 /* TwoColumnsTableViewCell.swift */,
-				E5DADFB0207D3B50008B89BC /* RssItemTableViewCell.swift */,
+				E57C00FB20324D0100F18E8B /* Info.plist */,
+				E5DADFBA207E9C4A008B89BC /* LaunchScreen.storyboard */,
+				E57C00F320324D0100F18E8B /* Main.storyboard */,
 				E5015DCE207BBE72005CA7A0 /* PortfolioPopUpViewController.swift */,
+				E5015DC62079C846005CA7A0 /* PortfolioViewController.swift */,
+				E5DADFB4207D564B008B89BC /* RssItemDetailsViewController.swift */,
+				E5DADFB0207D3B50008B89BC /* RssItemTableViewCell.swift */,
 				E5015DD0207D17F8005CA7A0 /* RssParser.swift */,
 				E5DADFAE207D35F4008B89BC /* RssViewController.swift */,
+				E5841B0C2077C49200CEC900 /* SettingsTableViewController.swift */,
 				E5DADFB2207D4CD3008B89BC /* SettingWrapperViewController.swift */,
-				E5DADFB4207D564B008B89BC /* RssItemDetailsViewController.swift */,
 				E5DADFB6207E6678008B89BC /* ThreeColumnsTableViewCell.swift */,
-				E5DADFBA207E9C4A008B89BC /* LaunchScreen.storyboard */,
+				E5015DCC207AB3A6005CA7A0 /* TwoColumnsTableViewCell.swift */,
 			);
 			path = CoinPrices;
 			sourceTree = "<group>";

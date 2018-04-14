@@ -34,9 +34,6 @@ class RssParser: NSObject, XMLParserDelegate {
     }
     
     
-    
-    //MARK: XMLParserDelegate method implementation
-    
     func parserDidEndDocument(_ parser: XMLParser) {
         delegate!.parsingWasFinished()
     }
