@@ -9,11 +9,15 @@
 import UIKit
 import GoogleMobileAds
 
+struct NewsSourceInfo : Decodable {
+    let name: String
+}
+
 struct NewsItem : Decodable {
     let title : String
     let url: String
     let published_on: UInt32
-    let source: String
+    let source_info: NewsSourceInfo
 }
 
 class RssViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, GADBannerViewDelegate {
@@ -97,7 +101,7 @@ class RssViewController: UIViewController, UITableViewDataSource, UITableViewDel
         dateFormatter.dateFormat = "yyyy-MM-dd"
         let pubDateStr = dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(currentItem.published_on)))
         
-        let cellText = String(format: "%@\n%@  %@", currentItem.title, currentItem.source, pubDateStr)
+        let cellText = String(format: "%@\n%@  %@", currentItem.title, currentItem.source_info.name, pubDateStr)
         
         cell.textLabel?.text = cellText
         cell.textLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping

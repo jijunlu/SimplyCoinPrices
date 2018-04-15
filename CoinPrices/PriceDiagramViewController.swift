@@ -9,9 +9,11 @@
 import UIKit
 import Charts
 
-class CoinDetailsViewController: UIViewController {
+class PriceDiagramViewController: UIViewController {
 
     @IBOutlet weak var chartView: LineChartView!
+    @IBOutlet weak var wrapperScrollView: UIScrollView!
+    @IBOutlet weak var sliderView: UISlider!
     
     var inputCoinType = String()
     
@@ -22,60 +24,19 @@ class CoinDetailsViewController: UIViewController {
         swipeRight.direction = UISwipeGestureRecognizerDirection.right
         self.view.addGestureRecognizer(swipeRight)
         
-        chartView.noDataText = ""
-        
-        /*
-        chartView.chartDescription?.enabled = false
-
-        chartView.dragEnabled = true
-        chartView.setScaleEnabled(true)
-        chartView.pinchZoomEnabled = false
-        chartView.highlightPerDragEnabled = true
-        
-        //chartView.backgroundColor = .white
-        */
-        
-        chartView.legend.enabled = false
-        
-        let xAxis = chartView.xAxis
-        xAxis.enabled = false
-        
-        /*
-        xAxis.labelPosition = .topInside
-        xAxis.labelFont = .systemFont(ofSize: 10, weight: .light)
-        xAxis.labelTextColor = UIColor(red: 255/255, green: 192/255, blue: 56/255, alpha: 1)
-        xAxis.drawAxisLineEnabled = false
-        xAxis.drawGridLinesEnabled = true
-        xAxis.centerAxisLabelsEnabled = true
-        //xAxis.granularity = 3600
-        xAxis.valueFormatter = DateValueFormatter()
-        
-        let leftAxis = chartView.leftAxis
-        leftAxis.labelPosition = .insideChart
-        leftAxis.labelFont = .systemFont(ofSize: 12, weight: .light)
-        leftAxis.drawGridLinesEnabled = true
-        leftAxis.granularityEnabled = true
-        //leftAxis.axisMinimum = 7900
-        //leftAxis.axisMaximum = 8100
-        //leftAxis.yOffset = -9
-        leftAxis.labelTextColor = UIColor(red: 255/255, green: 192/255, blue: 56/255, alpha: 1)
-        
- 
-        
-        chartView.rightAxis.enabled = false
-        */
-        //chartView.legend.form = .line
-        
-        //chartView.animate(xAxisDuration: 2.5)
-
-        
-        
+        configChartView()
         
         getCoinDetails(coinType: inputCoinType.uppercased(), currency: "USD")
-    }
-
-    func ShowDetails(coinType: String) -> Void {
         
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        self.wrapperScrollView.refreshControl = refreshControl
+    }
+    
+    @objc func refresh(refreshControl: UIRefreshControl) {
+        getCoinDetails(coinType: inputCoinType.uppercased(), currency: "USD")
+
+        refreshControl.endRefreshing()
     }
     
     struct PriceData: Decodable {
@@ -105,9 +66,6 @@ class CoinDetailsViewController: UIViewController {
             var dataEntries = [ChartDataEntry]()
             
             for price in priceByMinutes.Data {
-                let dateformatter = DateFormatter()
-                dateformatter.dateStyle = DateFormatter.Style.short
-                dateformatter.timeStyle = DateFormatter.Style.short
                 
                 dataEntries.append(ChartDataEntry(x: Double(price.time), y: Double(price.close)))
             }
@@ -119,10 +77,6 @@ class CoinDetailsViewController: UIViewController {
             let chartData = LineChartData(dataSet: chartDataSet)
             
             self.chartView.data = chartData
-            self.chartView.xAxis.valueFormatter = DateValueFormatter()
-            self.chartView.legend.enabled = false
-            
-            //self.chartView.chartDescription?.text = "Crypto Price Chart"
         })
         task.resume()
     }
@@ -130,7 +84,6 @@ class CoinDetailsViewController: UIViewController {
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
 
@@ -143,5 +96,38 @@ class CoinDetailsViewController: UIViewController {
                 break
             }
         }
+    }
+    
+    func configChartView() -> Void {
+        chartView.noDataText = ""
+        
+        chartView.chartDescription?.enabled = false
+        chartView.dragEnabled = true
+        chartView.setScaleEnabled(true)
+        chartView.pinchZoomEnabled = false
+        chartView.highlightPerDragEnabled = true
+        
+        chartView.backgroundColor = .white
+        
+        chartView.legend.enabled = false
+        
+        let xAxis = chartView.xAxis
+        xAxis.enabled = false
+        
+        self.chartView.xAxis.valueFormatter = DateValueFormatter()
+        self.chartView.legend.enabled = false
+        
+        self.chartView.chartDescription?.text = "Crypto Price Chart"
+        
+        let marker = TimePriceMarkerView(color: UIColor(white: 180/250, alpha: 1),
+                                         font: .systemFont(ofSize: 12),
+                                         textColor: .white,
+                                         insets: UIEdgeInsets(top: 8, left: 8, bottom: 20, right: 8),
+                                         xAxisValueFormatter: chartView.xAxis.valueFormatter!)
+        marker.chartView = chartView
+        marker.minimumSize = CGSize(width: 80, height: 40)
+        chartView.marker = marker
+        
+        chartView.animate(xAxisDuration: 2.5)
     }
 }

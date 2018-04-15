@@ -17,7 +17,7 @@ class PortfolioPopUpViewController: UIViewController, UIPickerViewDelegate, UIPi
     var inputCoinType = String()
     var inputCoinAmount = Float()
     
-    var coinList = [String]()
+    var coinPrices = [[String: String]]()
     var assetByCoinDict = [String: Float]()
     
     override func viewDidLoad() {
@@ -38,18 +38,14 @@ class PortfolioPopUpViewController: UIViewController, UIPickerViewDelegate, UIPi
         return false
     }
     
-    func getCoinList() -> [String] {
-        guard let coinList = UserDefaults.standard.object(forKey: Constants.coinsToDisplayDictKey) else {
-            return Constants.CoinMap.keys.sorted()
-        }
-        
-        let temp = coinList as! [String: [String]]
-        return temp.keys.sorted()
+    func getRecentlySavedCoinPrices() -> [[String: String]] {
+        let coinList = UserDefaults.standard.object(forKey: Constants.CoinPricesKey) as! [[String: String]]
+        return coinList
     }
     
     func getCurrentAsset() -> Void {
         
-        coinList = getCoinList()
+        coinPrices = getRecentlySavedCoinPrices()
         
         let savedAssetByCoinDict = UserDefaults.standard.object(forKey: Constants.assetByCoinDictKey)
         
@@ -57,9 +53,9 @@ class PortfolioPopUpViewController: UIViewController, UIPickerViewDelegate, UIPi
             assetByCoinDict = savedAssetByCoinDict as! [String: Float]
         }
         
-        for coinType in coinList {
-            if(!assetByCoinDict.keys.contains(coinType)) {
-                assetByCoinDict[coinType] = 0.0
+        for coinPrice in coinPrices {
+            if(!assetByCoinDict.keys.contains(coinPrice["symbol"]!)) {
+                assetByCoinDict[coinPrice["symbol"]!] = 0.0
             }
         }
     }
@@ -74,21 +70,21 @@ class PortfolioPopUpViewController: UIViewController, UIPickerViewDelegate, UIPi
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return coinList.count
+        return coinPrices.count
     }
     
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
         self.view.endEditing(true)
-        return coinList[row]
+        return coinPrices[row]["symbol"]
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
-        let selectedCoin = self.coinList[row]
+        let selectedCoin = self.coinPrices[row]["symbol"]
         self.selectedCoinText.text = selectedCoin
-        self.amountText.text = String(assetByCoinDict[selectedCoin]!)
+        self.amountText.text = String(assetByCoinDict[selectedCoin!]!)
         self.coinPickerView.isHidden = true
     }
     

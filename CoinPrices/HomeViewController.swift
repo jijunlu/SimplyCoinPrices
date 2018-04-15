@@ -15,10 +15,24 @@ struct CoinPrice : Decodable {
     let low: String
 }
 
+struct Ticker : Decodable {
+    let name: String
+    let symbol: String
+    let price_usd: String // "8273.52",
+    let price_btc: String //"1.0",
+    let market_cap_usd: String // "140477850066",
+    let available_supply: String // "16979212.0",
+    let total_supply: String // "16979212.0",
+    //let max_supply: String // "21000000.0",
+    let percent_change_1h: String // "-0.06",
+    let percent_change_24h: String // "3.96",
+    let percent_change_7d: String // "17.62",
+    let last_updated: String // "1523809773"
+}
+
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, GADBannerViewDelegate {
     
-    var priceByCoinDict = [String: String]()
-    var priceDictKeys = [String]()
+    var coinTickerList = [[String: String]]()
     
     // Properties
     @IBOutlet weak var adBanner: GADBannerView!
@@ -55,7 +69,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -63,15 +76,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return priceByCoinDict.count
+        return coinTickerList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "priceCell", for: indexPath as IndexPath) as! TwoColumnsTableViewCell
         
-        let coinType = self.priceDictKeys[indexPath.row]
-        cell.column1?.text = Constants.CoinMap[coinType]!["FullName"]
-        cell.column2?.text = String(format: "$%@", priceByCoinDict[coinType]!)
+        let tickerInfo = self.coinTickerList[indexPath.row]
+        cell.column1?.text = tickerInfo["name"]
+        cell.column2?.text = tickerInfo["price_usd"]
 
         cell.column1?.textAlignment = .center
         cell.column2?.textAlignment = .center
@@ -80,11 +93,11 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let coinType = self.priceDictKeys[indexPath.row]
+        let tickerInfo = self.coinTickerList[indexPath.row]
         
-        let coinDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "coinDetailsViewController") as! CoinDetailsViewController
+        let coinDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "coinDetailsViewController") as! PriceDiagramViewController
         
-        coinDetailsViewController.inputCoinType = coinType
+        coinDetailsViewController.inputCoinType = tickerInfo["symbol"]!
         
         showDetailViewController(coinDetailsViewController, sender: self)
     }
@@ -97,41 +110,36 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @objc func getPricesImpl() -> Void {
-        priceByCoinDict.removeAll()
-        
-        let coinsToDisplay = getCoinsToDisplay()
-        if(coinsToDisplay.count == 0)
-        {
-            priceByCoinDict = [String: String]()
-            priceDictKeys = [String]()
-            pricesTableView.reloadData()
-        }
-        for coin in coinsToDisplay {
-            getPriceByCurrencyPair(coinName: coin.lowercased(), currency: "usd")
-        }
-        
+        getTickers()
         addTimer()
     }
     
-    func getPriceByCurrencyPair(coinName: String, currency: String) -> Void {
+    func getTickers() -> Void {
         let session = URLSession(configuration: .ephemeral, delegate: nil, delegateQueue: OperationQueue.main)
-        let url = URL(string: String(format: "%@/%@%@", Constants.baseUrl, coinName.lowercased(), currency.lowercased()))!
+        let url = URL(string: String(Constants.CoinTickerUrl))!
         let task = session.dataTask(with: url, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
             guard let data = data else {
-                print("data error")
+                print("!!!!!!!!!!!!!!!! data error !!!!!!!!!!!!!!!")
                 return
             }
-            
-            guard let coinPrice = try? JSONDecoder().decode(CoinPrice.self, from: data) else {
-                print("decode error")
-                return
-            }
-            
-            self.priceByCoinDict[coinName.uppercased()] = coinPrice.last
-            self.priceDictKeys = self.priceByCoinDict.keys.sorted()
-            UserDefaults.standard.set(self.priceByCoinDict, forKey: Constants.coinPriceDictKey)
-            self.pricesTableView.reloadData()
 
+            guard let parsedResults = try? JSONDecoder().decode([Ticker].self, from: data) else {
+                print("!!!!!!!!!!!!!!! decode error !!!!!!!!!!!!!!!")
+                return
+            }
+            
+            var arrayOfDict = [[String: String]]()
+            for ticker in parsedResults {
+                arrayOfDict.append([
+                    "name": ticker.name,
+                    "symbol": ticker.symbol,
+                    "price_usd": ticker.price_usd
+                    ])
+            }
+            
+            self.coinTickerList = arrayOfDict
+            UserDefaults.standard.set(arrayOfDict, forKey: Constants.CoinPricesKey)
+            self.pricesTableView.reloadData()
         })
         task.resume()
     }
@@ -158,15 +166,6 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
         
         return updateIntervalFromSettings as! Float
-    }
-    
-    func getCoinsToDisplay() -> [String] {
-        guard let coinsToDisplay = UserDefaults.standard.object(forKey: Constants.coinsToDisplayDictKey) else {
-            return Constants.CoinMap.keys.sorted()
-        }
-        
-        let temp = coinsToDisplay as! [String: [String]]
-        return temp.keys.sorted()
     }
 }
 
