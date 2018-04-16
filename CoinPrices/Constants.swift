@@ -11,6 +11,8 @@ import Foundation
 struct Constants {
     static let updateIntervalSettingKey = "com.jijunlu.j3.SimplyCoinPrices.UpdateInterval"
     
+    static let historicalDataRangeKey = "com.jijunlu.j3.SimplyCoinPrices.HistoricalDataRange"
+    
     static let coinsToDisplayDictKey = "com.jijunlu.j3.SimplyCoinPrices.CoinsToDisplay"
     
     static let CoinPricesKey = "com.jijunlu.j3.CoinPrices.CoinPrices"
@@ -32,5 +34,15 @@ struct Constants {
     static let defaultUpdateInterval : Float = 30
     
     static let updateIntervalStep : Float = 5
+    
+    static let historicalDataChangeStep: Float = 1
+    
+    static let historicalDataRanges: [Int] = [
+        60,
+        240,
+        480,
+        720,
+        1440
+    ]
     
 }

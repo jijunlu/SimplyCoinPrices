@@ -14,7 +14,7 @@ public class DateValueFormatter: NSObject, IAxisValueFormatter {
     
     override init() {
         super.init()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        dateFormatter.dateFormat = "yyyy/MM/dd HH:mm"
     }
     
     public func stringForValue(_ value: Double, axis: AxisBase?) -> String {

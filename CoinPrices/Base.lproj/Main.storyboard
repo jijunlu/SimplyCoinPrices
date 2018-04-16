@@ -687,24 +687,67 @@
                                             <constraint firstAttribute="height" constant="229" id="MQj-On-iWJ"/>
                                         </constraints>
                                     </view>
-                                    <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minValue="1" maxValue="5" translatesAutoresizingMaskIntoConstraints="NO" id="zgX-uM-bge">
-                                        <rect key="frame" x="70" y="461" width="291" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    </slider>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3z3-7Z-4dt">
-                                        <rect key="frame" x="16" y="465" width="42" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vcZ-fA-qI6">
+                                        <rect key="frame" x="58" y="474" width="30" height="30"/>
+                                        <state key="normal" title="1h"/>
+                                        <connections>
+                                            <action selector="onPick1h:" destination="Okk-Pf-zic" eventType="touchUpInside" id="agb-Aq-qxw"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dwY-fA-JRf">
+                                        <rect key="frame" x="96" y="474" width="30" height="30"/>
+                                        <state key="normal" title="4h"/>
+                                        <connections>
+                                            <action selector="onPick4h:" destination="Okk-Pf-zic" eventType="touchUpInside" id="iQO-cy-pmz"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zji-W6-W7x">
+                                        <rect key="frame" x="134" y="474" width="30" height="30"/>
+                                        <state key="normal" title="8h"/>
+                                        <connections>
+                                            <action selector="onPick8h:" destination="Okk-Pf-zic" eventType="touchUpInside" id="NIm-WJ-EYK"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zbu-MT-9JT">
+                                        <rect key="frame" x="172" y="474" width="30" height="30"/>
+                                        <state key="normal" title="1d"/>
+                                        <connections>
+                                            <action selector="onPick1d:" destination="Okk-Pf-zic" eventType="touchUpInside" id="meB-3Z-vDu"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4nS-YB-AoC">
+                                        <rect key="frame" x="210" y="474" width="30" height="30"/>
+                                        <state key="normal" title="1w"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aDK-lv-pqT">
+                                        <rect key="frame" x="248" y="474" width="30" height="30"/>
+                                        <state key="normal" title="1m"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hYW-yf-rTo">
+                                        <rect key="frame" x="286" y="474" width="30" height="30"/>
+                                        <state key="normal" title="1y"/>
+                                    </button>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="vcZ-fA-qI6" firstAttribute="baseline" secondItem="Zbu-MT-9JT" secondAttribute="baseline" id="AUF-UQ-C4u"/>
+                                    <constraint firstItem="vcZ-fA-qI6" firstAttribute="top" secondItem="Ols-37-QmD" secondAttribute="bottom" constant="46" id="Cxo-wk-dxD"/>
+                                    <constraint firstItem="vcZ-fA-qI6" firstAttribute="baseline" secondItem="zji-W6-W7x" secondAttribute="baseline" id="Ht2-CM-Cef"/>
+                                    <constraint firstItem="vcZ-fA-qI6" firstAttribute="baseline" secondItem="aDK-lv-pqT" secondAttribute="baseline" id="M3q-OO-tDs"/>
                                     <constraint firstItem="Ols-37-QmD" firstAttribute="leading" secondItem="0Wn-52-vXe" secondAttribute="leading" constant="16" id="NTx-Sx-7uY"/>
+                                    <constraint firstItem="dwY-fA-JRf" firstAttribute="leading" secondItem="vcZ-fA-qI6" secondAttribute="trailing" constant="8" symbolic="YES" id="O0V-LD-spR"/>
+                                    <constraint firstItem="aDK-lv-pqT" firstAttribute="leading" secondItem="4nS-YB-AoC" secondAttribute="trailing" constant="8" symbolic="YES" id="OAt-W7-oLM"/>
                                     <constraint firstItem="Ols-37-QmD" firstAttribute="centerY" secondItem="0Wn-52-vXe" secondAttribute="centerY" id="Pik-ac-fK4"/>
+                                    <constraint firstItem="vcZ-fA-qI6" firstAttribute="baseline" secondItem="dwY-fA-JRf" secondAttribute="baseline" id="QwJ-fa-XW4"/>
+                                    <constraint firstItem="hYW-yf-rTo" firstAttribute="leading" secondItem="aDK-lv-pqT" secondAttribute="trailing" constant="8" symbolic="YES" id="Td2-hY-1DO"/>
+                                    <constraint firstItem="Zbu-MT-9JT" firstAttribute="centerX" secondItem="0Wn-52-vXe" secondAttribute="centerX" id="emK-Hd-lsn"/>
                                     <constraint firstAttribute="bottom" secondItem="Ols-37-QmD" secondAttribute="bottom" constant="199" id="gU5-aT-SFq"/>
+                                    <constraint firstItem="zji-W6-W7x" firstAttribute="leading" secondItem="dwY-fA-JRf" secondAttribute="trailing" constant="8" symbolic="YES" id="gbz-6b-69Y"/>
+                                    <constraint firstItem="vcZ-fA-qI6" firstAttribute="baseline" secondItem="hYW-yf-rTo" secondAttribute="baseline" id="lFM-xf-fSZ"/>
                                     <constraint firstItem="Ols-37-QmD" firstAttribute="centerX" secondItem="0Wn-52-vXe" secondAttribute="centerX" id="n26-0s-O3j"/>
                                     <constraint firstAttribute="trailing" secondItem="Ols-37-QmD" secondAttribute="trailing" constant="16" id="qEw-jr-zOH"/>
+                                    <constraint firstItem="Zbu-MT-9JT" firstAttribute="leading" secondItem="zji-W6-W7x" secondAttribute="trailing" constant="8" symbolic="YES" id="sqE-Qg-d9U"/>
+                                    <constraint firstItem="4nS-YB-AoC" firstAttribute="leading" secondItem="Zbu-MT-9JT" secondAttribute="trailing" constant="8" symbolic="YES" id="xPq-kb-hTp"/>
+                                    <constraint firstItem="vcZ-fA-qI6" firstAttribute="baseline" secondItem="4nS-YB-AoC" secondAttribute="baseline" id="y71-yk-KEM"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -719,7 +762,13 @@
                     </view>
                     <connections>
                         <outlet property="chartView" destination="Ols-37-QmD" id="EcD-iC-kKv"/>
-                        <outlet property="sliderView" destination="zgX-uM-bge" id="tpf-x3-6Li"/>
+                        <outlet property="pick1dButton" destination="Zbu-MT-9JT" id="JLo-fc-DuP"/>
+                        <outlet property="pick1hButton" destination="vcZ-fA-qI6" id="cJb-Do-W3L"/>
+                        <outlet property="pick1mButton" destination="aDK-lv-pqT" id="ZDO-9Y-UsY"/>
+                        <outlet property="pick1wButton" destination="4nS-YB-AoC" id="8Zr-El-PZq"/>
+                        <outlet property="pick1yButton" destination="hYW-yf-rTo" id="HNu-CO-3am"/>
+                        <outlet property="pick4hButton" destination="dwY-fA-JRf" id="gZ2-wq-r9h"/>
+                        <outlet property="pick8hButton" destination="zji-W6-W7x" id="vmE-dL-mAq"/>
                         <outlet property="wrapperScrollView" destination="0Wn-52-vXe" id="t7p-ok-HAR"/>
                     </connections>
                 </viewController>
