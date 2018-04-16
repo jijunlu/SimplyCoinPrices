@@ -8,10 +8,12 @@
 
 import UIKit
 import WebKit
+import GoogleMobileAds
 
 class RssItemDetailsViewController: UIViewController {
 
     @IBOutlet weak var rssItemDetailsWebKitView: WKWebView!
+    @IBOutlet weak var adBanner: GADBannerView!
     
     var urlStr = String()
     
@@ -25,6 +27,8 @@ class RssItemDetailsViewController: UIViewController {
         let url = URL(string:urlStr)
         let request = URLRequest(url:url!)
         rssItemDetailsWebKitView.load(request)
+        
+        initAdMobBanner()
     }
 
     @objc func respondToSwipeGesture(gesture: UIGestureRecognizer) {
@@ -48,4 +52,9 @@ class RssItemDetailsViewController: UIViewController {
         self.dismiss(animated: true)
     }
 
+    func initAdMobBanner() {
+        adBanner.adUnitID = Constants.adMobBannerUnitId
+        adBanner.rootViewController = self
+        adBanner.load(GADRequest())
+    }
 }

@@ -80,15 +80,17 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "priceCell", for: indexPath as IndexPath) as! TwoColumnsTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "priceCell", for: indexPath as IndexPath) as! CoinPriceTableViewCell
         
         let tickerInfo = self.coinTickerList[indexPath.row]
         cell.column1?.text = tickerInfo["name"]
         cell.column2?.text = tickerInfo["price_usd"]
-
+        let percentStr = String(format: "%@%%", tickerInfo["percent_change_24h"]!)
+        cell.column3?.text = percentStr
+        
         cell.column1?.textAlignment = .center
         cell.column2?.textAlignment = .center
-
+        cell.column3?.textAlignment = .center
         return cell
     }
     
@@ -133,7 +135,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 arrayOfDict.append([
                     "name": ticker.name,
                     "symbol": ticker.symbol,
-                    "price_usd": ticker.price_usd
+                    "price_usd": ticker.price_usd,
+                    "percent_change_24h": ticker.percent_change_24h
                     ])
             }
             

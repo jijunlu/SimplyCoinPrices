@@ -8,6 +8,7 @@
 
 import UIKit
 import Charts
+import GoogleMobileAds
 
 class PriceDiagramViewController: UIViewController {
 
@@ -18,11 +19,14 @@ class PriceDiagramViewController: UIViewController {
     
     @IBOutlet weak var pick1hButton: UIButton!
     @IBOutlet weak var pick4hButton: UIButton!
-    @IBOutlet weak var pick8hButton: UIButton!
     @IBOutlet weak var pick1dButton: UIButton!
     @IBOutlet weak var pick1wButton: UIButton!
     @IBOutlet weak var pick1mButton: UIButton!
     @IBOutlet weak var pick1yButton: UIButton!
+    @IBOutlet weak var pick5yButton: UIButton!
+    
+    @IBOutlet weak var diagramTitleLabel: UILabel!
+    @IBOutlet weak var adBanner: GADBannerView!
     
     var dataRangeButtons = [UIButton?]()
     
@@ -31,7 +35,11 @@ class PriceDiagramViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        dataRangeButtons = [pick1hButton, pick4hButton, pick8hButton, pick1dButton, pick1wButton, pick1mButton, pick1yButton]
+        initAdMobBanner()
+        
+        dataRangeButtons = [pick1hButton, pick4hButton, pick1dButton, pick1wButton, pick1mButton, pick1yButton, pick5yButton]
+        
+        diagramTitleLabel.text = String(format: "%@ Price Chart (US Dollar)", inputCoinType)
         
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
         swipeRight.direction = UISwipeGestureRecognizerDirection.right
@@ -65,37 +73,43 @@ class PriceDiagramViewController: UIViewController {
     }
     
     @IBAction func onPick1h(_ sender: UIButton) {
-        ReloadChartViewOnDataRangeChange(sender: sender, dataRangeInMinutesStr: "60")
+        setDataRange(dataRange: "1h")
+        loadCoinDetails()
     }
     
     @IBAction func onPick4h(_ sender: UIButton) {
-        ReloadChartViewOnDataRangeChange(sender: sender, dataRangeInMinutesStr: "240")
-    }
-    
-    @IBAction func onPick8h(_ sender: UIButton) {
-        ReloadChartViewOnDataRangeChange(sender: sender, dataRangeInMinutesStr: "480")
+        setDataRange(dataRange: "4h")
+        loadCoinDetails()
     }
     
     @IBAction func onPick1d(_ sender: UIButton) {
-        ReloadChartViewOnDataRangeChange(sender: sender, dataRangeInMinutesStr: "1440")
+        setDataRange(dataRange: "1d")
+        loadCoinDetails()
     }
     
-    func ReloadChartViewOnDataRangeChange(sender: UIButton, dataRangeInMinutesStr: String) {
-        if(sender.isSelected) {
-            return
-        }
-        
-        for button in dataRangeButtons {
-            if(button == sender) {
-                sender.isSelected = true
-            } else {
-                sender.isSelected = false
-            }
-        }
-        
-        UserDefaults.standard.set(dataRangeInMinutesStr, forKey:Constants.historicalDataRangeKey)
-        
+    @IBAction func onPick1w(_ sender: Any) {
+        setDataRange(dataRange: "1w")
         loadCoinDetails()
+    }
+    
+    @IBAction func onPick1m(_ sender: Any) {
+        setDataRange(dataRange: "1m")
+        loadCoinDetails()
+    }
+    
+    
+    @IBAction func onPick1y(_ sender: Any) {
+        setDataRange(dataRange: "1y")
+        loadCoinDetails()
+    }
+    
+    @IBAction func onPick5y(_ sender: Any) {
+        setDataRange(dataRange: "5y")
+        loadCoinDetails()
+    }
+    
+    func setDataRange(dataRange: String) {
+        UserDefaults.standard.set(dataRange, forKey:Constants.historicalDataRangeKey)
     }
     
     struct PriceData: Decodable {
@@ -108,17 +122,59 @@ class PriceDiagramViewController: UIViewController {
     }
     
     func getSavedDataRange() -> String {
-        guard let historicalDataRangeInMinutes = UserDefaults.standard.object(forKey: Constants.historicalDataRangeKey) else {
-            return "60"
+        guard let historicalDataRange = UserDefaults.standard.object(forKey: Constants.historicalDataRangeKey) else {
+            return "1h"
         }
         
-        return historicalDataRangeInMinutes as! String
+        return historicalDataRange as! String
     }
     
+    func setSelectedButton(sender: UIButton) {
+        for button in dataRangeButtons {
+            if(button == sender) {
+                button?.isSelected = true
+            } else {
+                button?.isSelected = false
+            }
+        }
+    }
+    
+    
     func loadCoinDetails() -> Void {
-        let historicalDataRangeInMinutes = getSavedDataRange()
+        let historicalDataRange = getSavedDataRange()
+        
+        var urlStr = String(format: "https://min-api.cryptocompare.com/data/histominute?fsym=%@&tsym=USD&limit=60", inputCoinType.uppercased())
+        
+        switch historicalDataRange {
+        case "1h":
+            setSelectedButton(sender: pick1hButton)
+            urlStr = String(format: "https://min-api.cryptocompare.com/data/histominute?fsym=%@&tsym=USD&limit=60", inputCoinType.uppercased())
+        case "4h":
+            setSelectedButton(sender: pick4hButton)
+            urlStr = String(format: "https://min-api.cryptocompare.com/data/histominute?fsym=%@&tsym=USD&limit=240", inputCoinType.uppercased())
+        case "1d":
+            setSelectedButton(sender: pick1dButton)
+            urlStr = String(format: "https://min-api.cryptocompare.com/data/histominute?fsym=%@&tsym=USD&limit=1440", inputCoinType.uppercased())
+        case "1w":
+            setSelectedButton(sender: pick1wButton)
+            urlStr = String(format: "https://min-api.cryptocompare.com/data/histohour?fsym=%@&tsym=USD&limit=168", inputCoinType)
+        case "1m":
+            setSelectedButton(sender: pick1mButton)
+            urlStr = String(format: "https://min-api.cryptocompare.com/data/histohour?fsym=%@&tsym=USD&limit=720", inputCoinType)
+        case "1y":
+            setSelectedButton(sender: pick1yButton)
+            urlStr = String(format: "https://min-api.cryptocompare.com/data/histoday?fsym=%@&tsym=USD&limit=365", inputCoinType)
+        case "5y":
+            setSelectedButton(sender: pick5yButton)
+            urlStr = String(format: "https://min-api.cryptocompare.com/data/histoday?fsym=%@&tsym=USD&limit=1825", inputCoinType)
+        default:
+            setSelectedButton(sender: pick1hButton)
+        }
+        
+        
+        
         let session = URLSession(configuration: .ephemeral, delegate: nil, delegateQueue: OperationQueue.main)
-        let url = URL(string: String(format: "https://min-api.cryptocompare.com/data/histominute?fsym=%@&tsym=USD&limit=%@", inputCoinType.uppercased(), historicalDataRangeInMinutes))!
+        let url = URL(string: urlStr)!
         
         let task = session.dataTask(with: url, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
             guard let data = data else {
@@ -180,7 +236,12 @@ class PriceDiagramViewController: UIViewController {
         marker.chartView = chartView
         marker.minimumSize = CGSize(width: 80, height: 40)
         chartView.marker = marker
-        
-        //chartView.animate(xAxisDuration: 2.5)
+    }
+    
+    // Google ads
+    func initAdMobBanner() {
+        adBanner.adUnitID = Constants.adMobBannerUnitId
+        adBanner.rootViewController = self
+        adBanner.load(GADRequest())
     }
 }

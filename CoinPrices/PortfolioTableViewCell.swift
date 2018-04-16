@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TwoColumnsTableViewCell: UITableViewCell {
+class PortfolioTableViewCell: UITableViewCell {
 
     
     @IBOutlet weak var column1: UILabel!
