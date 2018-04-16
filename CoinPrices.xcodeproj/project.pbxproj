@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		C402F045D36FF5312022C9A3 /* Pods_CoinPrices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83AFA378E6CBDD288BCE7C18 /* Pods_CoinPrices.framework */; };
 		E5015DC72079C846005CA7A0 /* PortfolioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5015DC62079C846005CA7A0 /* PortfolioViewController.swift */; };
-		E5015DCD207AB3A6005CA7A0 /* PortfolioTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5015DCC207AB3A6005CA7A0 /* PortfolioTableViewCell.swift */; };
 		E5015DCF207BBE72005CA7A0 /* PortfolioPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5015DCE207BBE72005CA7A0 /* PortfolioPopUpViewController.swift */; };
 		E50FC4AF2079C1CB00774872 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E50FC4AE2079C1CB00774872 /* HomeViewController.swift */; };
 		E5178D0720824D9B00F34D9B /* PriceDiagramViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5178D0620824D9B00F34D9B /* PriceDiagramViewController.swift */; };
@@ -26,7 +25,7 @@
 		E5DADFB1207D3B50008B89BC /* RssItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DADFB0207D3B50008B89BC /* RssItemTableViewCell.swift */; };
 		E5DADFB3207D4CD3008B89BC /* SettingWrapperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DADFB2207D4CD3008B89BC /* SettingWrapperViewController.swift */; };
 		E5DADFB5207D564B008B89BC /* RssItemDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DADFB4207D564B008B89BC /* RssItemDetailsViewController.swift */; };
-		E5DADFB7207E6678008B89BC /* ThreeColumnsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DADFB6207E6678008B89BC /* ThreeColumnsTableViewCell.swift */; };
+		E5DADFB7207E6678008B89BC /* PortfolioTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5DADFB6207E6678008B89BC /* PortfolioTableViewCell.swift */; };
 		E5DADFBB207E9C4A008B89BC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E5DADFBA207E9C4A008B89BC /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
@@ -35,7 +34,6 @@
 		83AFA378E6CBDD288BCE7C18 /* Pods_CoinPrices.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CoinPrices.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B48075F771E436AB93E6AB3E /* Pods-CoinPrices.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CoinPrices.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CoinPrices/Pods-CoinPrices.debug.xcconfig"; sourceTree = "<group>"; };
 		E5015DC62079C846005CA7A0 /* PortfolioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioViewController.swift; sourceTree = "<group>"; };
-		E5015DCC207AB3A6005CA7A0 /* PortfolioTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioTableViewCell.swift; sourceTree = "<group>"; };
 		E5015DCE207BBE72005CA7A0 /* PortfolioPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioPopUpViewController.swift; sourceTree = "<group>"; };
 		E50FC4AE2079C1CB00774872 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		E5178D0620824D9B00F34D9B /* PriceDiagramViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceDiagramViewController.swift; sourceTree = "<group>"; };
@@ -54,7 +52,7 @@
 		E5DADFB0207D3B50008B89BC /* RssItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssItemTableViewCell.swift; sourceTree = "<group>"; };
 		E5DADFB2207D4CD3008B89BC /* SettingWrapperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingWrapperViewController.swift; sourceTree = "<group>"; };
 		E5DADFB4207D564B008B89BC /* RssItemDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RssItemDetailsViewController.swift; sourceTree = "<group>"; };
-		E5DADFB6207E6678008B89BC /* ThreeColumnsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeColumnsTableViewCell.swift; sourceTree = "<group>"; };
+		E5DADFB6207E6678008B89BC /* PortfolioTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PortfolioTableViewCell.swift; sourceTree = "<group>"; };
 		E5DADFBA207E9C4A008B89BC /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -134,8 +132,7 @@
 				E5DADFAE207D35F4008B89BC /* RssViewController.swift */,
 				E5841B0C2077C49200CEC900 /* SettingsTableViewController.swift */,
 				E5DADFB2207D4CD3008B89BC /* SettingWrapperViewController.swift */,
-				E5DADFB6207E6678008B89BC /* ThreeColumnsTableViewCell.swift */,
-				E5015DCC207AB3A6005CA7A0 /* PortfolioTableViewCell.swift */,
+				E5DADFB6207E6678008B89BC /* PortfolioTableViewCell.swift */,
 				E5178D0620824D9B00F34D9B /* PriceDiagramViewController.swift */,
 			);
 			path = CoinPrices;
@@ -270,14 +267,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E5DADFB7207E6678008B89BC /* ThreeColumnsTableViewCell.swift in Sources */,
+				E5DADFB7207E6678008B89BC /* PortfolioTableViewCell.swift in Sources */,
 				E50FC4AF2079C1CB00774872 /* HomeViewController.swift in Sources */,
 				E5178D0720824D9B00F34D9B /* PriceDiagramViewController.swift in Sources */,
 				E5015DC72079C846005CA7A0 /* PortfolioViewController.swift in Sources */,
 				E5DADFB3207D4CD3008B89BC /* SettingWrapperViewController.swift in Sources */,
 				E5841B0D2077C49200CEC900 /* SettingsTableViewController.swift in Sources */,
 				E5DADFB1207D3B50008B89BC /* RssItemTableViewCell.swift in Sources */,
-				E5015DCD207AB3A6005CA7A0 /* PortfolioTableViewCell.swift in Sources */,
 				E5DADFAF207D35F4008B89BC /* RssViewController.swift in Sources */,
 				E59AFF352082B767002DDAA3 /* BalloonMarker.swift in Sources */,
 				E57C00F020324D0100F18E8B /* AppDelegate.swift in Sources */,

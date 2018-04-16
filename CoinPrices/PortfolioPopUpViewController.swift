@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import GoogleMobileAds
 
 class PortfolioPopUpViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
 
+    @IBOutlet weak var adBanner: GADBannerView!
     @IBOutlet weak var coinPickerView: UIPickerView!
     @IBOutlet weak var selectedCoinText: UITextField!
     @IBOutlet weak var amountText: UITextField!
@@ -30,6 +32,30 @@ class PortfolioPopUpViewController: UIViewController, UIPickerViewDelegate, UIPi
         
         if(inputCoinAmount > 0) {
         amountText.attributedText = NSMutableAttributedString(string: String(inputCoinAmount))
+        }
+        
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
+        swipeRight.direction = UISwipeGestureRecognizerDirection.right
+        self.view.addGestureRecognizer(swipeRight)
+
+        initAdMobBanner()
+    }
+    
+    // Google ads
+    func initAdMobBanner() {
+        adBanner.adUnitID = Constants.adMobBannerUnitId
+        adBanner.rootViewController = self
+        adBanner.load(GADRequest())
+    }
+    
+    @objc func respondToSwipeGesture(gesture: UIGestureRecognizer) {
+        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
+            switch swipeGesture.direction {
+            case UISwipeGestureRecognizerDirection.right:
+                SaveAndClose()
+            default:
+                break
+            }
         }
     }
 
@@ -96,18 +122,21 @@ class PortfolioPopUpViewController: UIViewController, UIPickerViewDelegate, UIPi
             textField.endEditing(true)
         }
     }
+
+    @IBAction func onClose(_ sender: Any) {
+        SaveAndClose()
+    }
     
-    @IBAction func closeView(_ sender: Any) {
+    func SaveAndClose(){
         let selectedCoin = selectedCoinText.text
         let selectedCoinAmountText = amountText.text
         
         if(selectedCoin != nil && selectedCoinAmountText != nil) {
             assetByCoinDict[selectedCoin!] = Float(selectedCoinAmountText!)
-
+            
             UserDefaults.standard.set(assetByCoinDict, forKey: Constants.assetByCoinDictKey)
         }
         
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true)
     }
-
 }

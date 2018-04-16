@@ -106,7 +106,7 @@ class RssViewController: UIViewController, UITableViewDataSource, UITableViewDel
         cell.textLabel?.text = cellText
         cell.textLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
         cell.textLabel?.numberOfLines = 0
-        cell.textLabel?.font = UIFont(name: "Avenir", size:20)
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 20)
         //let attributedString = NSMutableAttributedString(string: cellText)
  
         //cell.rssItemTextView.attributedText = attributedString

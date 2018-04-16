@@ -21,12 +21,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         GADMobileAds.configure(withApplicationID: Constants.adMobApplicationId)
         
-        UINavigationBar.appearance().titleTextAttributes = [ NSAttributedStringKey.font: UIFont(name: "Avenir", size: 24)!]
+        //UINavigationBar.appearance().titleTextAttributes = [ NSAttributedStringKey.font: UIFont(name: "Avenir", size: 24)!]
 
-            UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.font: UIFont(name: "Avenir", size: 16)!], for: UIControlState.normal)
+            UITabBarItem.appearance().setTitleTextAttributes([NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16)], for: UIControlState.normal)
 
-
-        UILabel.appearance().font = UIFont(name: "Avenir", size: 22)
+        //UILabel.appearance().font = UIFont(name: "Avenir", size: 22)
 
         return true
     }

@@ -39,7 +39,7 @@ class PriceDiagramViewController: UIViewController {
         
         dataRangeButtons = [pick1hButton, pick4hButton, pick1dButton, pick1wButton, pick1mButton, pick1yButton, pick5yButton]
         
-        diagramTitleLabel.text = String(format: "%@ Price Chart (US Dollar)", inputCoinType)
+        diagramTitleLabel.text = String(format: "%@ Prices (US Dollar)", inputCoinType)
         
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
         swipeRight.direction = UISwipeGestureRecognizerDirection.right
@@ -219,23 +219,25 @@ class PriceDiagramViewController: UIViewController {
         chartView.backgroundColor = .white
         
         chartView.legend.enabled = false
+        chartView.maxVisibleCount = 1
         
         let xAxis = chartView.xAxis
         xAxis.enabled = false
         
         self.chartView.xAxis.valueFormatter = DateValueFormatter()
-        self.chartView.legend.enabled = false
-        
-        self.chartView.chartDescription?.text = "Crypto Price Chart"
         
         let marker = TimePriceMarkerView(color: UIColor(white: 180/250, alpha: 1),
-                                         font: .systemFont(ofSize: 12),
+                                         font: .systemFont(ofSize: 16),
                                          textColor: .white,
                                          insets: UIEdgeInsets(top: 8, left: 8, bottom: 20, right: 8),
                                          xAxisValueFormatter: chartView.xAxis.valueFormatter!)
         marker.chartView = chartView
         marker.minimumSize = CGSize(width: 80, height: 40)
         chartView.marker = marker
+    }
+    
+    @IBAction func onClose(_ sender: Any) {
+        self.dismiss(animated: true)
     }
     
     // Google ads

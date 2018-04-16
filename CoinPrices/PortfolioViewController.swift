@@ -22,7 +22,7 @@ class PortfolioViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        editButton.titleLabel?.font = UIFont(name: "Avenir", size:18)
+        //editButton.titleLabel?.font = UIFont(name: "Avenir", size:18)
         portfolioTableView.dataSource = self
         portfolioTableView.delegate = self
         
@@ -84,7 +84,7 @@ class PortfolioViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "portfolioCell", for: indexPath as IndexPath) as! ThreeColumnsTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "portfolioCell", for: indexPath as IndexPath) as! PortfolioTableViewCell
         
         let pricesByCoinType = getSavedCoinPriceDict()
         
