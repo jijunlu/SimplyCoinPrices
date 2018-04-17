@@ -20,6 +20,34 @@
                ReferencedContainer = "container:CoinPrices.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "1D416D5E8AAA52C62EECDEEAFED16087"
+               BuildableName = "Charts.framework"
+               BlueprintName = "Charts"
+               ReferencedContainer = "container:Pods/Pods.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E48774C686728BAB08F4A40B620E8F1E"
+               BuildableName = "Pods_CoinPrices.framework"
+               BlueprintName = "Pods-CoinPrices"
+               ReferencedContainer = "container:Pods/Pods.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
