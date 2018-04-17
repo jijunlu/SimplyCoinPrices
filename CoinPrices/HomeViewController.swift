@@ -34,6 +34,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var coinTickerList = [[String: String]]()
     
+    var priceDict = [[String:String]]()
+    
     // Properties
     @IBOutlet weak var adBanner: GADBannerView!
     @IBOutlet weak var pricesTableView: UITableView!
@@ -56,7 +58,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @objc func refresh(refreshControl: UIRefreshControl) {
-        getPricesImpl()
+        getPrices()
         
         refreshControl.endRefreshing()
     }
@@ -64,7 +66,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        getPricesImpl()
+        getTickersAndPrices()
     }
     
     override func didReceiveMemoryWarning() {
@@ -107,16 +109,60 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     // Actions
     
     // Get prices
-    @IBAction func RefreshPrices(_ sender: Any) {
-        getPricesImpl()
-    }
-    
-    @objc func getPricesImpl() -> Void {
-        getTickers()
+    @objc func getPrices() {
+        let top100Tickers = UserDefaults.standard.object(forKey: "Top100Tickers") as! [String]
+        
+        let session = URLSession(configuration: .ephemeral, delegate: nil, delegateQueue: OperationQueue.main)
+        let url = URL(string: String(format: "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=%@&tsyms=USD", top100Tickers.joined(separator: ",")))!
+        
+        let task = session.dataTask(with: url, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
+            guard let data = data else {
+                print("!!!!!!!!!!!!!!!! data error !!!!!!!!!!!!!!!")
+                return
+            }
+            
+            let json = try? JSONSerialization.jsonObject(with: data, options: [])
+            
+            let jsonDict = json as! [String:Any]
+            let displayDict = jsonDict["RAW"] as! [String:Any]
+            
+            var arrayOfDict = [[String: String]]()
+            for ticker in top100Tickers {
+                if(!displayDict.keys.contains(ticker)) {
+                    continue
+                }
+                
+                let fullTickerData = displayDict[ticker] as! [String: Any]
+                let usdData = fullTickerData["USD"] as? [String:Any]
+                
+                arrayOfDict.append([
+                    "name": ticker,
+                    "symbol": ticker,
+                    "price_usd": self.parsePrice(priceVal: usdData!["PRICE"]!),
+                    "percent_change_24h": String(format:"%.2f", usdData!["CHANGEPCT24HOUR"] as! Double)
+                    ])
+            }
+            
+            self.coinTickerList = arrayOfDict
+            UserDefaults.standard.set(arrayOfDict, forKey: Constants.CoinPricesKey)
+            
+            self.pricesTableView.reloadData()
+            
+        })
+        task.resume()
+
         addTimer()
     }
     
-    func getTickers() -> Void {
+    func parsePrice(priceVal: Any) -> String {
+        if priceVal is String {
+            return priceVal as! String
+        } else {
+            return String(priceVal as! Double)
+        }
+    }
+    
+    func getTickersAndPrices() -> Void {
         let session = URLSession(configuration: .ephemeral, delegate: nil, delegateQueue: OperationQueue.main)
         let url = URL(string: String(Constants.CoinTickerUrl))!
         let task = session.dataTask(with: url, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
@@ -130,19 +176,18 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 return
             }
             
-            var arrayOfDict = [[String: String]]()
+            var i: Int = 0
+            var tickerList = [String]()
             for ticker in parsedResults {
-                arrayOfDict.append([
-                    "name": ticker.name,
-                    "symbol": ticker.symbol,
-                    "price_usd": ticker.price_usd,
-                    "percent_change_24h": ticker.percent_change_24h
-                    ])
+                if(i < 68){
+                    tickerList.append(ticker.symbol)
+                    i += 1
+                }
             }
             
-            self.coinTickerList = arrayOfDict
-            UserDefaults.standard.set(arrayOfDict, forKey: Constants.CoinPricesKey)
-            self.pricesTableView.reloadData()
+            UserDefaults.standard.set(tickerList, forKey: "Top100Tickers")
+            
+            self.getPrices()
         })
         task.resume()
     }
@@ -160,7 +205,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             timer.invalidate()
         }
         let updateInterval = getUpdateInterval()
-        timer = Timer.scheduledTimer(timeInterval: TimeInterval(updateInterval), target: self, selector: #selector(self.getPricesImpl), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: TimeInterval(updateInterval), target: self, selector: #selector(self.getPrices), userInfo: nil, repeats: true)
     }
     
     func getUpdateInterval() -> Float {
