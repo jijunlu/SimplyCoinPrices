@@ -2,11 +2,10 @@ language: objective-c
 osx_image: xcode9.3
 
 before_install:
-  - rvm install ruby-2.2.2
   - gem install cocoapods
   - gem install xcpretty -N
   - brew update
 script:
   - set -o pipefail
-  - xcodebuild test -workspace CoinPrices.xcworkspace -scheme CoinPrices -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO | xcpretty -c
+  - xcodebuild test -workspace CoinPrices.xcworkspace -scheme CoinPrices -sdk iphonesimulator11.211.211.211.211.211.211.211.211.211.211.2 ONLY_ACTIVE_ARCH=NO | xcpretty -c
 
