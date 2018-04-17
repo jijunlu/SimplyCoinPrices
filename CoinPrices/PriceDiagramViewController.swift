@@ -27,6 +27,7 @@ class PriceDiagramViewController: UIViewController {
     
     @IBOutlet weak var diagramTitleLabel: UILabel!
     @IBOutlet weak var adBanner: GADBannerView!
+    @IBOutlet weak var priceChartNavBar: UINavigationBar!
     
     var dataRangeButtons = [UIButton?]()
     
@@ -34,12 +35,10 @@ class PriceDiagramViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        initAdMobBanner()
         
+        //priceChartNavBar.topItem?.title = String(format: "%@ Price Chart", inputCoinType.uppercased())
+            
         dataRangeButtons = [pick1hButton, pick4hButton, pick1dButton, pick1wButton, pick1mButton, pick1yButton, pick5yButton]
-        
-        diagramTitleLabel.text = String(format: "%@ Prices (US Dollar)", inputCoinType)
         
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
         swipeRight.direction = UISwipeGestureRecognizerDirection.right
@@ -52,6 +51,8 @@ class PriceDiagramViewController: UIViewController {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         self.wrapperScrollView.refreshControl = refreshControl
+
+        initAdMobBanner()
     }
     
 
@@ -192,6 +193,8 @@ class PriceDiagramViewController: UIViewController {
             for price in priceByMinutes.Data {
                 dataEntries.append(ChartDataEntry(x: Double(price.time), y: Double(price.close)))
             }
+            
+            self.diagramTitleLabel.text = String(format: "Latest %@ price: $ %.2f", self.inputCoinType.uppercased(), Double(priceByMinutes.Data[priceByMinutes.Data.count - 1].close))
             
             let chartDataSet = LineChartDataSet(values: dataEntries, label: "Prices")
             chartDataSet.colors = [UIColor.blue]
