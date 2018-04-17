@@ -1,0 +1,11 @@
+osx_image: xcode9.3
+language: objective-c
+# cache: cocoapods
+# podfile: CoinPrices/Podfile
+# before_install:
+# - gem install cocoapods # Since Travis is not always on latest version
+# - pod install --project-directory=CoinPrices
+script:
+- set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace CoinPrices/CoinPrices.xcworkspace -scheme CoinPrices -sdk iphonesimulator11.2 ONLY_ACTIVE_ARCH=NO | xcpretty
+- pod lib lint
+
