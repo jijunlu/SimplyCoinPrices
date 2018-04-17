@@ -9,15 +9,27 @@
 import UIKit
 import GoogleMobileAds
 
-class RssViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, RssParserDelegate, GADBannerViewDelegate {
+struct NewsSourceInfo : Decodable {
+    let name: String
+}
+
+struct NewsItem : Decodable {
+    let title : String
+    let url: String
+    let published_on: UInt32
+    let source_info: NewsSourceInfo
+}
+
+class RssViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, GADBannerViewDelegate {
     
     @IBOutlet weak var adBanner: GADBannerView!
-    var rssParser : RssParser!
     var refreshControl : UIRefreshControl!
     
     @IBOutlet weak var rssScrollView: UIScrollView!
     @IBOutlet weak var rssTableView: UITableView!
     
+    var newsItems = [NewsItem]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -38,13 +50,29 @@ class RssViewController: UIViewController, UITableViewDataSource, UITableViewDel
         
         refreshControl.endRefreshing()
     }
-
+    
     func loadNews() -> Void {
-        let url = NSURL(string: "https://cryptocurrencynews.com/feed/")
-        rssParser = RssParser()
-        rssParser.delegate = self
-        rssParser.startParsingWithContentsOfURL(rssURL: url!)
+        let session = URLSession(configuration: .ephemeral, delegate: nil, delegateQueue: OperationQueue.main)
+        let url = URL(string: Constants.rssFeedUrl)!
+        
+        let task = session.dataTask(with: url, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
+            guard let data = data else {
+                print("data error")
+                return
+            }
+            
+            guard let items = try? JSONDecoder().decode([NewsItem].self, from: data) else {
+                print("decode error")
+                return
+            }
+            
+            self.newsItems = items
+            self.rssTableView.reloadData()
+            
+        })
+        task.resume()
     }
+    
     
     func initAdMobBanner() {
         adBanner.adUnitID = Constants.adMobBannerUnitId
@@ -56,29 +84,29 @@ class RssViewController: UIViewController, UITableViewDataSource, UITableViewDel
         super.didReceiveMemoryWarning()
     }
     
-    func parsingWasFinished() {
-        rssTableView.reloadData()
-    }
-    
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return rssParser.arrParsedData.count
+        return newsItems.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "rssCell", for: indexPath as IndexPath)
         
-        let currentDictionary = rssParser.arrParsedData[indexPath.row] as Dictionary<String, String>
+        let currentItem = newsItems[indexPath.row]
+       
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let pubDateStr = dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(currentItem.published_on)))
         
-        let cellText = String(format: "%@\n%@", currentDictionary["title"]!, currentDictionary["pubDate"]!.prefix(16).suffix(11) as CVarArg)
+        let cellText = String(format: "%@\n%@  %@", currentItem.title, currentItem.source_info.name, pubDateStr)
         
         cell.textLabel?.text = cellText
         cell.textLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
         cell.textLabel?.numberOfLines = 0
-        cell.textLabel?.font = UIFont(name: "Avenir", size:20)
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 20)
         //let attributedString = NSMutableAttributedString(string: cellText)
  
         //cell.rssItemTextView.attributedText = attributedString
@@ -88,15 +116,13 @@ class RssViewController: UIViewController, UITableViewDataSource, UITableViewDel
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-     let dictionary = rssParser.arrParsedData[indexPath.row] as Dictionary<String, String>
-     let rssItemLink = dictionary["link"]
-     let publishDate = dictionary["pubDate"]
+     let newItem = newsItems[indexPath.row]
+     let url = newItem.url
      
         let rssItemDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "rssItemDetailsVC") as! RssItemDetailsViewController
      
-        rssItemDetailsViewController.linky = rssItemLink!
-        rssItemDetailsViewController.pubDate = publishDate!
-     
+        rssItemDetailsViewController.urlStr = url
+        
         showDetailViewController(rssItemDetailsViewController, sender: self)
      }
     

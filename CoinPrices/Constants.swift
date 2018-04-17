@@ -11,13 +11,21 @@ import Foundation
 struct Constants {
     static let updateIntervalSettingKey = "com.jijunlu.j3.SimplyCoinPrices.UpdateInterval"
     
+    static let historicalDataRangeKey = "com.jijunlu.j3.SimplyCoinPrices.HistoricalDataRange"
+    
     static let coinsToDisplayDictKey = "com.jijunlu.j3.SimplyCoinPrices.CoinsToDisplay"
     
-    static let coinPriceDictKey = "com.jijunlu.j3.CoinPrices.CoinPriceDict"
+    static let CoinPricesKey = "com.jijunlu.j3.CoinPrices.CoinPrices"
+    
+    static let CoinTickersKey = "com.jijunlu.j3.CoinPrices.CoinTickers"
+    
+    static let coinListDictKey = "com.jijunlu.j3.CoinPrices.CoinListDict"
     
     static let assetByCoinDictKey = "com.jijunlu.j3.CoinPrices.AssetByCoinDict"
+        
+    static let CoinTickerUrl = "https://api.coinmarketcap.com/v1/ticker/"
     
-    static let baseUrl = "https://www.bitstamp.net/api/v2/ticker"
+    static let rssFeedUrl = "https://min-api.cryptocompare.com/data/news/?lang=EN"
     
     static let adMobBannerUnitId = "ca-app-pub-4258982541138576/9768265072"
     
@@ -27,27 +35,14 @@ struct Constants {
     
     static let updateIntervalStep : Float = 5
     
-    static let CoinMap : [String: [String: String]] = [
-        "BTC":  [
-            "FullName": "Bitcoin",
-            "IsOn": String(true)
-        ],
-        "ETH": [
-            "FullName": "Ethereum",
-            "IsOn": String(true)
-        ],
-        "XRP": [
-            "FullName": "Ripple",
-            "IsOn": String(true)
-        ],
-        "BCH": [
-            "FullName": "Bitcoin Cash",
-            "IsOn": String(true)
-        ],
-        "LTC": [
-            "FullName": "Litecoin",
-            "IsOn": String(true)
-        ]
+    static let historicalDataChangeStep: Float = 1
+    
+    static let historicalDataRanges: [Int] = [
+        60,
+        240,
+        480,
+        720,
+        1440
     ]
     
 }

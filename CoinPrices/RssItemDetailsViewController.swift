@@ -8,13 +8,14 @@
 
 import UIKit
 import WebKit
+import GoogleMobileAds
 
 class RssItemDetailsViewController: UIViewController {
 
     @IBOutlet weak var rssItemDetailsWebKitView: WKWebView!
+    @IBOutlet weak var adBanner: GADBannerView!
     
-    var linky = String()
-    var pubDate = String()
+    var urlStr = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,9 +24,11 @@ class RssItemDetailsViewController: UIViewController {
         swipeRight.direction = UISwipeGestureRecognizerDirection.right
         self.view.addGestureRecognizer(swipeRight)
         
-        let url = URL(string:linky)
+        let url = URL(string:urlStr)
         let request = URLRequest(url:url!)
         rssItemDetailsWebKitView.load(request)
+        
+        initAdMobBanner()
     }
 
     @objc func respondToSwipeGesture(gesture: UIGestureRecognizer) {
@@ -48,14 +51,10 @@ class RssItemDetailsViewController: UIViewController {
     @IBAction func close(_ sender: Any) {
         self.dismiss(animated: true)
     }
-    /*
-    // MARK: - Navigation
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func initAdMobBanner() {
+        adBanner.adUnitID = Constants.adMobBannerUnitId
+        adBanner.rootViewController = self
+        adBanner.load(GADRequest())
     }
-    */
-
 }
