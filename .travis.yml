@@ -1,7 +1,7 @@
 language: objective-c
 osx_image: xcode9.3
 script:
-    - xcodebuild clean test -project CoinPrices.xcodeproj -scheme CoinPrice -destination "platform=iOS Simulator,name=iPhone X,OS=11.2" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO -quiet
+    - xcodebuild clean test -project CoinPrices.xcodeproj -scheme CoinPrices -destination "platform=iOS Simulator,name=iPhone X,OS=11.2" CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ONLY_ACTIVE_ARCH=NO -quiet
 
 #osx_image: xcode9.3
 #language: objective-c
