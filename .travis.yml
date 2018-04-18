@@ -1,0 +1,11 @@
+language: objective-c
+osx_image: xcode9.3
+
+before_install:
+  - gem install cocoapods
+  - gem install xcpretty -N
+  - brew update
+script:
+  - set -o pipefail
+  - xcodebuild clean test -destination "platform=iOS Simulator,OS=11.2,name=iPhone X" -workspace CoinPrices.xcworkspace -scheme CoinPrices -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO | xcpretty -c
+

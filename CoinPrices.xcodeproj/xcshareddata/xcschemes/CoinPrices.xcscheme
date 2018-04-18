@@ -20,6 +20,34 @@
                ReferencedContainer = "container:CoinPrices.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "1D416D5E8AAA52C62EECDEEAFED16087"
+               BuildableName = "Charts.framework"
+               BlueprintName = "Charts"
+               ReferencedContainer = "container:Pods/Pods.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E48774C686728BAB08F4A40B620E8F1E"
+               BuildableName = "Pods_CoinPrices.framework"
+               BlueprintName = "Pods-CoinPrices"
+               ReferencedContainer = "container:Pods/Pods.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
@@ -32,9 +60,9 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "E57C00FF20324D0100F18E8B"
-               BuildableName = "FoodTrackerTests.xctest"
-               BlueprintName = "FoodTrackerTests"
+               BlueprintIdentifier = "E5272FF52086799E0075ADCD"
+               BuildableName = "CoinPricesTests.xctest"
+               BlueprintName = "CoinPricesTests"
                ReferencedContainer = "container:CoinPrices.xcodeproj">
             </BuildableReference>
          </TestableReference>
