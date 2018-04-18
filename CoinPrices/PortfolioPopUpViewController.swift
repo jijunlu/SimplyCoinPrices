@@ -17,10 +17,10 @@ class PortfolioPopUpViewController: UIViewController, UIPickerViewDelegate, UIPi
     @IBOutlet weak var amountText: UITextField!
 
     var inputCoinType = String()
-    var inputCoinAmount = Float()
+    var inputCoinAmount = Double()
     
     var coinPrices = [[String: String]]()
-    var assetByCoinDict = [String: Float]()
+    var assetByCoinDict = [String: Double]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -76,7 +76,7 @@ class PortfolioPopUpViewController: UIViewController, UIPickerViewDelegate, UIPi
         let savedAssetByCoinDict = UserDefaults.standard.object(forKey: Constants.assetByCoinDictKey)
         
         if(savedAssetByCoinDict != nil) {
-            assetByCoinDict = savedAssetByCoinDict as! [String: Float]
+            assetByCoinDict = savedAssetByCoinDict as! [String: Double]
         }
         
         for coinPrice in coinPrices {
@@ -132,11 +132,21 @@ class PortfolioPopUpViewController: UIViewController, UIPickerViewDelegate, UIPi
         let selectedCoinAmountText = amountText.text
         
         if(selectedCoin != nil && selectedCoinAmountText != nil) {
-            assetByCoinDict[selectedCoin!] = Float(selectedCoinAmountText!)
+            assetByCoinDict[selectedCoin!] = Double(selectedCoinAmountText!)
             
             UserDefaults.standard.set(assetByCoinDict, forKey: Constants.assetByCoinDictKey)
         }
         
-        self.dismiss(animated: true)
+        dismissFromLeft()
+    }
+    
+    func dismissFromLeft() {
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        transition.type = kCATransitionPush
+        transition.subtype = kCATransitionFromLeft
+        view.layer.add(transition, forKey: "leftToRightTransition")
+        dismiss(animated: true, completion: nil)
     }
 }

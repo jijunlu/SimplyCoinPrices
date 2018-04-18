@@ -60,7 +60,7 @@ class PriceDiagramViewController: UIViewController {
         if let swipeGesture = gesture as? UISwipeGestureRecognizer {
             switch swipeGesture.direction {
             case UISwipeGestureRecognizerDirection.right:
-                self.dismiss(animated: true)
+                dismissFromLeft()
             default:
                 break
             }
@@ -240,7 +240,17 @@ class PriceDiagramViewController: UIViewController {
     }
     
     @IBAction func onClose(_ sender: Any) {
-        self.dismiss(animated: true)
+        dismissFromLeft()
+    }
+    
+    func dismissFromLeft() {
+        let transition = CATransition()
+        transition.duration = 0.5
+        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        transition.type = kCATransitionPush
+        transition.subtype = kCATransitionFromLeft
+        view.layer.add(transition, forKey: "leftToRightTransition")
+        dismiss(animated: true, completion: nil)
     }
     
     // Google ads

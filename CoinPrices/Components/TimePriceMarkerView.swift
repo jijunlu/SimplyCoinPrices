@@ -25,7 +25,7 @@ public class TimePriceMarkerView: BalloonMarker {
         let string = ""
             + xAxisValueFormatter.stringForValue(entry.x, axis: XAxis())
             + "\n$"
-            + String(format:"%.2f", entry.y)
+            + String(format:"%.4f", entry.y)
         setLabel(string)
     }
     

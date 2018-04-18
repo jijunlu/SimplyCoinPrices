@@ -16,7 +16,7 @@ class PortfolioViewController: UIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var adBanner: GADBannerView!
     
-    var assetByCoinType = [String: Float]()
+    var assetByCoinType = [String: Double]()
     var assetCoinTypes = [String]()
     
     override func viewDidLoad() {
@@ -68,10 +68,10 @@ class PortfolioViewController: UIViewController, UITableViewDataSource, UITableV
         assetByCoinType = getAssetDict()
         assetCoinTypes = assetByCoinType.keys.sorted()
 
-        var totalUsd : Float = 0
+        var totalUsd : Double = 0
         for (coin, amount) in assetByCoinType {
             if(savedCoinPriceDict.keys.contains(coin.uppercased())){
-                totalUsd += amount * Float(savedCoinPriceDict[coin.uppercased()]!["price_usd"]!)!
+                totalUsd += amount * Double(savedCoinPriceDict[coin.uppercased()]!["price_usd"]!)!
             }
         }
         
@@ -92,7 +92,7 @@ class PortfolioViewController: UIViewController, UITableViewDataSource, UITableV
         cell.column1?.text = coinType
         cell.column2?.text = String(assetByCoinType[coinType]!)
         
-        let value = pricesByCoinType.keys.sorted().contains(coinType.uppercased()) ? Float(pricesByCoinType[coinType.uppercased()]!["price_usd"]!)! * assetByCoinType[coinType]! : 0.0
+        let value = pricesByCoinType.keys.sorted().contains(coinType.uppercased()) ? Double(pricesByCoinType[coinType.uppercased()]!["price_usd"]!)! * assetByCoinType[coinType]! : 0.0
         cell.column3?.text = String(format: "$%.2f", value)
         
         cell.column1?.textAlignment = .center
@@ -115,12 +115,12 @@ class PortfolioViewController: UIViewController, UITableViewDataSource, UITableV
         showDetailViewController(editPortfolioViewController, sender: self)
     }
  
-    func getAssetDict() -> [String: Float] {
+    func getAssetDict() -> [String: Double] {
         guard let assetByCoinDict = UserDefaults.standard.object(forKey: Constants.assetByCoinDictKey) else {
-            return [String: Float]()
+            return [String: Double]()
         }
         
-        var ret = assetByCoinDict as! [String: Float]
+        var ret = assetByCoinDict as! [String: Double]
         for (asset, amount) in ret {
             if(amount == 0) {
                 ret.removeValue(forKey: asset)
