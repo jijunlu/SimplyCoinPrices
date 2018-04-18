@@ -60,7 +60,7 @@ class RssItemDetailsViewController: UIViewController {
     
     func dismissFromLeft() {
         let transition = CATransition()
-        transition.duration = 0.5
+        transition.duration = 0.25
         transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         transition.type = kCATransitionPush
         transition.subtype = kCATransitionFromLeft
