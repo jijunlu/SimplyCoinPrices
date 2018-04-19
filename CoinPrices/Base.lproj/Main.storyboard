@@ -4,7 +4,6 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -466,16 +465,6 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a59-dn-6XR">
-                                        <rect key="frame" x="119" y="101" width="142" height="125"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="125" id="j87-EV-BJg"/>
-                                        </constraints>
-                                        <connections>
-                                            <outlet property="dataSource" destination="xnT-Ew-AFA" id="7jQ-LP-BF3"/>
-                                            <outlet property="delegate" destination="xnT-Ew-AFA" id="gvP-1U-eiZ"/>
-                                        </connections>
-                                    </pickerView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aub-9D-tik">
                                         <rect key="frame" x="119" y="260" width="142" height="31"/>
                                         <nil key="textColor"/>
@@ -491,24 +480,54 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="A2K-RB-Vxz">
+                                        <rect key="frame" x="119" y="334" width="142" height="31"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="xnT-Ew-AFA" id="BKC-CT-gCv"/>
+                                        </connections>
+                                    </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cost base" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p1h-5F-ebL">
+                                        <rect key="frame" x="119" y="299" width="142" height="27"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <pickerView hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a59-dn-6XR">
+                                        <rect key="frame" x="119" y="94" width="142" height="125"/>
+                                        <connections>
+                                            <outlet property="dataSource" destination="xnT-Ew-AFA" id="7jQ-LP-BF3"/>
+                                            <outlet property="delegate" destination="xnT-Ew-AFA" id="gvP-1U-eiZ"/>
+                                        </connections>
+                                    </pickerView>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="IBH-yx-uHs" firstAttribute="trailing" secondItem="8Dd-Ue-C2a" secondAttribute="trailing" id="026-IJ-sLa"/>
+                                    <constraint firstItem="hZz-cN-PxH" firstAttribute="top" secondItem="a59-dn-6XR" secondAttribute="bottom" constant="6" id="1hW-OA-yxc"/>
                                     <constraint firstItem="aub-9D-tik" firstAttribute="top" secondItem="hZz-cN-PxH" secondAttribute="bottom" constant="8" symbolic="YES" id="321-LD-vrJ"/>
+                                    <constraint firstItem="a59-dn-6XR" firstAttribute="leading" secondItem="8Dd-Ue-C2a" secondAttribute="leading" id="53z-Ee-a0l"/>
+                                    <constraint firstItem="A2K-RB-Vxz" firstAttribute="top" secondItem="p1h-5F-ebL" secondAttribute="bottom" constant="8" symbolic="YES" id="7TH-Ev-lcp"/>
+                                    <constraint firstItem="A2K-RB-Vxz" firstAttribute="centerX" secondItem="6Z3-71-ffP" secondAttribute="centerX" id="93P-nx-9sp"/>
+                                    <constraint firstItem="p1h-5F-ebL" firstAttribute="leading" secondItem="A2K-RB-Vxz" secondAttribute="leading" id="Et9-1I-9hf"/>
                                     <constraint firstItem="hZz-cN-PxH" firstAttribute="leading" secondItem="aub-9D-tik" secondAttribute="leading" id="FME-a3-Gdh"/>
                                     <constraint firstItem="hZz-cN-PxH" firstAttribute="trailing" secondItem="aub-9D-tik" secondAttribute="trailing" id="JYj-NC-0ux"/>
-                                    <constraint firstItem="a59-dn-6XR" firstAttribute="leading" secondItem="8Dd-Ue-C2a" secondAttribute="leading" id="Pbo-B0-GZx"/>
+                                    <constraint firstItem="a59-dn-6XR" firstAttribute="top" secondItem="8Dd-Ue-C2a" secondAttribute="top" id="JkZ-xY-gyo"/>
                                     <constraint firstItem="8Dd-Ue-C2a" firstAttribute="centerX" secondItem="6Z3-71-ffP" secondAttribute="centerX" id="PgT-Rd-NA0"/>
+                                    <constraint firstItem="p1h-5F-ebL" firstAttribute="trailing" secondItem="A2K-RB-Vxz" secondAttribute="trailing" id="QVy-Yf-eJd"/>
                                     <constraint firstItem="hZz-cN-PxH" firstAttribute="top" secondItem="IBH-yx-uHs" secondAttribute="bottom" constant="132" id="YYt-Ib-tgz"/>
                                     <constraint firstItem="IBH-yx-uHs" firstAttribute="leading" secondItem="8Dd-Ue-C2a" secondAttribute="leading" id="Zet-co-FrU"/>
                                     <constraint firstItem="aub-9D-tik" firstAttribute="centerX" secondItem="6Z3-71-ffP" secondAttribute="centerX" id="bhv-Lk-cc3"/>
-                                    <constraint firstItem="hZz-cN-PxH" firstAttribute="leading" secondItem="a59-dn-6XR" secondAttribute="leading" id="e4Z-08-LqI"/>
-                                    <constraint firstItem="a59-dn-6XR" firstAttribute="centerX" secondItem="6Z3-71-ffP" secondAttribute="centerX" id="fqT-w0-556"/>
-                                    <constraint firstItem="a59-dn-6XR" firstAttribute="top" secondItem="IBH-yx-uHs" secondAttribute="bottom" constant="8" symbolic="YES" id="q6I-Hf-Aas"/>
+                                    <constraint firstItem="a59-dn-6XR" firstAttribute="leading" secondItem="p1h-5F-ebL" secondAttribute="leading" id="hzK-iq-1Zl"/>
+                                    <constraint firstItem="p1h-5F-ebL" firstAttribute="centerX" secondItem="6Z3-71-ffP" secondAttribute="centerX" id="jxB-Ic-er4"/>
+                                    <constraint firstItem="a59-dn-6XR" firstAttribute="leading" secondItem="hZz-cN-PxH" secondAttribute="leading" id="o9g-tQ-A7M"/>
+                                    <constraint firstItem="p1h-5F-ebL" firstAttribute="top" secondItem="aub-9D-tik" secondAttribute="bottom" constant="8" id="ogY-ee-rai"/>
+                                    <constraint firstItem="a59-dn-6XR" firstAttribute="trailing" secondItem="p1h-5F-ebL" secondAttribute="trailing" id="tCi-Nm-CGq"/>
                                     <constraint firstItem="8Dd-Ue-C2a" firstAttribute="top" secondItem="IBH-yx-uHs" secondAttribute="bottom" constant="1" id="u8E-RX-prk"/>
                                     <constraint firstItem="IBH-yx-uHs" firstAttribute="top" secondItem="6Z3-71-ffP" secondAttribute="top" constant="63" id="uWL-yJ-lkM"/>
-                                    <constraint firstItem="a59-dn-6XR" firstAttribute="trailing" secondItem="8Dd-Ue-C2a" secondAttribute="trailing" id="wND-rd-3lS"/>
+                                    <constraint firstItem="a59-dn-6XR" firstAttribute="trailing" secondItem="8Dd-Ue-C2a" secondAttribute="trailing" id="whs-FE-b8R"/>
                                 </constraints>
                             </view>
                             <view verifyAmbiguity="ignoreSizes" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7cf-wE-SGZ" customClass="GADBannerView">
@@ -555,6 +574,7 @@
                         <outlet property="adBanner" destination="7cf-wE-SGZ" id="SaS-Gw-84N"/>
                         <outlet property="amountText" destination="aub-9D-tik" id="anR-Kc-uif"/>
                         <outlet property="coinPickerView" destination="a59-dn-6XR" id="6w1-eR-V1J"/>
+                        <outlet property="costBaseText" destination="A2K-RB-Vxz" id="2er-xw-7e3"/>
                         <outlet property="selectedCoinText" destination="8Dd-Ue-C2a" id="Nub-VT-3hN"/>
                     </connections>
                 </viewController>

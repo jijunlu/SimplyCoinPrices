@@ -15,12 +15,14 @@ class PortfolioPopUpViewController: UIViewController, UIPickerViewDelegate, UIPi
     @IBOutlet weak var coinPickerView: UIPickerView!
     @IBOutlet weak var selectedCoinText: UITextField!
     @IBOutlet weak var amountText: UITextField!
-
+    @IBOutlet weak var costBaseText: UITextField!
+    
     var inputCoinType = String()
     var inputCoinAmount = Double()
+    var inputCostBase = Double()
     
     var coinPrices = [[String: String]]()
-    var assetByCoinDict = [String: Double]()
+    var assetByCoinDict = [String: [String:Double]]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,11 +36,17 @@ class PortfolioPopUpViewController: UIViewController, UIPickerViewDelegate, UIPi
         amountText.attributedText = NSMutableAttributedString(string: String(inputCoinAmount))
         }
         
+        if(inputCostBase > 0) {
+            costBaseText.attributedText = NSMutableAttributedString(string: String(inputCostBase))
+        }
+        
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
         swipeRight.direction = UISwipeGestureRecognizerDirection.right
         self.view.addGestureRecognizer(swipeRight)
 
         initAdMobBanner()
+        
+        
     }
     
     // Google ads
@@ -76,12 +84,15 @@ class PortfolioPopUpViewController: UIViewController, UIPickerViewDelegate, UIPi
         let savedAssetByCoinDict = UserDefaults.standard.object(forKey: Constants.assetByCoinDictKey)
         
         if(savedAssetByCoinDict != nil) {
-            assetByCoinDict = savedAssetByCoinDict as! [String: Double]
+            assetByCoinDict = savedAssetByCoinDict as! [String: [String:Double]]
         }
         
         for coinPrice in coinPrices {
             if(!assetByCoinDict.keys.contains(coinPrice["symbol"]!)) {
-                assetByCoinDict[coinPrice["symbol"]!] = 0.0
+                assetByCoinDict[coinPrice["symbol"]!] = [
+                    "amount": 0.0,
+                    "costBase": 0.0
+                ]
             }
         }
     }
@@ -110,7 +121,10 @@ class PortfolioPopUpViewController: UIViewController, UIPickerViewDelegate, UIPi
         
         let selectedCoin = self.coinPrices[row]["symbol"]
         self.selectedCoinText.text = selectedCoin
-        self.amountText.text = String(assetByCoinDict[selectedCoin!]!)
+        
+        let amountAndCost = assetByCoinDict[selectedCoin!]!
+        self.amountText.text = String(amountAndCost["amount"]!)
+        self.costBaseText.text = String(amountAndCost["costBase"]!)
         self.coinPickerView.isHidden = true
     }
     
@@ -130,9 +144,13 @@ class PortfolioPopUpViewController: UIViewController, UIPickerViewDelegate, UIPi
     func SaveAndClose(){
         let selectedCoin = selectedCoinText.text
         let selectedCoinAmountText = amountText.text
+        let selectedCostBaseText = costBaseText.text
         
         if(selectedCoin != nil && selectedCoinAmountText != nil) {
-            assetByCoinDict[selectedCoin!] = Double(selectedCoinAmountText!)
+            assetByCoinDict[selectedCoin!] = [
+                "amount": Double(selectedCoinAmountText!)!,
+                "costBase": Double(selectedCostBaseText!)!
+            ]
             
             UserDefaults.standard.set(assetByCoinDict, forKey: Constants.assetByCoinDictKey)
         }

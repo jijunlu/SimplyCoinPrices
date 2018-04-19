@@ -86,7 +86,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let tickerInfo = self.coinTickerList[indexPath.row]
         cell.column1?.text = tickerInfo["name"]
-        cell.column2?.text = tickerInfo["price_usd"]
+        cell.column2?.text = String(format: "$%@", tickerInfo["price_usd"]!)
         let percentStr = String(format: "%@%%", tickerInfo["percent_change_24h"]!)
         cell.column3?.text = percentStr
         
