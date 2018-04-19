@@ -9,10 +9,9 @@
 import UIKit
 import GoogleMobileAds
 
-class PortfolioPopUpViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate {
+class PortfolioPopUpViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
 
     @IBOutlet weak var adBanner: GADBannerView!
-    @IBOutlet weak var coinPickerView: UIPickerView!
     @IBOutlet weak var selectedCoinText: UITextField!
     @IBOutlet weak var amountText: UITextField!
     @IBOutlet weak var costBaseText: UITextField!
@@ -46,7 +45,13 @@ class PortfolioPopUpViewController: UIViewController, UIPickerViewDelegate, UIPi
 
         initAdMobBanner()
         
+        let pickerView = UIPickerView()
+        pickerView.delegate = self
+        selectedCoinText.inputView = pickerView
         
+        amountText.keyboardType = UIKeyboardType.decimalPad
+        
+        costBaseText.keyboardType = UIKeyboardType.decimalPad
     }
     
     // Google ads
@@ -67,10 +72,12 @@ class PortfolioPopUpViewController: UIViewController, UIPickerViewDelegate, UIPi
         }
     }
 
+    /*
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         self.view.endEditing(true)
         return false
     }
+    */
     
     func getRecentlySavedCoinPrices() -> [[String: String]] {
         let coinList = UserDefaults.standard.object(forKey: Constants.CoinPricesKey) as! [[String: String]]
@@ -113,7 +120,7 @@ class PortfolioPopUpViewController: UIViewController, UIPickerViewDelegate, UIPi
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
-        self.view.endEditing(true)
+        //self.view.endEditing(true)
         return coinPrices[row]["symbol"]
     }
     
@@ -125,18 +132,20 @@ class PortfolioPopUpViewController: UIViewController, UIPickerViewDelegate, UIPi
         let amountAndCost = assetByCoinDict[selectedCoin!]!
         self.amountText.text = String(amountAndCost["amount"]!)
         self.costBaseText.text = String(amountAndCost["costBase"]!)
-        self.coinPickerView.isHidden = true
+        //self.coinPickerView.isHidden = true
     }
     
+    /*
     func textFieldDidBeginEditing(_ textField: UITextField) {
         
         if textField == self.selectedCoinText {
-            self.coinPickerView.isHidden = false
+            //self.coinPickerView.isHidden = false
             
             textField.endEditing(true)
         }
     }
-
+    */
+    
     @IBAction func onClose(_ sender: Any) {
         SaveAndClose()
     }
