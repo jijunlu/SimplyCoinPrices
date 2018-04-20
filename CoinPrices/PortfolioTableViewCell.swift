@@ -14,6 +14,7 @@ class PortfolioTableViewCell: UITableViewCell {
     @IBOutlet weak var column2: UILabel!
     @IBOutlet weak var column3: UILabel!
     
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

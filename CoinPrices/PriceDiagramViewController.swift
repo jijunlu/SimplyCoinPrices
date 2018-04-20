@@ -60,7 +60,7 @@ class PriceDiagramViewController: UIViewController {
         if let swipeGesture = gesture as? UISwipeGestureRecognizer {
             switch swipeGesture.direction {
             case UISwipeGestureRecognizerDirection.right:
-                self.dismiss(animated: true)
+                dismissFromLeft()
             default:
                 break
             }
@@ -194,7 +194,7 @@ class PriceDiagramViewController: UIViewController {
                 dataEntries.append(ChartDataEntry(x: Double(price.time), y: Double(price.close)))
             }
             
-            self.diagramTitleLabel.text = String(format: "Latest %@ price: $ %.2f", self.inputCoinType.uppercased(), Double(priceByMinutes.Data[priceByMinutes.Data.count - 1].close))
+            self.diagramTitleLabel.text = String(format: "Latest %@ price: $ %.4f", self.inputCoinType.uppercased(), Double(priceByMinutes.Data[priceByMinutes.Data.count - 1].close))
             
             let chartDataSet = LineChartDataSet(values: dataEntries, label: "Prices")
             chartDataSet.colors = [UIColor.blue]
@@ -240,7 +240,17 @@ class PriceDiagramViewController: UIViewController {
     }
     
     @IBAction func onClose(_ sender: Any) {
-        self.dismiss(animated: true)
+        dismissFromLeft()
+    }
+    
+    func dismissFromLeft() {
+        let transition = CATransition()
+        transition.duration = 0.25
+        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
+        transition.type = kCATransitionPush
+        transition.subtype = kCATransitionFromLeft
+        view.layer.add(transition, forKey: "leftToRightTransition")
+        dismiss(animated: true, completion: nil)
     }
     
     // Google ads
