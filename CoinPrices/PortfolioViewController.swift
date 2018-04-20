@@ -16,6 +16,8 @@ class PortfolioViewController: UIViewController, UITableViewDataSource, UITableV
     @IBOutlet weak var portfolioTableView: UITableView!
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var adBanner: GADBannerView!
+
+    @IBOutlet weak var wrapperScrollView: UIScrollView!
     
     var assetByCoinType = [String: [String:Double]]()
     var assetCoinTypes = [String]()
@@ -31,9 +33,72 @@ class PortfolioViewController: UIViewController, UITableViewDataSource, UITableV
         
         calculatePortfolioTotal()
         
+        
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        self.wrapperScrollView.refreshControl = refreshControl
+        
         initAdMobBanner()
     }
 
+    
+    @objc func refresh(refreshControl: UIRefreshControl) {
+        getPrices()
+        
+        refreshControl.endRefreshing()
+    }
+    
+    
+    @objc func getPrices() {
+        let top100Tickers = UserDefaults.standard.object(forKey: "Top100Tickers") as! [String]
+        
+        let session = URLSession(configuration: .ephemeral, delegate: nil, delegateQueue: OperationQueue.main)
+        let url = URL(string: String(format: "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=%@&tsyms=USD", top100Tickers.joined(separator: ",")))!
+        
+        let task = session.dataTask(with: url, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
+            guard let data = data else {
+                print("!!!!!!!!!!!!!!!! data error !!!!!!!!!!!!!!!")
+                return
+            }
+            
+            let json = try? JSONSerialization.jsonObject(with: data, options: [])
+            
+            let jsonDict = json as! [String:Any]
+            let displayDict = jsonDict["RAW"] as! [String:Any]
+            
+            var arrayOfDict = [[String: String]]()
+            for ticker in top100Tickers {
+                if(!displayDict.keys.contains(ticker)) {
+                    continue
+                }
+                
+                let fullTickerData = displayDict[ticker] as! [String: Any]
+                let usdData = fullTickerData["USD"] as? [String:Any]
+                
+                arrayOfDict.append([
+                    "name": ticker,
+                    "symbol": ticker,
+                    "price_usd": self.parsePrice(priceVal: usdData!["PRICE"]!),
+                    "percent_change_24h": String(format:"%.2f", usdData!["CHANGEPCT24HOUR"] as! Double)
+                    ])
+            }
+            
+            UserDefaults.standard.set(arrayOfDict, forKey: Constants.CoinPricesKey)
+            
+            self.calculatePortfolioTotal()
+        })
+        task.resume()
+    }
+    
+    
+    func parsePrice(priceVal: Any) -> String {
+        if priceVal is String {
+            return priceVal as! String
+        } else {
+            return String(priceVal as! Double)
+        }
+    }
+    
     func initAdMobBanner() {
         adBanner.adUnitID = Constants.adMobBannerUnitId
         adBanner.rootViewController = self

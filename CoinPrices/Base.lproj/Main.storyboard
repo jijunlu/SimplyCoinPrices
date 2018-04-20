@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -319,7 +320,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d0m-fk-LWO">
-                                                            <rect key="frame" x="110" y="-1" width="130" height="37"/>
+                                                            <rect key="frame" x="110" y="0.0" width="130" height="36"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="130" id="2Mp-7z-9p0"/>
                                                                 <constraint firstAttribute="width" constant="126" id="ycA-Em-lfm"/>
@@ -338,7 +339,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bhk-j8-wMq">
-                                                            <rect key="frame" x="238" y="-1" width="122" height="36"/>
+                                                            <rect key="frame" x="238" y="0.0" width="122" height="36"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="126" id="F7X-Ct-d88"/>
                                                                 <constraint firstAttribute="width" constant="122" id="yd6-ML-6wm"/>
@@ -439,6 +440,7 @@
                         <outlet property="adBanner" destination="Vwx-vo-zDo" id="2hT-mH-2j3"/>
                         <outlet property="portfolioTableView" destination="WUK-XI-ayS" id="ygw-eX-TVf"/>
                         <outlet property="portfolioTotalLabel" destination="tOb-pW-Xc7" id="UUH-Jn-zrv"/>
+                        <outlet property="wrapperScrollView" destination="SzO-nX-fRG" id="X04-66-2c5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Qb1-Gb-9hY" userLabel="First Responder" sceneMemberID="firstResponder"/>
