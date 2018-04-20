@@ -194,7 +194,7 @@ class PriceDiagramViewController: UIViewController {
                 dataEntries.append(ChartDataEntry(x: Double(price.time), y: Double(price.close)))
             }
             
-            self.diagramTitleLabel.text = String(format: "Latest %@ price: $ %.2f", self.inputCoinType.uppercased(), Double(priceByMinutes.Data[priceByMinutes.Data.count - 1].close))
+            self.diagramTitleLabel.text = String(format: "Latest %@ price: $ %.4f", self.inputCoinType.uppercased(), Double(priceByMinutes.Data[priceByMinutes.Data.count - 1].close))
             
             let chartDataSet = LineChartDataSet(values: dataEntries, label: "Prices")
             chartDataSet.colors = [UIColor.blue]
