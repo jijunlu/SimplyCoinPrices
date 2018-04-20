@@ -12,6 +12,7 @@ import GoogleMobileAds
 class PortfolioViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, GADBannerViewDelegate {
 
     @IBOutlet weak var portfolioTotalLabel: UILabel!
+    @IBOutlet weak var portfolioChangeLabel: UILabel!
     @IBOutlet weak var portfolioTableView: UITableView!
     @IBOutlet weak var editButton: UIButton!
     @IBOutlet weak var adBanner: GADBannerView!
