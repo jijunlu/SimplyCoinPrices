@@ -25,7 +25,6 @@ class PortfolioViewController: UIViewController, UITableViewDataSource, UITableV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //editButton.titleLabel?.font = UIFont(name: "Avenir", size:18)
         portfolioTableView.dataSource = self
         portfolioTableView.delegate = self
         
@@ -50,10 +49,10 @@ class PortfolioViewController: UIViewController, UITableViewDataSource, UITableV
     
     
     @objc func getPrices() {
-        let top100Tickers = UserDefaults.standard.object(forKey: "Top100Tickers") as! [String]
+        let top100Tickers = UserDefaults.standard.object(forKey: Constants.Top100CoinsKey) as! [String]
         
         let session = URLSession(configuration: .ephemeral, delegate: nil, delegateQueue: OperationQueue.main)
-        let url = URL(string: String(format: "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=%@&tsyms=USD", top100Tickers.joined(separator: ",")))!
+        let url = URL(string: String(format: "%@%@", Constants.CoinPriceUrl, top100Tickers.joined(separator: ",")))!
         
         let task = session.dataTask(with: url, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
             guard let data = data else {
@@ -78,7 +77,7 @@ class PortfolioViewController: UIViewController, UITableViewDataSource, UITableV
                 arrayOfDict.append([
                     "name": ticker,
                     "symbol": ticker,
-                    "price_usd": self.parsePrice(priceVal: usdData!["PRICE"]!),
+                    "price_usd": Utils.parsePriceFromJson(priceVal: usdData!["PRICE"]!),
                     "percent_change_24h": String(format:"%.2f", usdData!["CHANGEPCT24HOUR"] as! Double)
                     ])
             }
@@ -90,17 +89,8 @@ class PortfolioViewController: UIViewController, UITableViewDataSource, UITableV
         task.resume()
     }
     
-    
-    func parsePrice(priceVal: Any) -> String {
-        if priceVal is String {
-            return priceVal as! String
-        } else {
-            return String(priceVal as! Double)
-        }
-    }
-    
     func initAdMobBanner() {
-        adBanner.adUnitID = Constants.adMobBannerUnitId
+        adBanner.adUnitID = Constants.AdMobBannerUnitId
         adBanner.rootViewController = self
         adBanner.load(GADRequest())
     }
@@ -188,7 +178,7 @@ class PortfolioViewController: UIViewController, UITableViewDataSource, UITableV
     }
  
     func getAssetDict() -> [String: [String:Double]] {
-        guard let assetByCoinDict = UserDefaults.standard.object(forKey: Constants.assetByCoinDictKey) else {
+        guard let assetByCoinDict = UserDefaults.standard.object(forKey: Constants.AssetByCoinDictKey) else {
             return [String: [String:Double]]()
         }
         

@@ -53,7 +53,7 @@ class RssViewController: UIViewController, UITableViewDataSource, UITableViewDel
     
     func loadNews() -> Void {
         let session = URLSession(configuration: .ephemeral, delegate: nil, delegateQueue: OperationQueue.main)
-        let url = URL(string: Constants.rssFeedUrl)!
+        let url = URL(string: Constants.RssFeedUrl)!
         
         let task = session.dataTask(with: url, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
             guard let data = data else {
@@ -75,7 +75,7 @@ class RssViewController: UIViewController, UITableViewDataSource, UITableViewDel
     
     
     func initAdMobBanner() {
-        adBanner.adUnitID = Constants.adMobBannerUnitId
+        adBanner.adUnitID = Constants.AdMobBannerUnitId
         adBanner.rootViewController = self
         adBanner.load(GADRequest())
     }

@@ -25,7 +25,7 @@ class SettingWrapperViewController: UIViewController, GADBannerViewDelegate {
     }
     
     func initAdMobBanner() {
-        adBanner.adUnitID = Constants.adMobBannerUnitId
+        adBanner.adUnitID = Constants.AdMobBannerUnitId
         adBanner.rootViewController = self
         adBanner.load(GADRequest())
     }

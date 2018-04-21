@@ -32,9 +32,7 @@ struct Ticker : Decodable {
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, GADBannerViewDelegate {
     
-    var coinTickerList = [[String: String]]()
-    
-    var priceDict = [[String:String]]()
+    var tickerList = [[String: String]]()
     
     // Properties
     @IBOutlet weak var adBanner: GADBannerView!
@@ -78,13 +76,13 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return coinTickerList.count
+        return tickerList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "priceCell", for: indexPath as IndexPath) as! CoinPriceTableViewCell
         
-        let tickerInfo = self.coinTickerList[indexPath.row]
+        let tickerInfo = self.tickerList[indexPath.row]
         cell.column1?.text = tickerInfo["name"]
         cell.column2?.text = String(format: "$%@", tickerInfo["price_usd"]!)
         let percentStr = String(format: "%@%%", tickerInfo["percent_change_24h"]!)
@@ -97,7 +95,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let tickerInfo = self.coinTickerList[indexPath.row]
+        let tickerInfo = self.tickerList[indexPath.row]
         
         let coinDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "coinDetailsViewController") as! PriceDiagramViewController
         
@@ -110,10 +108,10 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     // Get prices
     @objc func getPrices() {
-        let top100Tickers = UserDefaults.standard.object(forKey: "Top100Tickers") as! [String]
+        let top100Tickers = UserDefaults.standard.object(forKey: Constants.Top100CoinsKey) as! [String]
         
         let session = URLSession(configuration: .ephemeral, delegate: nil, delegateQueue: OperationQueue.main)
-        let url = URL(string: String(format: "https://min-api.cryptocompare.com/data/pricemultifull?fsyms=%@&tsyms=USD", top100Tickers.joined(separator: ",")))!
+        let url = URL(string: String(format: "%@%@", Constants.CoinPriceUrl, top100Tickers.joined(separator: ",")))!
         
         let task = session.dataTask(with: url, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
             guard let data = data else {
@@ -138,12 +136,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 arrayOfDict.append([
                     "name": ticker,
                     "symbol": ticker,
-                    "price_usd": self.parsePrice(priceVal: usdData!["PRICE"]!),
+                    "price_usd": Utils.parsePriceFromJson(priceVal: usdData!["PRICE"]!),
                     "percent_change_24h": String(format:"%.2f", usdData!["CHANGEPCT24HOUR"] as! Double)
                     ])
             }
             
-            self.coinTickerList = arrayOfDict
+            self.tickerList = arrayOfDict
             UserDefaults.standard.set(arrayOfDict, forKey: Constants.CoinPricesKey)
             
             self.pricesTableView.reloadData()
@@ -154,13 +152,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         addTimer()
     }
     
-    func parsePrice(priceVal: Any) -> String {
-        if priceVal is String {
-            return priceVal as! String
-        } else {
-            return String(priceVal as! Double)
-        }
-    }
+
     
     func getTickersAndPrices() -> Void {
         let session = URLSession(configuration: .ephemeral, delegate: nil, delegateQueue: OperationQueue.main)
@@ -185,7 +177,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
             }
             
-            UserDefaults.standard.set(tickerList, forKey: "Top100Tickers")
+            UserDefaults.standard.set(tickerList, forKey: Constants.Top100CoinsKey)
             
             self.getPrices()
         })
@@ -194,7 +186,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     // Google ads
     func initAdMobBanner() {
-        adBanner.adUnitID = Constants.adMobBannerUnitId
+        adBanner.adUnitID = Constants.AdMobBannerUnitId
         adBanner.rootViewController = self
         adBanner.load(GADRequest())
     }
@@ -209,8 +201,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func getUpdateInterval() -> Float {
-        guard let updateIntervalFromSettings = UserDefaults.standard.object(forKey: Constants.updateIntervalSettingKey) else {
-            return Constants.defaultUpdateInterval
+        guard let updateIntervalFromSettings = UserDefaults.standard.object(forKey: Constants.UpdateIntervalSettingKey) else {
+            return Constants.DefaultUpdateInterval
         }
         
         return updateIntervalFromSettings as! Float

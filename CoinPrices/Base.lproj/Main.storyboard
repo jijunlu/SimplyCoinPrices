@@ -570,9 +570,9 @@
                     </view>
                     <connections>
                         <outlet property="adBanner" destination="7cf-wE-SGZ" id="SaS-Gw-84N"/>
-                        <outlet property="amountText" destination="aub-9D-tik" id="anR-Kc-uif"/>
+                        <outlet property="coinAmountText" destination="aub-9D-tik" id="anR-Kc-uif"/>
+                        <outlet property="coinTypeText" destination="8Dd-Ue-C2a" id="Nub-VT-3hN"/>
                         <outlet property="costBaseText" destination="A2K-RB-Vxz" id="2er-xw-7e3"/>
-                        <outlet property="selectedCoinText" destination="8Dd-Ue-C2a" id="Nub-VT-3hN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iKI-Qi-2SQ" userLabel="First Responder" sceneMemberID="firstResponder"/>

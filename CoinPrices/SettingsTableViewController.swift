@@ -29,9 +29,9 @@ class SettingsTableViewController: UITableViewController {
     func displaySettings()
     {
         // Update interval setting
-        guard let updateInterval = UserDefaults.standard.object(forKey: Constants.updateIntervalSettingKey) else {
-            updateIntervalSlider.value = Constants.defaultUpdateInterval
-            updateIntervalLabel.text = String(Constants.defaultUpdateInterval)
+        guard let updateInterval = UserDefaults.standard.object(forKey: Constants.UpdateIntervalSettingKey) else {
+            updateIntervalSlider.value = Constants.DefaultUpdateInterval
+            updateIntervalLabel.text = String(Constants.DefaultUpdateInterval)
             return
         }
         
@@ -40,9 +40,9 @@ class SettingsTableViewController: UITableViewController {
     }
 
     @IBAction func onUpdateIntervalSliderChanged(_ sender: UISlider) {
-        let newInterval = round(sender.value / Constants.updateIntervalStep ) * Constants.updateIntervalStep
+        let newInterval = round(sender.value / Constants.UpdateIntervalStep ) * Constants.UpdateIntervalStep
         sender.value = newInterval
         updateIntervalLabel.text = String(newInterval)
-        UserDefaults.standard.set(newInterval, forKey:Constants.updateIntervalSettingKey)
+        UserDefaults.standard.set(newInterval, forKey:Constants.UpdateIntervalSettingKey)
     }
 }

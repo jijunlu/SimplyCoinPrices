@@ -19,6 +19,7 @@
 		E57C00F720324D0100F18E8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E57C00F620324D0100F18E8B /* Assets.xcassets */; };
 		E5841B0D2077C49200CEC900 /* SettingsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5841B0C2077C49200CEC900 /* SettingsTableViewController.swift */; };
 		E58EF06020828AB800E9D8C8 /* DateValueFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E58EF05F20828AB800E9D8C8 /* DateValueFormatter.swift */; };
+		E591E82E208BBB89008CF967 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = E591E82D208BBB89008CF967 /* Utils.swift */; };
 		E59AFF352082B767002DDAA3 /* BalloonMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59AFF342082B767002DDAA3 /* BalloonMarker.swift */; };
 		E59AFF372082EF35002DDAA3 /* TimePriceMarkerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E59AFF362082EF35002DDAA3 /* TimePriceMarkerView.swift */; };
 		E5C247042076A88700311D6F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5C247032076A88700311D6F /* Constants.swift */; };
@@ -59,6 +60,7 @@
 		E57C00FB20324D0100F18E8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E5841B0C2077C49200CEC900 /* SettingsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTableViewController.swift; sourceTree = "<group>"; };
 		E58EF05F20828AB800E9D8C8 /* DateValueFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValueFormatter.swift; sourceTree = "<group>"; };
+		E591E82D208BBB89008CF967 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		E59AFF342082B767002DDAA3 /* BalloonMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BalloonMarker.swift; sourceTree = "<group>"; };
 		E59AFF362082EF35002DDAA3 /* TimePriceMarkerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePriceMarkerView.swift; sourceTree = "<group>"; };
 		E5C247032076A88700311D6F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 				E5DADFAE207D35F4008B89BC /* RssViewController.swift */,
 				E5841B0C2077C49200CEC900 /* SettingsTableViewController.swift */,
 				E5DADFB2207D4CD3008B89BC /* SettingWrapperViewController.swift */,
+				E591E82D208BBB89008CF967 /* Utils.swift */,
 			);
 			path = CoinPrices;
 			sourceTree = "<group>";
@@ -229,6 +232,14 @@
 					E57C00EB20324D0100F18E8B = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -347,6 +358,7 @@
 				E5DADFB1207D3B50008B89BC /* RssItemTableViewCell.swift in Sources */,
 				E5DADFAF207D35F4008B89BC /* RssViewController.swift in Sources */,
 				E59AFF352082B767002DDAA3 /* BalloonMarker.swift in Sources */,
+				E591E82E208BBB89008CF967 /* Utils.swift in Sources */,
 				E57C00F020324D0100F18E8B /* AppDelegate.swift in Sources */,
 				E53A38F220851BC800CF62AA /* CoinPriceTableViewCell.swift in Sources */,
 				E59AFF372082EF35002DDAA3 /* TimePriceMarkerView.swift in Sources */,
