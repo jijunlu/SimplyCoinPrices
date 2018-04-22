@@ -13,12 +13,9 @@ class SettingsTableViewController: UITableViewController {
 
     @IBOutlet weak var updateIntervalLabel: UILabel!
     @IBOutlet weak var updateIntervalSlider: UISlider!
+
     
-    @IBOutlet weak var btcSwitch: UISwitch!
-    @IBOutlet weak var ethSwitch: UISwitch!
-    @IBOutlet weak var xrpSwitch: UISwitch!
-    @IBOutlet weak var bchSwitch: UISwitch!
-    @IBOutlet weak var ltcSwitch: UISwitch!
+    @IBOutlet weak var versionLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +25,8 @@ class SettingsTableViewController: UITableViewController {
     
     func displaySettings()
     {
+        versionLabel.text = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
+        
         // Update interval setting
         guard let updateInterval = UserDefaults.standard.object(forKey: Constants.UpdateIntervalSettingKey) else {
             updateIntervalSlider.value = Constants.DefaultUpdateInterval

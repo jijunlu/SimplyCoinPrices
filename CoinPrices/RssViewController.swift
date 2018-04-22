@@ -97,16 +97,16 @@ class RssViewController: UIViewController, UITableViewDataSource, UITableViewDel
         
         let currentItem = newsItems[indexPath.row]
        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let pubDateStr = dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(currentItem.published_on)))
+        let hoursAgo = 1 + Int(Date().timeIntervalSince1970 - TimeInterval(currentItem.published_on)) / 3600
         
-        let cellText = String(format: "%@\n%@  %@", currentItem.title, currentItem.source_info.name, pubDateStr)
+        let cellText = String(format: "%@\n-%@,  %dh ago", currentItem.title, currentItem.source_info.name, hoursAgo)
         
         cell.textLabel?.text = cellText
         cell.textLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
         cell.textLabel?.numberOfLines = 0
-        cell.textLabel?.font = UIFont.systemFont(ofSize: 20)
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 19)
+        
+        
         //let attributedString = NSMutableAttributedString(string: cellText)
  
         //cell.rssItemTextView.attributedText = attributedString

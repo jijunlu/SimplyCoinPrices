@@ -9,8 +9,6 @@
 import UIKit
 
 class RssItemTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var rssItemTextView: UITextView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
