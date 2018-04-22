@@ -130,9 +130,16 @@ class PortfolioPopUpViewController: UIViewController, UIPickerViewDelegate, UIPi
     func SaveAndClose(){
         let selectedCoinName = coinTypeText.text
         let selectedCoinAmountText = coinAmountText.text
-        let selectedCostBaseText = costBaseText.text
         
-        if(selectedCoinName != nil && selectedCoinAmountText != nil) {
+        if(selectedCoinName != nil && selectedCoinName?.count != 0 && selectedCoinAmountText != nil &&
+            selectedCoinAmountText?.count != 0) {
+            
+            var selectedCostBaseText = costBaseText.text
+            if(selectedCostBaseText == nil ||
+                selectedCostBaseText?.count == 0) {
+                selectedCostBaseText = "0.0"
+            }
+        
             var selectedCoinType = String()
             for coinPrice in self.coinPrices {
                 if (coinPrice["name"] == selectedCoinName) {

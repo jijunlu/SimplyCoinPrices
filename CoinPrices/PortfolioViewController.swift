@@ -152,7 +152,8 @@ class PortfolioViewController: UIViewController, UITableViewDataSource, UITableV
         let pricesByCoinType = getSavedCoinPriceDict()
         
         let coinType = self.assetCoinTypes[indexPath.row]
-        cell.column1?.text = pricesByCoinType[coinType]?["name"]
+        cell.column0?.text = pricesByCoinType[coinType]?["name"]
+        cell.column1?.text = String(format: "(%@)", coinType)
         cell.column2?.text = String(assetByCoinType[coinType]!["amount"]!)
         
         
@@ -160,6 +161,7 @@ class PortfolioViewController: UIViewController, UITableViewDataSource, UITableV
         
         cell.column3?.text = String(format: "$%.2f", totalValue)
         
+        cell.column0?.textAlignment = .left
         cell.column1?.textAlignment = .left
         cell.column2?.textAlignment = .center
         cell.column3?.textAlignment = .center

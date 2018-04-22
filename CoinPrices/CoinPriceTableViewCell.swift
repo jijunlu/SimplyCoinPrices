@@ -10,6 +10,7 @@ import UIKit
 
 class CoinPriceTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var column0: UILabel!
     @IBOutlet weak var column1: UILabel!
     @IBOutlet weak var column2: UILabel!
     @IBOutlet weak var column3: UILabel!
