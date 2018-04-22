@@ -32,7 +32,7 @@ struct Ticker : Decodable {
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, GADBannerViewDelegate {
     
-    var tickerList = [[String: String]]()
+    var coinPriceList = [[String: String]]()
     
     // Properties
     @IBOutlet weak var adBanner: GADBannerView!
@@ -76,30 +76,31 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tickerList.count
+        return coinPriceList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "priceCell", for: indexPath as IndexPath) as! CoinPriceTableViewCell
         
-        let tickerInfo = self.tickerList[indexPath.row]
-        cell.column1?.text = tickerInfo["name"]
-        cell.column2?.text = String(format: "$%@", tickerInfo["price_usd"]!)
-        let percentStr = String(format: "%@%%", tickerInfo["percent_change_24h"]!)
+        let priceData = self.coinPriceList[indexPath.row]
+        cell.column1?.text = priceData["name"]
+        cell.column2?.text = String(format: "$%@", priceData["price_usd"]!)
+        let percentStr = String(format: "%@%%", priceData["percent_change_24h"]!)
         cell.column3?.text = percentStr
         
-        cell.column1?.textAlignment = .center
+        cell.column1?.textAlignment = .left
         cell.column2?.textAlignment = .center
         cell.column3?.textAlignment = .center
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let tickerInfo = self.tickerList[indexPath.row]
+        let priceData = self.coinPriceList[indexPath.row]
         
         let coinDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "coinDetailsViewController") as! PriceDiagramViewController
         
-        coinDetailsViewController.inputCoinType = tickerInfo["symbol"]!
+        coinDetailsViewController.inputCoinType = priceData["symbol"]!
+        coinDetailsViewController.inputCoinName = priceData["name"]!
         
         showDetailViewController(coinDetailsViewController, sender: self)
     }
@@ -108,10 +109,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     // Get prices
     @objc func getPrices() {
-        let top100Tickers = UserDefaults.standard.object(forKey: Constants.Top100CoinsKey) as! [String]
+        let top100TickersInfo = UserDefaults.standard.object(forKey: Constants.Top100CoinsKey) as! [[String: String]]
+        
+        var top100Symbols = [String]()
+        for tickerInfo in top100TickersInfo {
+            top100Symbols.append(tickerInfo["symbol"]!)
+        }
         
         let session = URLSession(configuration: .ephemeral, delegate: nil, delegateQueue: OperationQueue.main)
-        let url = URL(string: String(format: "%@%@", Constants.CoinPriceUrl, top100Tickers.joined(separator: ",")))!
+        let url = URL(string: String(format: "%@%@", Constants.CoinPriceUrl, top100Symbols.joined(separator: ",")))!
         
         let task = session.dataTask(with: url, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
             guard let data = data else {
@@ -122,26 +128,26 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             let json = try? JSONSerialization.jsonObject(with: data, options: [])
             
             let jsonDict = json as! [String:Any]
-            let displayDict = jsonDict["RAW"] as! [String:Any]
+            let rawDataDict = jsonDict["RAW"] as! [String:Any]
             
             var arrayOfDict = [[String: String]]()
-            for ticker in top100Tickers {
-                if(!displayDict.keys.contains(ticker)) {
+            for ticker in top100TickersInfo {
+                if(!rawDataDict.keys.contains(ticker["symbol"]!)) {
                     continue
                 }
                 
-                let fullTickerData = displayDict[ticker] as! [String: Any]
+                let fullTickerData = rawDataDict[ticker["symbol"]!] as! [String: Any]
                 let usdData = fullTickerData["USD"] as? [String:Any]
                 
                 arrayOfDict.append([
-                    "name": ticker,
-                    "symbol": ticker,
+                    "name": ticker["name"]!,
+                    "symbol": ticker["symbol"]!,
                     "price_usd": Utils.parsePriceFromJson(priceVal: usdData!["PRICE"]!),
                     "percent_change_24h": String(format:"%.2f", usdData!["CHANGEPCT24HOUR"] as! Double)
                     ])
             }
             
-            self.tickerList = arrayOfDict
+            self.coinPriceList = arrayOfDict
             UserDefaults.standard.set(arrayOfDict, forKey: Constants.CoinPricesKey)
             
             self.pricesTableView.reloadData()
@@ -169,10 +175,14 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             }
             
             var i: Int = 0
-            var tickerList = [String]()
+            var tickerList = [[String:String]]()
             for ticker in parsedResults {
                 if(i < 68){
-                    tickerList.append(ticker.symbol)
+                    tickerList.append([
+                        "symbol": ticker.symbol,
+                        "name": ticker.name,
+                        "rank": String(i)
+                    ])
                     i += 1
                 }
             }

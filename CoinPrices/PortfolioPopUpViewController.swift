@@ -16,7 +16,7 @@ class PortfolioPopUpViewController: UIViewController, UIPickerViewDelegate, UIPi
     @IBOutlet weak var coinAmountText: UITextField!
     @IBOutlet weak var costBaseText: UITextField!
     
-    var inputCoinType = String()
+    var inputCoinName = String()
     var inputCoinAmount = Double()
     var inputCostBase = Double()
     
@@ -27,8 +27,8 @@ class PortfolioPopUpViewController: UIViewController, UIPickerViewDelegate, UIPi
         super.viewDidLoad()
         getCurrentAsset()
         
-        if(inputCoinType.count > 0) {
-            coinTypeText.attributedText = NSMutableAttributedString(string: inputCoinType)
+        if(inputCoinName.count > 0) {
+            coinTypeText.attributedText = NSMutableAttributedString(string: inputCoinName)
         }
         
         if(inputCoinAmount > 0) {
@@ -110,13 +110,13 @@ class PortfolioPopUpViewController: UIViewController, UIPickerViewDelegate, UIPi
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
-        return coinPrices[row]["symbol"]
+        return coinPrices[row]["name"]
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         let selectedCoin = self.coinPrices[row]["symbol"]
-        self.coinTypeText.text = selectedCoin
+        self.coinTypeText.text = self.coinPrices[row]["name"]
         
         let amountAndCost = assetByCoinDict[selectedCoin!]!
         self.coinAmountText.text = String(amountAndCost["amount"]!)
@@ -128,12 +128,19 @@ class PortfolioPopUpViewController: UIViewController, UIPickerViewDelegate, UIPi
     }
     
     func SaveAndClose(){
-        let selectedCoin = coinTypeText.text
+        let selectedCoinName = coinTypeText.text
         let selectedCoinAmountText = coinAmountText.text
         let selectedCostBaseText = costBaseText.text
         
-        if(selectedCoin != nil && selectedCoinAmountText != nil) {
-            assetByCoinDict[selectedCoin!] = [
+        if(selectedCoinName != nil && selectedCoinAmountText != nil) {
+            var selectedCoinType = String()
+            for coinPrice in self.coinPrices {
+                if (coinPrice["name"] == selectedCoinName) {
+                    selectedCoinType = coinPrice["symbol"]!
+                }
+            }
+            
+            assetByCoinDict[selectedCoinType] = [
                 "amount": Double(selectedCoinAmountText!)!,
                 "costBase": Double(selectedCostBaseText!)!
             ]

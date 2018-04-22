@@ -611,10 +611,7 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3GZ-KY-wZF">
-                                                            <rect key="frame" x="15" y="0.0" width="112" height="44"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="127" id="GaW-Db-pEE"/>
-                                                            </constraints>
+                                                            <rect key="frame" x="15" y="0.0" width="110" height="44"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -645,8 +642,8 @@
                                                         <constraint firstItem="IB1-8a-xbk" firstAttribute="baseline" secondItem="3df-uY-RhQ" secondAttribute="baseline" id="KDd-iT-T7c"/>
                                                         <constraint firstItem="IB1-8a-xbk" firstAttribute="firstBaseline" secondItem="3GZ-KY-wZF" secondAttribute="firstBaseline" id="Nia-WK-Wrw"/>
                                                         <constraint firstAttribute="trailingMargin" secondItem="IB1-8a-xbk" secondAttribute="trailing" constant="93" id="Omr-BL-bk0"/>
+                                                        <constraint firstItem="3GZ-KY-wZF" firstAttribute="leading" secondItem="lz6-T8-wZc" secondAttribute="leading" constant="15" id="VKz-wW-8d3"/>
                                                         <constraint firstItem="IB1-8a-xbk" firstAttribute="firstBaseline" secondItem="3df-uY-RhQ" secondAttribute="firstBaseline" id="cUF-FC-Owf"/>
-                                                        <constraint firstItem="3GZ-KY-wZF" firstAttribute="leading" secondItem="lz6-T8-wZc" secondAttribute="leading" id="qWD-lK-o8Y"/>
                                                         <constraint firstItem="3GZ-KY-wZF" firstAttribute="top" secondItem="lz6-T8-wZc" secondAttribute="top" id="x5f-e9-G1G"/>
                                                     </constraints>
                                                 </tableViewCellContentView>

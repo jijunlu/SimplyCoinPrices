@@ -123,7 +123,6 @@
 				E58EF05F20828AB800E9D8C8 /* DateValueFormatter.swift */,
 				E59AFF342082B767002DDAA3 /* BalloonMarker.swift */,
 				E59AFF362082EF35002DDAA3 /* TimePriceMarkerView.swift */,
-				E53A38F120851BC800CF62AA /* CoinPriceTableViewCell.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -153,6 +152,7 @@
 			children = (
 				E57C00EF20324D0100F18E8B /* AppDelegate.swift */,
 				E57C00F620324D0100F18E8B /* Assets.xcassets */,
+				E53A38F120851BC800CF62AA /* CoinPriceTableViewCell.swift */,
 				E53A38F02082F59400CF62AA /* Components */,
 				E5C247032076A88700311D6F /* Constants.swift */,
 				E50FC4AE2079C1CB00774872 /* HomeViewController.swift */,
