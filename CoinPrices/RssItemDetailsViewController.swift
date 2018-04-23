@@ -35,7 +35,7 @@ class RssItemDetailsViewController: UIViewController {
         if let swipeGesture = gesture as? UISwipeGestureRecognizer {
             switch swipeGesture.direction {
             case UISwipeGestureRecognizerDirection.right:
-                dismissFromLeft()
+                Utils.dismissFromLeft(sender: self)
             default:
                 break
             }
@@ -49,22 +49,13 @@ class RssItemDetailsViewController: UIViewController {
     
 
     @IBAction func close(_ sender: Any) {
-        dismissFromLeft()
+        Utils.dismissFromLeft(sender: self)
     }
 
     func initAdMobBanner() {
-        adBanner.adUnitID = Constants.adMobBannerUnitId
+        adBanner.adUnitID = Constants.AdMobBannerUnitId
         adBanner.rootViewController = self
         adBanner.load(GADRequest())
     }
-    
-    func dismissFromLeft() {
-        let transition = CATransition()
-        transition.duration = 0.25
-        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transition.type = kCATransitionPush
-        transition.subtype = kCATransitionFromLeft
-        view.layer.add(transition, forKey: "leftToRightTransition")
-        dismiss(animated: true, completion: nil)
-    }
+
 }

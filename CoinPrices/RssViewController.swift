@@ -53,7 +53,7 @@ class RssViewController: UIViewController, UITableViewDataSource, UITableViewDel
     
     func loadNews() -> Void {
         let session = URLSession(configuration: .ephemeral, delegate: nil, delegateQueue: OperationQueue.main)
-        let url = URL(string: Constants.rssFeedUrl)!
+        let url = URL(string: Constants.RssFeedUrl)!
         
         let task = session.dataTask(with: url, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
             guard let data = data else {
@@ -75,7 +75,7 @@ class RssViewController: UIViewController, UITableViewDataSource, UITableViewDel
     
     
     func initAdMobBanner() {
-        adBanner.adUnitID = Constants.adMobBannerUnitId
+        adBanner.adUnitID = Constants.AdMobBannerUnitId
         adBanner.rootViewController = self
         adBanner.load(GADRequest())
     }
@@ -97,16 +97,16 @@ class RssViewController: UIViewController, UITableViewDataSource, UITableViewDel
         
         let currentItem = newsItems[indexPath.row]
        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let pubDateStr = dateFormatter.string(from: Date(timeIntervalSince1970: TimeInterval(currentItem.published_on)))
+        let hoursAgo = 1 + Int(Date().timeIntervalSince1970 - TimeInterval(currentItem.published_on)) / 3600
         
-        let cellText = String(format: "%@\n%@  %@", currentItem.title, currentItem.source_info.name, pubDateStr)
+        let cellText = String(format: "%@\n-%@,  %dh ago", currentItem.title, currentItem.source_info.name, hoursAgo)
         
         cell.textLabel?.text = cellText
         cell.textLabel?.lineBreakMode = NSLineBreakMode.byWordWrapping
         cell.textLabel?.numberOfLines = 0
-        cell.textLabel?.font = UIFont.systemFont(ofSize: 20)
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 19)
+        
+        
         //let attributedString = NSMutableAttributedString(string: cellText)
  
         //cell.rssItemTextView.attributedText = attributedString

@@ -13,12 +13,9 @@ class SettingsTableViewController: UITableViewController {
 
     @IBOutlet weak var updateIntervalLabel: UILabel!
     @IBOutlet weak var updateIntervalSlider: UISlider!
+
     
-    @IBOutlet weak var btcSwitch: UISwitch!
-    @IBOutlet weak var ethSwitch: UISwitch!
-    @IBOutlet weak var xrpSwitch: UISwitch!
-    @IBOutlet weak var bchSwitch: UISwitch!
-    @IBOutlet weak var ltcSwitch: UISwitch!
+    @IBOutlet weak var versionLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,10 +25,12 @@ class SettingsTableViewController: UITableViewController {
     
     func displaySettings()
     {
+        versionLabel.text = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
+        
         // Update interval setting
-        guard let updateInterval = UserDefaults.standard.object(forKey: Constants.updateIntervalSettingKey) else {
-            updateIntervalSlider.value = Constants.defaultUpdateInterval
-            updateIntervalLabel.text = String(Constants.defaultUpdateInterval)
+        guard let updateInterval = UserDefaults.standard.object(forKey: Constants.UpdateIntervalSettingKey) else {
+            updateIntervalSlider.value = Constants.DefaultUpdateInterval
+            updateIntervalLabel.text = String(Constants.DefaultUpdateInterval)
             return
         }
         
@@ -40,9 +39,9 @@ class SettingsTableViewController: UITableViewController {
     }
 
     @IBAction func onUpdateIntervalSliderChanged(_ sender: UISlider) {
-        let newInterval = round(sender.value / Constants.updateIntervalStep ) * Constants.updateIntervalStep
+        let newInterval = round(sender.value / Constants.UpdateIntervalStep ) * Constants.UpdateIntervalStep
         sender.value = newInterval
         updateIntervalLabel.text = String(newInterval)
-        UserDefaults.standard.set(newInterval, forKey:Constants.updateIntervalSettingKey)
+        UserDefaults.standard.set(newInterval, forKey:Constants.UpdateIntervalSettingKey)
     }
 }

@@ -32,12 +32,11 @@ class PriceDiagramViewController: UIViewController {
     var dataRangeButtons = [UIButton?]()
     
     var inputCoinType = String()
+    var inputCoinName = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //priceChartNavBar.topItem?.title = String(format: "%@ Price Chart", inputCoinType.uppercased())
-            
         dataRangeButtons = [pick1hButton, pick4hButton, pick1dButton, pick1wButton, pick1mButton, pick1yButton, pick5yButton]
         
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
@@ -60,7 +59,7 @@ class PriceDiagramViewController: UIViewController {
         if let swipeGesture = gesture as? UISwipeGestureRecognizer {
             switch swipeGesture.direction {
             case UISwipeGestureRecognizerDirection.right:
-                dismissFromLeft()
+                Utils.dismissFromLeft(sender: self)
             default:
                 break
             }
@@ -110,7 +109,7 @@ class PriceDiagramViewController: UIViewController {
     }
     
     func setDataRange(dataRange: String) {
-        UserDefaults.standard.set(dataRange, forKey:Constants.historicalDataRangeKey)
+        UserDefaults.standard.set(dataRange, forKey:Constants.HistoricalDataRangeKey)
     }
     
     struct PriceData: Decodable {
@@ -123,7 +122,7 @@ class PriceDiagramViewController: UIViewController {
     }
     
     func getSavedDataRange() -> String {
-        guard let historicalDataRange = UserDefaults.standard.object(forKey: Constants.historicalDataRangeKey) else {
+        guard let historicalDataRange = UserDefaults.standard.object(forKey: Constants.HistoricalDataRangeKey) else {
             return "1h"
         }
         
@@ -172,8 +171,6 @@ class PriceDiagramViewController: UIViewController {
             setSelectedButton(sender: pick1hButton)
         }
         
-        
-        
         let session = URLSession(configuration: .ephemeral, delegate: nil, delegateQueue: OperationQueue.main)
         let url = URL(string: urlStr)!
         
@@ -194,7 +191,7 @@ class PriceDiagramViewController: UIViewController {
                 dataEntries.append(ChartDataEntry(x: Double(price.time), y: Double(price.close)))
             }
             
-            self.diagramTitleLabel.text = String(format: "Latest %@ price: $ %.4f", self.inputCoinType.uppercased(), Double(priceByMinutes.Data[priceByMinutes.Data.count - 1].close))
+            self.diagramTitleLabel.text = String(format: "Latest %@ (%@) price: $ %.4f", self.inputCoinName, self.inputCoinType.uppercased(), Double(priceByMinutes.Data[priceByMinutes.Data.count - 1].close))
             
             let chartDataSet = LineChartDataSet(values: dataEntries, label: "Prices")
             chartDataSet.colors = [UIColor.blue]
@@ -240,22 +237,13 @@ class PriceDiagramViewController: UIViewController {
     }
     
     @IBAction func onClose(_ sender: Any) {
-        dismissFromLeft()
+        Utils.dismissFromLeft(sender: self)
     }
-    
-    func dismissFromLeft() {
-        let transition = CATransition()
-        transition.duration = 0.25
-        transition.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transition.type = kCATransitionPush
-        transition.subtype = kCATransitionFromLeft
-        view.layer.add(transition, forKey: "leftToRightTransition")
-        dismiss(animated: true, completion: nil)
-    }
+
     
     // Google ads
     func initAdMobBanner() {
-        adBanner.adUnitID = Constants.adMobBannerUnitId
+        adBanner.adUnitID = Constants.AdMobBannerUnitId
         adBanner.rootViewController = self
         adBanner.load(GADRequest())
     }

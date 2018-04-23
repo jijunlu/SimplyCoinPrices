@@ -9,35 +9,26 @@
 import Foundation
 
 struct Constants {
-    static let updateIntervalSettingKey = "com.jijunlu.j3.SimplyCoinPrices.UpdateInterval"
-    
-    static let historicalDataRangeKey = "com.jijunlu.j3.SimplyCoinPrices.HistoricalDataRange"
-    
-    static let coinsToDisplayDictKey = "com.jijunlu.j3.SimplyCoinPrices.CoinsToDisplay"
-    
+    // UserDefaults keys
+    static let UpdateIntervalSettingKey = "com.jijunlu.j3.SimplyCoinPrices.UpdateInterval"
+    static let HistoricalDataRangeKey = "com.jijunlu.j3.SimplyCoinPrices.HistoricalDataRange"
     static let CoinPricesKey = "com.jijunlu.j3.CoinPrices.CoinPrices"
+    static let AssetByCoinDictKey = "com.jijunlu.j3.CoinPrices.AssetByCoinDict"
+    static let Top100CoinsKey = "com.jijunlu.j3.CoinPrices.Top100Tickers"
     
-    static let CoinTickersKey = "com.jijunlu.j3.CoinPrices.CoinTickers"
-    
-    static let coinListDictKey = "com.jijunlu.j3.CoinPrices.CoinListDict"
-    
-    static let assetByCoinDictKey = "com.jijunlu.j3.CoinPrices.AssetByCoinDict"
-        
+    // URLs
     static let CoinTickerUrl = "https://api.coinmarketcap.com/v1/ticker/"
+    static let RssFeedUrl = "https://min-api.cryptocompare.com/data/news/?lang=EN"
+    static let CoinPriceUrl = "https://min-api.cryptocompare.com/data/pricemultifull?tsyms=USD&fsyms="
     
-    static let rssFeedUrl = "https://min-api.cryptocompare.com/data/news/?lang=EN"
+    // Admob
+    static let AdMobBannerUnitId = "ca-app-pub-4258982541138576/9768265072"
+    static let AdMobApplicationId = "ca-app-pub-4258982541138576~2955444711"
     
-    static let adMobBannerUnitId = "ca-app-pub-4258982541138576/9768265072"
-    
-    static let adMobApplicationId = "ca-app-pub-4258982541138576~2955444711"
-    
-    static let defaultUpdateInterval : Float = 30
-    
-    static let updateIntervalStep : Float = 5
-    
-    static let historicalDataChangeStep: Float = 1
-    
-    static let historicalDataRanges: [Int] = [
+    // App settings
+    static let DefaultUpdateInterval : Float = 30
+    static let UpdateIntervalStep : Float = 5
+    static let HistoricalDataRanges: [Int] = [
         60,
         240,
         480,
