@@ -154,7 +154,7 @@ class PortfolioViewController: UIViewController, UITableViewDataSource, UITableV
         let coinType = self.assetCoinTypes[indexPath.row]
         //cell.column0?.text = pricesByCoinType[coinType]?["name"]
         cell.column1?.text = String(format: "%@\n(%@)", (pricesByCoinType[coinType]?["name"])!, coinType)
-        cell.column2?.text = String(format:"%.4f\n@$%@", assetByCoinType[coinType]!["amount"]!, pricesByCoinType[coinType.uppercased()]!["price_usd"]!)
+        cell.column2?.text = String(format:"%.4f\n@ $%@", assetByCoinType[coinType]!["amount"]!, pricesByCoinType[coinType.uppercased()]!["price_usd"]!)
         
         
         let totalValue = pricesByCoinType.keys.sorted().contains(coinType.uppercased()) ? Double(pricesByCoinType[coinType.uppercased()]!["price_usd"]!)! * assetByCoinType[coinType]!["amount"]! : 0.0
