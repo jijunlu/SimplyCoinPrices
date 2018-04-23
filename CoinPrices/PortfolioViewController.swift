@@ -152,18 +152,21 @@ class PortfolioViewController: UIViewController, UITableViewDataSource, UITableV
         let pricesByCoinType = getSavedCoinPriceDict()
         
         let coinType = self.assetCoinTypes[indexPath.row]
-        cell.column0?.text = pricesByCoinType[coinType]?["name"]
-        cell.column1?.text = String(format: "(%@)", coinType)
-        cell.column2?.text = String(assetByCoinType[coinType]!["amount"]!)
+        //cell.column0?.text = pricesByCoinType[coinType]?["name"]
+        cell.column1?.text = String(format: "%@\n(%@)", (pricesByCoinType[coinType]?["name"])!, coinType)
+        cell.column2?.text = String(format:"%.4f\n@$%@", assetByCoinType[coinType]!["amount"]!, pricesByCoinType[coinType.uppercased()]!["price_usd"]!)
         
         
         let totalValue = pricesByCoinType.keys.sorted().contains(coinType.uppercased()) ? Double(pricesByCoinType[coinType.uppercased()]!["price_usd"]!)! * assetByCoinType[coinType]!["amount"]! : 0.0
         
         cell.column3?.text = String(format: "$%.2f", totalValue)
         
-        cell.column0?.textAlignment = .left
+        //cell.column0?.textAlignment = .left
+        cell.column1?.numberOfLines = 0
+        cell.column2?.numberOfLines = 0
+        
         cell.column1?.textAlignment = .left
-        cell.column2?.textAlignment = .center
+        cell.column2?.textAlignment = .right
         cell.column3?.textAlignment = .center
         
         return cell

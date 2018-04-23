@@ -83,16 +83,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell = tableView.dequeueReusableCell(withIdentifier: "priceCell", for: indexPath as IndexPath) as! CoinPriceTableViewCell
         
         let priceData = self.coinPriceList[indexPath.row]
-        cell.column0?.text = String(format: "(%@)", priceData["symbol"]!)
-        cell.column1?.text = priceData["name"]
-        cell.column2?.text = String(format: "$%.4f", Double(priceData["price_usd"]!)!)
+        cell.coinNameColumn?.text = String(format: "%@\n(%@)", priceData["name"]!, priceData["symbol"]!)
+        cell.priceColumn?.text = String(format: "$%.4f", Double(priceData["price_usd"]!)!)
         let percentStr = String(format: "%@%%", priceData["percent_change_24h"]!)
-        cell.column3?.text = percentStr
+        cell.changePercentColumn?.text = percentStr
         
-        cell.column0?.textAlignment = .left
-        cell.column1?.textAlignment = .left
-        cell.column2?.textAlignment = .center
-        cell.column3?.textAlignment = .center
+        cell.coinNameColumn?.numberOfLines = 0
+        cell.coinNameColumn?.textAlignment = .left
+        cell.priceColumn?.textAlignment = .left
+        cell.changePercentColumn?.textAlignment = .center
         return cell
     }
     
