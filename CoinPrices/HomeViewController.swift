@@ -112,10 +112,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @objc func getPrices() {
         let top100TickersInfo = UserDefaults.standard.object(forKey: Constants.Top100CoinsKey) as! [[String: String]]
         
-        var top100Symbols = [String]()
-        for tickerInfo in top100TickersInfo {
-            top100Symbols.append(tickerInfo["symbol"]!)
-        }
+        let top100Symbols = top100TickersInfo.map{$0["symbol"]} as! [String]
         
         let session = URLSession(configuration: .ephemeral, delegate: nil, delegateQueue: OperationQueue.main)
         let url = URL(string: String(format: "%@%@", Constants.CoinPriceUrl, top100Symbols.joined(separator: ",")))!
