@@ -16,6 +16,9 @@ struct Constants {
     static let AssetByCoinDictKey = "com.jijunlu.j3.CoinPrices.AssetByCoinDict"
     static let Top100CoinsKey = "com.jijunlu.j3.CoinPrices.Top100Tickers"
     
+    // Notification names
+    static let NotificationOfPriceUpdateKey = "com.jijunlu.j3.CoinPrices.NotificationOfPriceUpdate"
+    
     // URLs
     static let CoinTickerUrl = "https://api.coinmarketcap.com/v1/ticker/"
     static let RssFeedUrl = "https://min-api.cryptocompare.com/data/news/?lang=EN"

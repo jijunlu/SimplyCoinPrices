@@ -83,16 +83,15 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell = tableView.dequeueReusableCell(withIdentifier: "priceCell", for: indexPath as IndexPath) as! CoinPriceTableViewCell
         
         let priceData = self.coinPriceList[indexPath.row]
-        cell.column0?.text = String(format: "(%@)", priceData["symbol"]!)
-        cell.column1?.text = priceData["name"]
-        cell.column2?.text = String(format: "$%.4f", Double(priceData["price_usd"]!)!)
+        cell.coinNameColumn?.text = String(format: "%@\n(%@)", priceData["name"]!, priceData["symbol"]!)
+        cell.priceColumn?.text = String(format: "$%.4f", Double(priceData["price_usd"]!)!)
         let percentStr = String(format: "%@%%", priceData["percent_change_24h"]!)
-        cell.column3?.text = percentStr
+        cell.changePercentColumn?.text = percentStr
         
-        cell.column0?.textAlignment = .left
-        cell.column1?.textAlignment = .left
-        cell.column2?.textAlignment = .center
-        cell.column3?.textAlignment = .center
+        cell.coinNameColumn?.numberOfLines = 0
+        cell.coinNameColumn?.textAlignment = .left
+        cell.priceColumn?.textAlignment = .left
+        cell.changePercentColumn?.textAlignment = .center
         return cell
     }
     
@@ -113,10 +112,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     @objc func getPrices() {
         let top100TickersInfo = UserDefaults.standard.object(forKey: Constants.Top100CoinsKey) as! [[String: String]]
         
-        var top100Symbols = [String]()
-        for tickerInfo in top100TickersInfo {
-            top100Symbols.append(tickerInfo["symbol"]!)
-        }
+        let top100Symbols = top100TickersInfo.map{$0["symbol"]} as! [String]
         
         let session = URLSession(configuration: .ephemeral, delegate: nil, delegateQueue: OperationQueue.main)
         let url = URL(string: String(format: "%@%@", Constants.CoinPriceUrl, top100Symbols.joined(separator: ",")))!
@@ -151,6 +147,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             self.coinPriceList = arrayOfDict
             UserDefaults.standard.set(arrayOfDict, forKey: Constants.CoinPricesKey)
+            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: Constants.NotificationOfPriceUpdateKey), object: nil)
             
             self.pricesTableView.reloadData()
             
