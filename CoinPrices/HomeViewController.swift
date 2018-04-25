@@ -148,6 +148,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
             self.coinPriceList = arrayOfDict
             UserDefaults.standard.set(arrayOfDict, forKey: Constants.CoinPricesKey)
             
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: Constants.NotificationOfPriceUpdateKey), object: nil)
+            
             self.pricesTableView.reloadData()
             
         })

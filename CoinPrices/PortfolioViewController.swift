@@ -32,6 +32,7 @@ class PortfolioViewController: UIViewController, UITableViewDataSource, UITableV
         
         calculatePortfolioTotal()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(OnNotificationOfPriceUpdate(notification:)), name: NSNotification.Name(rawValue: Constants.NotificationOfPriceUpdateKey), object: nil)
         
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
@@ -40,6 +41,10 @@ class PortfolioViewController: UIViewController, UITableViewDataSource, UITableV
         initAdMobBanner()
     }
 
+    @objc func OnNotificationOfPriceUpdate(notification: NSNotification) {
+        calculatePortfolioTotal()
+    }
+    
     
     @objc func refresh(refreshControl: UIRefreshControl) {
         getPrices()
