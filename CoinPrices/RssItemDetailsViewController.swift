@@ -14,8 +14,10 @@ class RssItemDetailsViewController: UIViewController {
 
     @IBOutlet weak var rssItemDetailsWebKitView: WKWebView!
     @IBOutlet weak var adBanner: GADBannerView!
+    @IBOutlet weak var navBar: UINavigationBar!
     
     var urlStr = String()
+    var sourceAgency = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +25,8 @@ class RssItemDetailsViewController: UIViewController {
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(self.respondToSwipeGesture))
         swipeRight.direction = UISwipeGestureRecognizerDirection.right
         self.view.addGestureRecognizer(swipeRight)
+        
+        navBar.topItem?.title = sourceAgency
         
         let url = URL(string:urlStr)
         let request = URLRequest(url:url!)
