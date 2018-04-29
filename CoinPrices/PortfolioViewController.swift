@@ -32,71 +32,13 @@ class PortfolioViewController: UIViewController, UITableViewDataSource, UITableV
         
         calculatePortfolioTotal()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(OnNotificationOfPriceUpdate(notification:)), name: NSNotification.Name(rawValue: Constants.NotificationOfPriceUpdateKey), object: nil)
-        
-        let refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
-        self.wrapperScrollView.refreshControl = refreshControl
-        
         initAdMobBanner()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(OnNotificationOfPriceUpdate(notification:)), name: NSNotification.Name(rawValue: Constants.NotificationOfPriceUpdateKey), object: nil)
     }
 
     @objc func OnNotificationOfPriceUpdate(notification: NSNotification) {
         calculatePortfolioTotal()
-    }
-    
-    
-    @objc func refresh(refreshControl: UIRefreshControl) {
-        getPrices()
-        
-        refreshControl.endRefreshing()
-    }
-    
-    
-    @objc func getPrices() {
-        let top100TickerInfo = UserDefaults.standard.object(forKey: Constants.Top100CoinsKey) as! [[String: String]]
-        var top100Symbols = [String]()
-        for ticker in top100TickerInfo {
-            top100Symbols.append(ticker["symbol"]!)
-        }
-        
-        
-        let session = URLSession(configuration: .ephemeral, delegate: nil, delegateQueue: OperationQueue.main)
-        let url = URL(string: String(format: "%@%@", Constants.CoinPriceUrl, top100Symbols.joined(separator: ",")))!
-        
-        let task = session.dataTask(with: url, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
-            guard let data = data else {
-                print("!!!!!!!!!!!!!!!! data error !!!!!!!!!!!!!!!")
-                return
-            }
-            
-            let json = try? JSONSerialization.jsonObject(with: data, options: [])
-            
-            let jsonDict = json as! [String:Any]
-            let displayDict = jsonDict["RAW"] as! [String:Any]
-            
-            var arrayOfDict = [[String: String]]()
-            for ticker in top100TickerInfo {
-                if(!displayDict.keys.contains(ticker["symbol"]!)) {
-                    continue
-                }
-                
-                let fullTickerData = displayDict[ticker["symbol"]!] as! [String: Any]
-                let usdData = fullTickerData["USD"] as? [String:Any]
-                
-                arrayOfDict.append([
-                    "name": ticker["name"]!,
-                    "symbol": ticker["symbol"]!,
-                    "price_usd": Utils.parsePriceFromJson(priceVal: usdData!["PRICE"]!),
-                    "percent_change_24h": String(format:"%.2f", usdData!["CHANGEPCT24HOUR"] as! Double)
-                    ])
-            }
-            
-            UserDefaults.standard.set(arrayOfDict, forKey: Constants.CoinPricesKey)
-            
-            self.calculatePortfolioTotal()
-        })
-        task.resume()
     }
     
     func initAdMobBanner() {
@@ -117,19 +59,8 @@ class PortfolioViewController: UIViewController, UITableViewDataSource, UITableV
         return 1
     }
     
-    func getSavedCoinPriceDict() -> [String: [String: String]] {
-        let savedCoinPrices = UserDefaults.standard.object(forKey: Constants.CoinPricesKey) as! [[String: String]]
-        
-        var coinPriceDict = [String: [String: String]]()
-        for coinPrice in savedCoinPrices {
-            coinPriceDict[coinPrice["symbol"]!] = coinPrice
-        }
-        
-        return coinPriceDict
-    }
-    
     func calculatePortfolioTotal() -> Void {
-        let savedCoinPriceDict =  getSavedCoinPriceDict()
+        let savedCoinPriceDict =  Utils.getSavedCoinPriceDict()
         
         assetByCoinType = getAssetDict()
         assetCoinTypes = assetByCoinType.keys.sorted()
@@ -138,7 +69,7 @@ class PortfolioViewController: UIViewController, UITableViewDataSource, UITableV
         var totalCost: Double = 0
         for (coin, amountAndCostBase) in assetByCoinType {
             if(savedCoinPriceDict.keys.contains(coin.uppercased())){
-                totalUsd += amountAndCostBase["amount"]! * Double(savedCoinPriceDict[coin.uppercased()]!["price_usd"]!)!
+                totalUsd += amountAndCostBase["amount"]! * Double(savedCoinPriceDict[coin.uppercased()]!["price"]!)!
                 totalCost += amountAndCostBase["costBase"]!
             }
         }
@@ -154,15 +85,15 @@ class PortfolioViewController: UIViewController, UITableViewDataSource, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "portfolioCell", for: indexPath as IndexPath) as! PortfolioTableViewCell
         
-        let pricesByCoinType = getSavedCoinPriceDict()
+        let pricesByCoinType = Utils.getSavedCoinPriceDict()
         
         let coinType = self.assetCoinTypes[indexPath.row]
         //cell.column0?.text = pricesByCoinType[coinType]?["name"]
         cell.column1?.text = String(format: "%@\n(%@)", (pricesByCoinType[coinType]?["name"])!, coinType)
-        cell.column2?.text = String(format:"%.4f\n@ $%@", assetByCoinType[coinType]!["amount"]!, pricesByCoinType[coinType.uppercased()]!["price_usd"]!)
+        cell.column2?.text = String(format:"%.4f\n@ $%@", assetByCoinType[coinType]!["amount"]!, pricesByCoinType[coinType.uppercased()]!["price"]!)
         
         
-        let totalValue = pricesByCoinType.keys.sorted().contains(coinType.uppercased()) ? Double(pricesByCoinType[coinType.uppercased()]!["price_usd"]!)! * assetByCoinType[coinType]!["amount"]! : 0.0
+        let totalValue = pricesByCoinType.keys.sorted().contains(coinType.uppercased()) ? Double(pricesByCoinType[coinType.uppercased()]!["price"]!)! * assetByCoinType[coinType]!["amount"]! : 0.0
         
         cell.column3?.text = String(format: "$%.2f", totalValue)
         
@@ -185,7 +116,7 @@ class PortfolioViewController: UIViewController, UITableViewDataSource, UITableV
         
         let editPortfolioViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "editPortfolioViewController") as! PortfolioPopUpViewController
         
-        let pricesByCoinType = getSavedCoinPriceDict()
+        let pricesByCoinType = Utils.getSavedCoinPriceDict()
         
         editPortfolioViewController.inputCoinName = pricesByCoinType[coinType]!["name"]!
         editPortfolioViewController.inputCoinAmount = coinAmount!

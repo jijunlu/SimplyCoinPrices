@@ -10,7 +10,7 @@ import UIKit
 import Charts
 import GoogleMobileAds
 
-class PriceDiagramViewController: UIViewController {
+class PriceChartViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var chartView: LineChartView!
     @IBOutlet weak var wrapperScrollView: UIScrollView!
@@ -25,17 +25,28 @@ class PriceDiagramViewController: UIViewController {
     @IBOutlet weak var pick1yButton: UIButton!
     @IBOutlet weak var pick5yButton: UIButton!
     
-    @IBOutlet weak var diagramTitleLabel: UILabel!
     @IBOutlet weak var adBanner: GADBannerView!
     @IBOutlet weak var priceChartNavBar: UINavigationBar!
     
+    @IBOutlet weak var priceInfoTableView: UITableView!
     var dataRangeButtons = [UIButton?]()
     
-    var inputCoinType = String()
+    var inputCoinSymbol = String()
     var inputCoinName = String()
+    
+    var priceInfoDict = [String: String]()
+    var priceInfoDictKeysSorted = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        priceInfoDict = Utils.getSavedCoinPriceDict()[inputCoinSymbol]!
+        priceInfoDictKeysSorted = priceInfoDict.keys.sorted().reversed()
+        
+        priceInfoTableView.dataSource = self
+        priceInfoTableView.delegate = self
+        
+        priceChartNavBar.topItem?.title = String(format: "%@ (%@) Price Chart", self.inputCoinName, self.inputCoinSymbol.uppercased())
         
         dataRangeButtons = [pick1hButton, pick4hButton, pick1dButton, pick1wButton, pick1mButton, pick1yButton, pick5yButton]
         
@@ -50,10 +61,17 @@ class PriceDiagramViewController: UIViewController {
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         self.wrapperScrollView.refreshControl = refreshControl
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(OnNotificationOfPriceUpdate(notification:)), name: NSNotification.Name(rawValue: Constants.NotificationOfPriceUpdateKey), object: nil)
 
         initAdMobBanner()
     }
     
+    @objc func OnNotificationOfPriceUpdate(notification: NSNotification) {
+        priceInfoDict = Utils.getSavedCoinPriceDict()[inputCoinSymbol]!
+        priceInfoTableView.reloadData()
+    }
+
     @objc func respondToSwipeGesture(gesture: UIGestureRecognizer) {
         if let swipeGesture = gesture as? UISwipeGestureRecognizer {
             switch swipeGesture.direction {
@@ -68,6 +86,9 @@ class PriceDiagramViewController: UIViewController {
     @objc func refresh(refreshControl: UIRefreshControl) {
         loadCoinDetails()
 
+        priceInfoDict = Utils.getSavedCoinPriceDict()[inputCoinSymbol]!
+        priceInfoTableView.reloadData()
+        
         refreshControl.endRefreshing()
     }
     
@@ -142,30 +163,30 @@ class PriceDiagramViewController: UIViewController {
     func loadCoinDetails() -> Void {
         let historicalDataRange = getSavedDataRange()
         
-        var urlStr = String(format: "https://min-api.cryptocompare.com/data/histominute?fsym=%@&tsym=USD&limit=60", inputCoinType.uppercased())
+        var urlStr = String(format: "https://min-api.cryptocompare.com/data/histominute?fsym=%@&tsym=USD&limit=60", inputCoinSymbol.uppercased())
         
         switch historicalDataRange {
         case "1h":
             setSelectedButton(sender: pick1hButton)
-            urlStr = String(format: "https://min-api.cryptocompare.com/data/histominute?fsym=%@&tsym=USD&limit=60", inputCoinType.uppercased())
+            urlStr = String(format: "https://min-api.cryptocompare.com/data/histominute?fsym=%@&tsym=USD&limit=60", inputCoinSymbol.uppercased())
         case "4h":
             setSelectedButton(sender: pick4hButton)
-            urlStr = String(format: "https://min-api.cryptocompare.com/data/histominute?fsym=%@&tsym=USD&limit=240", inputCoinType.uppercased())
+            urlStr = String(format: "https://min-api.cryptocompare.com/data/histominute?fsym=%@&tsym=USD&limit=240", inputCoinSymbol.uppercased())
         case "1d":
             setSelectedButton(sender: pick1dButton)
-            urlStr = String(format: "https://min-api.cryptocompare.com/data/histominute?fsym=%@&tsym=USD&limit=1440", inputCoinType.uppercased())
+            urlStr = String(format: "https://min-api.cryptocompare.com/data/histominute?fsym=%@&tsym=USD&limit=1440", inputCoinSymbol.uppercased())
         case "1w":
             setSelectedButton(sender: pick1wButton)
-            urlStr = String(format: "https://min-api.cryptocompare.com/data/histohour?fsym=%@&tsym=USD&limit=168", inputCoinType)
+            urlStr = String(format: "https://min-api.cryptocompare.com/data/histohour?fsym=%@&tsym=USD&limit=168", inputCoinSymbol)
         case "1m":
             setSelectedButton(sender: pick1mButton)
-            urlStr = String(format: "https://min-api.cryptocompare.com/data/histohour?fsym=%@&tsym=USD&limit=720", inputCoinType)
+            urlStr = String(format: "https://min-api.cryptocompare.com/data/histohour?fsym=%@&tsym=USD&limit=720", inputCoinSymbol)
         case "1y":
             setSelectedButton(sender: pick1yButton)
-            urlStr = String(format: "https://min-api.cryptocompare.com/data/histoday?fsym=%@&tsym=USD&limit=365", inputCoinType)
+            urlStr = String(format: "https://min-api.cryptocompare.com/data/histoday?fsym=%@&tsym=USD&limit=365", inputCoinSymbol)
         case "5y":
             setSelectedButton(sender: pick5yButton)
-            urlStr = String(format: "https://min-api.cryptocompare.com/data/histoday?fsym=%@&tsym=USD&limit=1825", inputCoinType)
+            urlStr = String(format: "https://min-api.cryptocompare.com/data/histoday?fsym=%@&tsym=USD&limit=1825", inputCoinSymbol)
         default:
             setSelectedButton(sender: pick1hButton)
         }
@@ -190,8 +211,6 @@ class PriceDiagramViewController: UIViewController {
                 dataEntries.append(ChartDataEntry(x: Double(price.time), y: Double(price.close)))
             }
             
-            self.diagramTitleLabel.text = String(format: "Latest %@ (%@) price: $ %.4f", self.inputCoinName, self.inputCoinType.uppercased(), Double(priceByMinutes.Data[priceByMinutes.Data.count - 1].close))
-            
             let chartDataSet = LineChartDataSet(values: dataEntries, label: "Prices")
             chartDataSet.colors = [UIColor.blue]
             chartDataSet.drawCirclesEnabled = false
@@ -209,6 +228,26 @@ class PriceDiagramViewController: UIViewController {
         super.didReceiveMemoryWarning()
     }
     
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return priceInfoDict.keys.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "chartCell", for: indexPath as IndexPath) as! PriceChartTableViewCell
+        
+        let key = self.priceInfoDictKeysSorted[indexPath.row]
+        cell.keyLabel?.text = key.uppercased()
+        cell.valueLabel?.text =  self.priceInfoDict[key]
+        
+        cell.keyLabel?.textAlignment = .left
+        cell.valueLabel?.textAlignment = .right
+        return cell
+    }
+
     
     func configChartView() -> Void {
         chartView.noDataText = ""
