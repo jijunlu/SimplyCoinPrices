@@ -59,7 +59,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="30" minValue="10" maxValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="r4U-nN-b1G">
+                                                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="10" minValue="5" maxValue="60" translatesAutoresizingMaskIntoConstraints="NO" id="r4U-nN-b1G">
                                                     <rect key="frame" x="30" y="15" width="315" height="16"/>
                                                     <connections>
                                                         <action selector="onUpdateIntervalSliderChanged:" destination="ceJ-Lv-ohN" eventType="valueChanged" id="IgE-1Y-ugW"/>

@@ -29,7 +29,7 @@ struct Constants {
     static let AdMobApplicationId = "ca-app-pub-4258982541138576~2955444711"
     
     // App settings
-    static let DefaultUpdateInterval : Float = 30
+    static let DefaultUpdateInterval : Float = 10
     static let UpdateIntervalStep : Float = 5
     static let HistoricalDataRanges: [Int] = [
         60,

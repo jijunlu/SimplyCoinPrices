@@ -47,17 +47,11 @@ class PriceDiagramViewController: UIViewController {
         
         loadCoinDetails()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(OnNotificationOfPriceUpdate(notification:)), name: NSNotification.Name(rawValue: Constants.NotificationOfPriceUpdateKey), object: nil)
-        
         let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         self.wrapperScrollView.refreshControl = refreshControl
 
         initAdMobBanner()
-    }
-    
-    @objc func OnNotificationOfPriceUpdate(notification: NSNotification) {
-        loadCoinDetails()
     }
     
     @objc func respondToSwipeGesture(gesture: UIGestureRecognizer) {
