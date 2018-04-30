@@ -18,6 +18,10 @@ public class Utils {
         }
     }
     
+    static func get4PrecisionPriceString(priceInfo: Double, prefix: String = "", suffix: String = "") -> String {
+        return String(format:"%@%.4f%@", prefix, priceInfo, suffix)
+    }
+    
     static func dismissFromLeft(sender: UIViewController) {
         let transition = CATransition()
         transition.duration = 0.25
@@ -26,5 +30,16 @@ public class Utils {
         transition.subtype = kCATransitionFromLeft
         sender.view.layer.add(transition, forKey: "leftToRightTransition")
         sender.dismiss(animated: true, completion: nil)
+    }
+    
+    static func getSavedCoinPriceDict() -> [String: [String: String]] {
+        let savedCoinPrices = UserDefaults.standard.object(forKey: Constants.CoinPricesKey) as! [[String: String]]
+        
+        var coinPriceDict = [String: [String: String]]()
+        for coinPrice in savedCoinPrices {
+            coinPriceDict[coinPrice["symbol"]!] = coinPrice
+        }
+        
+        return coinPriceDict
     }
 }

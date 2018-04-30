@@ -84,8 +84,8 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let priceData = self.coinPriceList[indexPath.row]
         cell.coinNameColumn?.text = String(format: "%@\n(%@)", priceData["name"]!, priceData["symbol"]!)
-        cell.priceColumn?.text = String(format: "$%.4f", Double(priceData["price_usd"]!)!)
-        let percentStr = String(format: "%@%%", priceData["percent_change_24h"]!)
+        cell.priceColumn?.text = String(format: "$%.4f", Double(priceData["price"]!)!)
+        let percentStr = String(format: "%@", priceData["CHANGEPCTDAY"]!)
         cell.changePercentColumn?.text = percentStr
         
         cell.coinNameColumn?.numberOfLines = 0
@@ -98,9 +98,9 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let priceData = self.coinPriceList[indexPath.row]
         
-        let coinDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "coinDetailsViewController") as! PriceDiagramViewController
+        let coinDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "coinDetailsViewController") as! PriceChartViewController
         
-        coinDetailsViewController.inputCoinType = priceData["symbol"]!
+        coinDetailsViewController.inputCoinSymbol = priceData["symbol"]!
         coinDetailsViewController.inputCoinName = priceData["name"]!
         
         showDetailViewController(coinDetailsViewController, sender: self)
@@ -140,8 +140,22 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                 arrayOfDict.append([
                     "name": ticker["name"]!,
                     "symbol": ticker["symbol"]!,
-                    "price_usd": Utils.parsePriceFromJson(priceVal: usdData!["PRICE"]!),
-                    "percent_change_24h": String(format:"%.2f", usdData!["CHANGEPCT24HOUR"] as! Double)
+                    "price": Utils.parsePriceFromJson(priceVal: usdData!["PRICE"]!),
+                    "CHANGEPCTDAY": Utils.get4PrecisionPriceString(priceInfo: usdData!["CHANGEPCTDAY"] as! Double, suffix: "%"),
+                    "VOLUMEDAY": Utils.get4PrecisionPriceString(priceInfo: usdData!["VOLUMEDAY"] as! Double),
+                    "VOLUME24HOUR": Utils.get4PrecisionPriceString(priceInfo: usdData!["VOLUME24HOUR"] as! Double),
+                    "OPENDAY": Utils.get4PrecisionPriceString(priceInfo: usdData!["OPENDAY"] as! Double, prefix: "$"),
+                    "HIGHDAY": Utils.get4PrecisionPriceString(priceInfo: usdData!["HIGHDAY"] as! Double, prefix: "$"),
+                    "LOWDAY": Utils.get4PrecisionPriceString(priceInfo: usdData!["LOWDAY"] as! Double, prefix: "$"),
+                    "OPEN24HOUR": Utils.get4PrecisionPriceString(priceInfo: usdData!["OPEN24HOUR"] as! Double, prefix: "$"),
+                    "HIGH24HOUR": Utils.get4PrecisionPriceString(priceInfo: usdData!["HIGH24HOUR"] as! Double, prefix: "$"),
+                    "LOW24HOUR": Utils.get4PrecisionPriceString(priceInfo: usdData!["LOW24HOUR"] as! Double, prefix: "$"),
+                    "CHANGE24HOUR": Utils.get4PrecisionPriceString(priceInfo: usdData!["CHANGE24HOUR"] as! Double, prefix: "$"),
+                    "CHANGEPCT24HOUR": Utils.get4PrecisionPriceString(priceInfo: usdData!["CHANGEPCT24HOUR"] as! Double, suffix: "%"),
+                    "CHANGEDAY": Utils.get4PrecisionPriceString(priceInfo: usdData!["CHANGEDAY"] as! Double, prefix: "$"),
+                    "SUPPLY": Utils.get4PrecisionPriceString(priceInfo: usdData!["SUPPLY"] as! Double),
+                    "MKTCAP": Utils.get4PrecisionPriceString(priceInfo: usdData!["MKTCAP"] as! Double, prefix: "$"),
+                    "TOTALVOLUME24H": Utils.get4PrecisionPriceString(priceInfo: usdData!["TOTALVOLUME24H"] as! Double),
                     ])
             }
             

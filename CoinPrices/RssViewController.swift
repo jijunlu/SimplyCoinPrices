@@ -116,12 +116,12 @@ class RssViewController: UIViewController, UITableViewDataSource, UITableViewDel
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-     let newItem = newsItems[indexPath.row]
-     let url = newItem.url
+        let currentItem = newsItems[indexPath.row]
      
         let rssItemDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "rssItemDetailsVC") as! RssItemDetailsViewController
      
-        rssItemDetailsViewController.urlStr = url
+        rssItemDetailsViewController.urlStr = currentItem.url
+        rssItemDetailsViewController.sourceAgency = currentItem.source_info.name
         
         showDetailViewController(rssItemDetailsViewController, sender: self)
      }
