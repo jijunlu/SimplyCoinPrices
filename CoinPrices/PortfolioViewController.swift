@@ -109,10 +109,22 @@ class PortfolioViewController: UIViewController, UITableViewDataSource, UITableV
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let pricesByCoinType = Utils.getSavedCoinPriceDict()
+        
+        let coinSymbol = self.assetCoinTypes[indexPath.row]
+        let coinName = pricesByCoinType[coinSymbol]?["name"]
+        
+        let coinDetailsViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "coinDetailsViewController") as! PriceChartViewController
+        
+        coinDetailsViewController.inputCoinSymbol = coinSymbol
+        coinDetailsViewController.inputCoinName = coinName!
+        
+        showDetailViewController(coinDetailsViewController, sender: self)
+        
+        /*
         let coinType = self.assetCoinTypes[indexPath.row]
         let coinAmount = assetByCoinType[coinType] != nil ? assetByCoinType[coinType]!["amount"] : 0.0
         let costBase = assetByCoinType[coinType] != nil ? assetByCoinType[coinType]!["costBase"] : 0.0
-
         
         let editPortfolioViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "editPortfolioViewController") as! PortfolioPopUpViewController
         
@@ -123,6 +135,7 @@ class PortfolioViewController: UIViewController, UITableViewDataSource, UITableV
         editPortfolioViewController.inputCostBase = costBase!
         
         showDetailViewController(editPortfolioViewController, sender: self)
+        */
     }
  
     func getAssetDict() -> [String: [String:Double]] {
