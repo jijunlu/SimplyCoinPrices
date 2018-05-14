@@ -121,6 +121,8 @@ class PortfolioPopUpViewController: UIViewController, UIPickerViewDelegate, UIPi
         let amountAndCost = assetByCoinDict[selectedCoin!]!
         self.coinAmountText.text = String(amountAndCost["amount"]!)
         self.costBaseText.text = String(amountAndCost["costBase"]!)
+        
+        self.view.endEditing(true)
     }
     
     @IBAction func onClose(_ sender: Any) {

@@ -773,56 +773,56 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Wn-52-vXe">
-                                <rect key="frame" x="0.0" y="114" width="375" height="553"/>
+                                <rect key="frame" x="0.0" y="160" width="379" height="507"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ols-37-QmD" customClass="LineChartView" customModule="Charts">
-                                        <rect key="frame" x="16" y="15" width="343" height="230"/>
+                                        <rect key="frame" x="16" y="8" width="343" height="237"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vcZ-fA-qI6">
-                                        <rect key="frame" x="58" y="253" width="30" height="30"/>
+                                        <rect key="frame" x="58.5" y="253" width="30" height="30"/>
                                         <state key="normal" title="1h"/>
                                         <connections>
                                             <action selector="onPick1h:" destination="Okk-Pf-zic" eventType="touchUpInside" id="agb-Aq-qxw"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dwY-fA-JRf">
-                                        <rect key="frame" x="96" y="253" width="30" height="30"/>
+                                        <rect key="frame" x="96.5" y="253" width="30" height="30"/>
                                         <state key="normal" title="4h"/>
                                         <connections>
                                             <action selector="onPick4h:" destination="Okk-Pf-zic" eventType="touchUpInside" id="iQO-cy-pmz"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zbu-MT-9JT">
-                                        <rect key="frame" x="134" y="253" width="30" height="30"/>
+                                        <rect key="frame" x="134.5" y="253" width="30" height="30"/>
                                         <state key="normal" title="1d"/>
                                         <connections>
                                             <action selector="onPick1d:" destination="Okk-Pf-zic" eventType="touchUpInside" id="meB-3Z-vDu"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4nS-YB-AoC">
-                                        <rect key="frame" x="172" y="253" width="30" height="30"/>
+                                        <rect key="frame" x="172.5" y="253" width="30" height="30"/>
                                         <state key="normal" title="1w"/>
                                         <connections>
                                             <action selector="onPick1w:" destination="Okk-Pf-zic" eventType="touchUpInside" id="UcA-RE-hE6"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aDK-lv-pqT">
-                                        <rect key="frame" x="210" y="253" width="30" height="30"/>
+                                        <rect key="frame" x="210.5" y="253" width="30" height="30"/>
                                         <state key="normal" title="1m"/>
                                         <connections>
                                             <action selector="onPick1m:" destination="Okk-Pf-zic" eventType="touchUpInside" id="1Bi-FL-6yy"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hYW-yf-rTo">
-                                        <rect key="frame" x="248" y="253" width="30" height="30"/>
+                                        <rect key="frame" x="248.5" y="253" width="30" height="30"/>
                                         <state key="normal" title="1y"/>
                                         <connections>
                                             <action selector="onPick1y:" destination="Okk-Pf-zic" eventType="touchUpInside" id="FKv-o1-vKU"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bcp-XG-nQh">
-                                        <rect key="frame" x="286" y="253" width="30" height="30"/>
+                                        <rect key="frame" x="286.5" y="253" width="30" height="30"/>
                                         <state key="normal" title="5y"/>
                                         <connections>
                                             <action selector="onPick1y:" destination="Okk-Pf-zic" eventType="touchUpInside" id="trV-JC-z7y"/>
@@ -830,14 +830,14 @@
                                         </connections>
                                     </button>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="qfI-gw-38G">
-                                        <rect key="frame" x="16" y="318" width="343" height="227"/>
+                                        <rect key="frame" x="18" y="299" width="341" height="200"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="chartCell" id="Je7-01-Lhp" customClass="PriceChartTableViewCell" customModule="CoinPrices" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="343" height="44"/>
+                                                <rect key="frame" x="0.0" y="28" width="341" height="44"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Je7-01-Lhp" id="vbv-2X-jDq">
-                                                    <rect key="frame" x="0.0" y="0.0" width="343" height="43.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="341" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q2T-m4-mmP">
@@ -869,7 +869,7 @@
                                     </tableView>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="qfI-gw-38G" secondAttribute="trailing" constant="16" id="3k4-vX-bID"/>
+                                    <constraint firstAttribute="trailing" secondItem="qfI-gw-38G" secondAttribute="trailing" constant="20" id="3k4-vX-bID"/>
                                     <constraint firstItem="Ols-37-QmD" firstAttribute="leading" secondItem="0Wn-52-vXe" secondAttribute="leading" constant="16" id="6h0-X7-150"/>
                                     <constraint firstItem="hYW-yf-rTo" firstAttribute="leading" secondItem="aDK-lv-pqT" secondAttribute="trailing" constant="8" symbolic="YES" id="8G5-88-NlJ"/>
                                     <constraint firstItem="dwY-fA-JRf" firstAttribute="leading" secondItem="vcZ-fA-qI6" secondAttribute="trailing" constant="8" symbolic="YES" id="BIO-HQ-wdv"/>
@@ -878,19 +878,19 @@
                                     <constraint firstItem="Zbu-MT-9JT" firstAttribute="baseline" secondItem="vcZ-fA-qI6" secondAttribute="baseline" id="NGr-fN-jFp"/>
                                     <constraint firstItem="Zbu-MT-9JT" firstAttribute="baseline" secondItem="hYW-yf-rTo" secondAttribute="baseline" id="PrX-fW-Rpf"/>
                                     <constraint firstItem="Zbu-MT-9JT" firstAttribute="baseline" secondItem="dwY-fA-JRf" secondAttribute="baseline" id="SbD-oY-3Uu"/>
-                                    <constraint firstItem="qfI-gw-38G" firstAttribute="leading" secondItem="0Wn-52-vXe" secondAttribute="leading" constant="16" id="UdE-WE-5gI"/>
+                                    <constraint firstItem="qfI-gw-38G" firstAttribute="leading" secondItem="0Wn-52-vXe" secondAttribute="leading" constant="18" id="UdE-WE-5gI"/>
                                     <constraint firstItem="4nS-YB-AoC" firstAttribute="baseline" secondItem="Zbu-MT-9JT" secondAttribute="baseline" id="Uj7-co-hGE"/>
                                     <constraint firstItem="4nS-YB-AoC" firstAttribute="leading" secondItem="Zbu-MT-9JT" secondAttribute="trailing" constant="8" symbolic="YES" id="Xeg-D5-xC4"/>
                                     <constraint firstItem="4nS-YB-AoC" firstAttribute="centerX" secondItem="Ols-37-QmD" secondAttribute="centerX" id="XwO-Ks-FeM"/>
                                     <constraint firstItem="Zbu-MT-9JT" firstAttribute="baseline" secondItem="aDK-lv-pqT" secondAttribute="baseline" id="Yg1-1i-g86"/>
-                                    <constraint firstItem="Ols-37-QmD" firstAttribute="centerX" secondItem="0Wn-52-vXe" secondAttribute="centerX" id="ZEz-sL-aOl"/>
-                                    <constraint firstAttribute="trailing" secondItem="Ols-37-QmD" secondAttribute="trailing" constant="16" id="aqL-7B-0CM"/>
+                                    <constraint firstItem="Ols-37-QmD" firstAttribute="centerX" secondItem="0Wn-52-vXe" secondAttribute="centerX" constant="-2" id="ZEz-sL-aOl"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ols-37-QmD" secondAttribute="trailing" constant="20" id="aqL-7B-0CM"/>
                                     <constraint firstItem="Zbu-MT-9JT" firstAttribute="baseline" secondItem="bcp-XG-nQh" secondAttribute="baseline" id="hYk-jn-dkn"/>
-                                    <constraint firstItem="qfI-gw-38G" firstAttribute="top" secondItem="4nS-YB-AoC" secondAttribute="bottom" constant="35" id="hha-rP-wuY"/>
-                                    <constraint firstItem="qfI-gw-38G" firstAttribute="centerX" secondItem="0Wn-52-vXe" secondAttribute="centerX" id="n13-tb-fDF"/>
+                                    <constraint firstItem="qfI-gw-38G" firstAttribute="top" secondItem="4nS-YB-AoC" secondAttribute="bottom" constant="16" id="hha-rP-wuY"/>
+                                    <constraint firstItem="qfI-gw-38G" firstAttribute="centerX" secondItem="0Wn-52-vXe" secondAttribute="centerX" constant="-1" id="n13-tb-fDF"/>
                                     <constraint firstItem="4nS-YB-AoC" firstAttribute="top" secondItem="Ols-37-QmD" secondAttribute="bottom" constant="8" symbolic="YES" id="s1w-o3-mJN"/>
                                     <constraint firstAttribute="bottom" secondItem="qfI-gw-38G" secondAttribute="bottom" constant="8" id="tkR-lM-4uI"/>
-                                    <constraint firstAttribute="bottom" secondItem="4nS-YB-AoC" secondAttribute="bottom" constant="270" id="vQA-wO-14G"/>
+                                    <constraint firstAttribute="bottom" secondItem="4nS-YB-AoC" secondAttribute="bottom" constant="224" id="vQA-wO-14G"/>
                                     <constraint firstItem="4nS-YB-AoC" firstAttribute="top" secondItem="0Wn-52-vXe" secondAttribute="top" constant="253" id="wU6-G0-Rft"/>
                                     <constraint firstItem="aDK-lv-pqT" firstAttribute="leading" secondItem="4nS-YB-AoC" secondAttribute="trailing" constant="8" symbolic="YES" id="yvN-gv-pSz"/>
                                 </constraints>
@@ -915,23 +915,39 @@
                                 </constraints>
                                 <viewLayoutGuide key="safeArea" id="GPj-NE-sAi"/>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select currency" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="USg-Vs-Jr7">
+                                <rect key="frame" x="19" y="127" width="121" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1ct-fB-ZSM">
+                                <rect key="frame" x="148" y="122" width="25" height="30"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Ols-37-QmD" firstAttribute="top" secondItem="BZU-VU-ycE" secondAttribute="top" constant="109" id="0HU-dj-ESf"/>
+                            <constraint firstItem="Ols-37-QmD" firstAttribute="top" secondItem="BZU-VU-ycE" secondAttribute="top" constant="148" id="0HU-dj-ESf"/>
                             <constraint firstItem="BZU-VU-ycE" firstAttribute="trailing" secondItem="Hii-qe-4Mo" secondAttribute="trailing" constant="27" id="0oE-4U-zjy"/>
                             <constraint firstItem="RSO-T5-Xn1" firstAttribute="leading" secondItem="9jC-vj-Qn6" secondAttribute="leading" id="2kg-Hy-ncX"/>
                             <constraint firstAttribute="bottom" secondItem="0Wn-52-vXe" secondAttribute="bottom" id="AhZ-YC-L1W"/>
+                            <constraint firstItem="USg-Vs-Jr7" firstAttribute="leading" secondItem="BZU-VU-ycE" secondAttribute="leading" constant="19" id="GaR-cR-ciC"/>
+                            <constraint firstItem="USg-Vs-Jr7" firstAttribute="top" secondItem="BZU-VU-ycE" secondAttribute="top" constant="107" id="P80-QC-xuM"/>
+                            <constraint firstItem="1ct-fB-ZSM" firstAttribute="top" secondItem="BZU-VU-ycE" secondAttribute="top" constant="102" id="Pcf-FT-H0R"/>
                             <constraint firstItem="Hii-qe-4Mo" firstAttribute="top" secondItem="BZU-VU-ycE" secondAttribute="top" id="S32-MV-euN"/>
-                            <constraint firstItem="0Wn-52-vXe" firstAttribute="trailing" secondItem="RSO-T5-Xn1" secondAttribute="trailing" id="XwZ-NW-BDp"/>
+                            <constraint firstItem="0Wn-52-vXe" firstAttribute="trailing" secondItem="RSO-T5-Xn1" secondAttribute="trailing" constant="4" id="XwZ-NW-BDp"/>
                             <constraint firstItem="RSO-T5-Xn1" firstAttribute="top" secondItem="Hii-qe-4Mo" secondAttribute="bottom" id="ZYr-vL-E0h"/>
                             <constraint firstItem="RSO-T5-Xn1" firstAttribute="centerX" secondItem="Hii-qe-4Mo" secondAttribute="centerX" id="blZ-IC-Ek9"/>
                             <constraint firstItem="Hii-qe-4Mo" firstAttribute="centerX" secondItem="9jC-vj-Qn6" secondAttribute="centerX" id="d5O-Oe-Idc"/>
                             <constraint firstItem="Hii-qe-4Mo" firstAttribute="leading" secondItem="BZU-VU-ycE" secondAttribute="leading" constant="27" id="huT-hi-CQY"/>
                             <constraint firstItem="Hii-qe-4Mo" firstAttribute="leading" secondItem="BZU-VU-ycE" secondAttribute="leading" constant="27" id="ilj-0C-QOW"/>
+                            <constraint firstItem="1ct-fB-ZSM" firstAttribute="leading" secondItem="USg-Vs-Jr7" secondAttribute="trailing" constant="8" id="kEu-co-LS7"/>
                             <constraint firstItem="0Wn-52-vXe" firstAttribute="leading" secondItem="RSO-T5-Xn1" secondAttribute="leading" id="kzl-ww-DCR"/>
                             <constraint firstItem="Hii-qe-4Mo" firstAttribute="top" secondItem="BZU-VU-ycE" secondAttribute="top" id="raG-CK-Sac"/>
-                            <constraint firstItem="0Wn-52-vXe" firstAttribute="top" secondItem="RSO-T5-Xn1" secondAttribute="bottom" id="vHm-nf-Jn0"/>
+                            <constraint firstItem="0Wn-52-vXe" firstAttribute="top" secondItem="RSO-T5-Xn1" secondAttribute="bottom" constant="46" id="vHm-nf-Jn0"/>
                             <constraint firstItem="Hii-qe-4Mo" firstAttribute="top" secondItem="BZU-VU-ycE" secondAttribute="top" id="zTN-cd-PBz"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="BZU-VU-ycE"/>
@@ -939,6 +955,7 @@
                     <connections>
                         <outlet property="adBanner" destination="Hii-qe-4Mo" id="xhj-sK-Pgo"/>
                         <outlet property="chartView" destination="Ols-37-QmD" id="EcD-iC-kKv"/>
+                        <outlet property="currencyTextField" destination="1ct-fB-ZSM" id="fbO-iA-nSF"/>
                         <outlet property="pick1dButton" destination="Zbu-MT-9JT" id="JLo-fc-DuP"/>
                         <outlet property="pick1hButton" destination="vcZ-fA-qI6" id="cJb-Do-W3L"/>
                         <outlet property="pick1mButton" destination="aDK-lv-pqT" id="ZDO-9Y-UsY"/>

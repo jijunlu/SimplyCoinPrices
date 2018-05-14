@@ -10,12 +10,13 @@ import UIKit
 import Charts
 import GoogleMobileAds
 
-class PriceChartViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class PriceChartViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
     @IBOutlet weak var chartView: LineChartView!
     @IBOutlet weak var wrapperScrollView: UIScrollView!
     @IBOutlet weak var sliderView: UISlider!
     @IBOutlet weak var historicalDataRangeLabel: UILabel!
+    @IBOutlet weak var currencyTextField: UITextField!
     
     @IBOutlet weak var pick1hButton: UIButton!
     @IBOutlet weak var pick4hButton: UIButton!
@@ -37,6 +38,9 @@ class PriceChartViewController: UIViewController, UITableViewDataSource, UITable
     var priceInfoDict = [String: String]()
     var priceInfoDictKeysSorted = [String]()
     
+    var currencies = [ "USD", "BTC", "ETH" ]
+    var selectedCurrency = "USD"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -56,6 +60,9 @@ class PriceChartViewController: UIViewController, UITableViewDataSource, UITable
         
         configChartView()
         
+        selectedCurrency = "USD"
+        self.currencyTextField.text = selectedCurrency
+        
         loadCoinDetails()
         
         let refreshControl = UIRefreshControl()
@@ -64,6 +71,10 @@ class PriceChartViewController: UIViewController, UITableViewDataSource, UITable
         
         NotificationCenter.default.addObserver(self, selector: #selector(OnNotificationOfPriceUpdate(notification:)), name: NSNotification.Name(rawValue: Constants.NotificationOfPriceUpdateKey), object: nil)
 
+        let pickerView = UIPickerView()
+        pickerView.delegate = self
+        currencyTextField.inputView = pickerView
+        
         initAdMobBanner()
     }
     
@@ -163,30 +174,30 @@ class PriceChartViewController: UIViewController, UITableViewDataSource, UITable
     func loadCoinDetails() -> Void {
         let historicalDataRange = getSavedDataRange()
         
-        var urlStr = String(format: "https://min-api.cryptocompare.com/data/histominute?fsym=%@&tsym=USD&limit=60", inputCoinSymbol.uppercased())
+        var urlStr = String(format: "https://min-api.cryptocompare.com/data/histominute?fsym=%@&tsym=%@&limit=60", inputCoinSymbol.uppercased(), selectedCurrency)
         
         switch historicalDataRange {
         case "1h":
             setSelectedButton(sender: pick1hButton)
-            urlStr = String(format: "https://min-api.cryptocompare.com/data/histominute?fsym=%@&tsym=USD&limit=60", inputCoinSymbol.uppercased())
+            urlStr = String(format: "https://min-api.cryptocompare.com/data/histominute?fsym=%@&tsym=%@&limit=60", inputCoinSymbol.uppercased(), selectedCurrency)
         case "4h":
             setSelectedButton(sender: pick4hButton)
-            urlStr = String(format: "https://min-api.cryptocompare.com/data/histominute?fsym=%@&tsym=USD&limit=240", inputCoinSymbol.uppercased())
+            urlStr = String(format: "https://min-api.cryptocompare.com/data/histominute?fsym=%@&tsym=%@&limit=240", inputCoinSymbol.uppercased(), selectedCurrency)
         case "1d":
             setSelectedButton(sender: pick1dButton)
-            urlStr = String(format: "https://min-api.cryptocompare.com/data/histominute?fsym=%@&tsym=USD&limit=1440", inputCoinSymbol.uppercased())
+            urlStr = String(format: "https://min-api.cryptocompare.com/data/histominute?fsym=%@&tsym=%@&limit=1440", inputCoinSymbol.uppercased(), selectedCurrency)
         case "1w":
             setSelectedButton(sender: pick1wButton)
-            urlStr = String(format: "https://min-api.cryptocompare.com/data/histohour?fsym=%@&tsym=USD&limit=168", inputCoinSymbol)
+            urlStr = String(format: "https://min-api.cryptocompare.com/data/histohour?fsym=%@&tsym=%@&limit=168", inputCoinSymbol, selectedCurrency)
         case "1m":
             setSelectedButton(sender: pick1mButton)
-            urlStr = String(format: "https://min-api.cryptocompare.com/data/histohour?fsym=%@&tsym=USD&limit=720", inputCoinSymbol)
+            urlStr = String(format: "https://min-api.cryptocompare.com/data/histohour?fsym=%@&tsym=%@&limit=720", inputCoinSymbol, selectedCurrency)
         case "1y":
             setSelectedButton(sender: pick1yButton)
-            urlStr = String(format: "https://min-api.cryptocompare.com/data/histoday?fsym=%@&tsym=USD&limit=365", inputCoinSymbol)
+            urlStr = String(format: "https://min-api.cryptocompare.com/data/histoday?fsym=%@&tsym=%@&limit=365", inputCoinSymbol, selectedCurrency)
         case "5y":
             setSelectedButton(sender: pick5yButton)
-            urlStr = String(format: "https://min-api.cryptocompare.com/data/histoday?fsym=%@&tsym=USD&limit=1825", inputCoinSymbol)
+            urlStr = String(format: "https://min-api.cryptocompare.com/data/histoday?fsym=%@&tsym=%@&limit=1825", inputCoinSymbol, selectedCurrency)
         default:
             setSelectedButton(sender: pick1hButton)
         }
@@ -248,6 +259,31 @@ class PriceChartViewController: UIViewController, UITableViewDataSource, UITable
         return cell
     }
 
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return currencies.count
+    }
+    
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
+        return currencies[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
+        self.selectedCurrency = self.currencies[row]
+        self.currencyTextField.text = self.selectedCurrency
+        
+        self.view.endEditing(true)
+        
+        loadCoinDetails()
+    }
+    
     
     func configChartView() -> Void {
         chartView.noDataText = ""
