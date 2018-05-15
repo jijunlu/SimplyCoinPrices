@@ -39,4 +39,6 @@ struct Constants {
         1440
     ]
     
+    static let BaseCurrencies = [ "USD", "BTC", "ETH" ]
+    static let DefaultBaseCurrency = "USD"
 }

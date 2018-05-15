@@ -38,8 +38,8 @@ class PriceChartViewController: UIViewController, UITableViewDataSource, UITable
     var priceInfoDict = [String: String]()
     var priceInfoDictKeysSorted = [String]()
     
-    var currencies = [ "USD", "BTC", "ETH" ]
-    var selectedCurrency = "USD"
+    var selectedCurrency = Constants.DefaultBaseCurrency
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -265,18 +265,18 @@ class PriceChartViewController: UIViewController, UITableViewDataSource, UITable
     
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return currencies.count
+        return Constants.BaseCurrencies.count
     }
     
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
-        return currencies[row]
+        return Constants.BaseCurrencies[row]
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
-        self.selectedCurrency = self.currencies[row]
+        self.selectedCurrency = Constants.BaseCurrencies[row]
         self.currencyTextField.text = self.selectedCurrency
         
         self.view.endEditing(true)

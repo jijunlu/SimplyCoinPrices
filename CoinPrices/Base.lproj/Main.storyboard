@@ -780,49 +780,49 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vcZ-fA-qI6">
-                                        <rect key="frame" x="58.5" y="253" width="30" height="30"/>
+                                        <rect key="frame" x="59" y="253" width="30" height="30"/>
                                         <state key="normal" title="1h"/>
                                         <connections>
                                             <action selector="onPick1h:" destination="Okk-Pf-zic" eventType="touchUpInside" id="agb-Aq-qxw"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dwY-fA-JRf">
-                                        <rect key="frame" x="96.5" y="253" width="30" height="30"/>
+                                        <rect key="frame" x="97" y="253" width="30" height="30"/>
                                         <state key="normal" title="4h"/>
                                         <connections>
                                             <action selector="onPick4h:" destination="Okk-Pf-zic" eventType="touchUpInside" id="iQO-cy-pmz"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zbu-MT-9JT">
-                                        <rect key="frame" x="134.5" y="253" width="30" height="30"/>
+                                        <rect key="frame" x="135" y="253" width="30" height="30"/>
                                         <state key="normal" title="1d"/>
                                         <connections>
                                             <action selector="onPick1d:" destination="Okk-Pf-zic" eventType="touchUpInside" id="meB-3Z-vDu"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4nS-YB-AoC">
-                                        <rect key="frame" x="172.5" y="253" width="30" height="30"/>
+                                        <rect key="frame" x="173" y="253" width="30" height="30"/>
                                         <state key="normal" title="1w"/>
                                         <connections>
                                             <action selector="onPick1w:" destination="Okk-Pf-zic" eventType="touchUpInside" id="UcA-RE-hE6"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aDK-lv-pqT">
-                                        <rect key="frame" x="210.5" y="253" width="30" height="30"/>
+                                        <rect key="frame" x="211" y="253" width="30" height="30"/>
                                         <state key="normal" title="1m"/>
                                         <connections>
                                             <action selector="onPick1m:" destination="Okk-Pf-zic" eventType="touchUpInside" id="1Bi-FL-6yy"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hYW-yf-rTo">
-                                        <rect key="frame" x="248.5" y="253" width="30" height="30"/>
+                                        <rect key="frame" x="249" y="253" width="30" height="30"/>
                                         <state key="normal" title="1y"/>
                                         <connections>
                                             <action selector="onPick1y:" destination="Okk-Pf-zic" eventType="touchUpInside" id="FKv-o1-vKU"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bcp-XG-nQh">
-                                        <rect key="frame" x="286.5" y="253" width="30" height="30"/>
+                                        <rect key="frame" x="287" y="253" width="30" height="30"/>
                                         <state key="normal" title="5y"/>
                                         <connections>
                                             <action selector="onPick1y:" destination="Okk-Pf-zic" eventType="touchUpInside" id="trV-JC-z7y"/>
@@ -847,7 +847,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oiF-no-nbe">
-                                                            <rect key="frame" x="286" y="12" width="42" height="21"/>
+                                                            <rect key="frame" x="284" y="12" width="42" height="21"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -915,14 +915,8 @@
                                 </constraints>
                                 <viewLayoutGuide key="safeArea" id="GPj-NE-sAi"/>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select currency" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="USg-Vs-Jr7">
-                                <rect key="frame" x="19" y="127" width="121" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1ct-fB-ZSM">
-                                <rect key="frame" x="148" y="122" width="25" height="30"/>
+                                <rect key="frame" x="16" y="122" width="25" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -934,8 +928,7 @@
                             <constraint firstItem="BZU-VU-ycE" firstAttribute="trailing" secondItem="Hii-qe-4Mo" secondAttribute="trailing" constant="27" id="0oE-4U-zjy"/>
                             <constraint firstItem="RSO-T5-Xn1" firstAttribute="leading" secondItem="9jC-vj-Qn6" secondAttribute="leading" id="2kg-Hy-ncX"/>
                             <constraint firstAttribute="bottom" secondItem="0Wn-52-vXe" secondAttribute="bottom" id="AhZ-YC-L1W"/>
-                            <constraint firstItem="USg-Vs-Jr7" firstAttribute="leading" secondItem="BZU-VU-ycE" secondAttribute="leading" constant="19" id="GaR-cR-ciC"/>
-                            <constraint firstItem="USg-Vs-Jr7" firstAttribute="top" secondItem="BZU-VU-ycE" secondAttribute="top" constant="107" id="P80-QC-xuM"/>
+                            <constraint firstItem="1ct-fB-ZSM" firstAttribute="leading" secondItem="9jC-vj-Qn6" secondAttribute="leadingMargin" id="NPO-25-C3N"/>
                             <constraint firstItem="1ct-fB-ZSM" firstAttribute="top" secondItem="BZU-VU-ycE" secondAttribute="top" constant="102" id="Pcf-FT-H0R"/>
                             <constraint firstItem="Hii-qe-4Mo" firstAttribute="top" secondItem="BZU-VU-ycE" secondAttribute="top" id="S32-MV-euN"/>
                             <constraint firstItem="0Wn-52-vXe" firstAttribute="trailing" secondItem="RSO-T5-Xn1" secondAttribute="trailing" constant="4" id="XwZ-NW-BDp"/>
@@ -944,7 +937,6 @@
                             <constraint firstItem="Hii-qe-4Mo" firstAttribute="centerX" secondItem="9jC-vj-Qn6" secondAttribute="centerX" id="d5O-Oe-Idc"/>
                             <constraint firstItem="Hii-qe-4Mo" firstAttribute="leading" secondItem="BZU-VU-ycE" secondAttribute="leading" constant="27" id="huT-hi-CQY"/>
                             <constraint firstItem="Hii-qe-4Mo" firstAttribute="leading" secondItem="BZU-VU-ycE" secondAttribute="leading" constant="27" id="ilj-0C-QOW"/>
-                            <constraint firstItem="1ct-fB-ZSM" firstAttribute="leading" secondItem="USg-Vs-Jr7" secondAttribute="trailing" constant="8" id="kEu-co-LS7"/>
                             <constraint firstItem="0Wn-52-vXe" firstAttribute="leading" secondItem="RSO-T5-Xn1" secondAttribute="leading" id="kzl-ww-DCR"/>
                             <constraint firstItem="Hii-qe-4Mo" firstAttribute="top" secondItem="BZU-VU-ycE" secondAttribute="top" id="raG-CK-Sac"/>
                             <constraint firstItem="0Wn-52-vXe" firstAttribute="top" secondItem="RSO-T5-Xn1" secondAttribute="bottom" constant="46" id="vHm-nf-Jn0"/>
