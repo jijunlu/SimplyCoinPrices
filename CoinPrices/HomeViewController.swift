@@ -18,6 +18,8 @@ struct CoinPrice : Decodable {
 struct Ticker : Decodable {
     let name: String
     let symbol: String
+    let rank: String
+    /*
     let price_usd: String // "8273.52",
     let price_btc: String //"1.0",
     let market_cap_usd: String // "140477850066",
@@ -28,6 +30,7 @@ struct Ticker : Decodable {
     let percent_change_24h: String // "3.96",
     let percent_change_7d: String // "17.62",
     let last_updated: String // "1523809773"
+    */
 }
 
 class HomeViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, GADBannerViewDelegate {
@@ -119,7 +122,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         let task = session.dataTask(with: url, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
             guard let data = data else {
-                print("!!!!!!!!!!!!!!!! data error !!!!!!!!!!!!!!!")
+                print("!!!!!!!!!!!!!!!! Price data error !!!!!!!!!!!!!!!")
                 return
             }
             
@@ -179,12 +182,12 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let url = URL(string: String(Constants.CoinTickerUrl))!
         let task = session.dataTask(with: url, completionHandler: { (data: Data?, response: URLResponse?, error: Error?) -> Void in
             guard let data = data else {
-                print("!!!!!!!!!!!!!!!! data error !!!!!!!!!!!!!!!")
+                print("!!!!!!!!!!!!!!!! Ticker data error !!!!!!!!!!!!!!!")
                 return
             }
 
             guard let parsedResults = try? JSONDecoder().decode([Ticker].self, from: data) else {
-                print("!!!!!!!!!!!!!!! decode error !!!!!!!!!!!!!!!")
+                print("!!!!!!!!!!!!!!! Ticker decode error !!!!!!!!!!!!!!!")
                 return
             }
             
@@ -195,7 +198,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
                     tickerList.append([
                         "symbol": ticker.symbol,
                         "name": ticker.name,
-                        "rank": String(i)
+                        "rank": ticker.rank
                     ])
                     i += 1
                 }

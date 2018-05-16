@@ -61,7 +61,7 @@ class PriceChartViewController: UIViewController, UITableViewDataSource, UITable
         configChartView()
         
         selectedCurrency = "USD"
-        self.currencyTextField.text = selectedCurrency
+        self.currencyTextField.text = inputCoinSymbol + "/" + selectedCurrency
         
         loadCoinDetails()
         
@@ -271,13 +271,13 @@ class PriceChartViewController: UIViewController, UITableViewDataSource, UITable
     
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         
-        return Constants.BaseCurrencies[row]
+        return inputCoinSymbol + "/" + Constants.BaseCurrencies[row]
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         
         self.selectedCurrency = Constants.BaseCurrencies[row]
-        self.currencyTextField.text = self.selectedCurrency
+        self.currencyTextField.text = inputCoinSymbol + "/" + self.selectedCurrency
         
         self.view.endEditing(true)
         
