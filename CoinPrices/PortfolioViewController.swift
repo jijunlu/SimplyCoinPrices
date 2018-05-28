@@ -79,7 +79,7 @@ class PortfolioViewController: UIViewController, UITableViewDataSource, UITableV
         portfolioTotalLabel.numberOfLines = 0
         portfolioTotalLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
         
-        portfolioTotalLabel.text! = String(format: "$%.2f | %.2f BTC | PnL: $%.2f", totalUsd, totalBtc, totalUsd - totalCost)
+        portfolioTotalLabel.text! = String(format: "$%.0f | %.4f BTC | PnL: $%.0f", totalUsd, totalBtc, totalUsd - totalCost)
         portfolioTableView.reloadData()
     }
     
