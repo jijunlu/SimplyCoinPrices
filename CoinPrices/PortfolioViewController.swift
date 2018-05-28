@@ -73,8 +73,13 @@ class PortfolioViewController: UIViewController, UITableViewDataSource, UITableV
                 totalCost += amountAndCostBase["costBase"]!
             }
         }
+
+        let totalBtc = totalUsd / Double(savedCoinPriceDict["BTC"]!["price"]!)!
         
-        portfolioTotalLabel.text! = String(format: "Total: $%.2f (+/-: $%.2f)", totalUsd, totalUsd - totalCost)
+        portfolioTotalLabel.numberOfLines = 0
+        portfolioTotalLabel.lineBreakMode = NSLineBreakMode.byWordWrapping
+        
+        portfolioTotalLabel.text! = String(format: "$%.2f | %.2f BTC | PnL: $%.2f", totalUsd, totalBtc, totalUsd - totalCost)
         portfolioTableView.reloadData()
     }
     

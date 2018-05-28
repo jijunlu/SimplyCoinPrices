@@ -88,7 +88,7 @@ class HomeViewController: UIViewController, UITableViewDelegate, UITableViewData
         let priceData = self.coinPriceList[indexPath.row]
         cell.coinNameColumn?.text = String(format: "%@\n(%@)", priceData["name"]!, priceData["symbol"]!)
         cell.priceColumn?.text = String(format: "$%.4f", Double(priceData["price"]!)!)
-        let percentStr = String(format: "%@", priceData["CHANGEPCTDAY"]!)
+        let percentStr = String(format: "%@", priceData["CHANGEPCT24HOUR"]!)
         cell.changePercentColumn?.text = percentStr
         
         cell.coinNameColumn?.numberOfLines = 0
